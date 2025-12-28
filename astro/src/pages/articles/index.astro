@@ -1,0 +1,18 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { payloadQuery } from "@/utils/payloadQuery";
+
+const articlesResponse = await payloadQuery.find({
+  collection: "articles",
+});
+const articles = articlesResponse.docs;
+---
+
+<Layout title="Articles">
+  <div>Articles</div>
+  {
+    articles.map((article) => (
+      <a href={`/articles/${article.slug}`}>{article.title}</a>
+    ))
+  }
+</Layout>

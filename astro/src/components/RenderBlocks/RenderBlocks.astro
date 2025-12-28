@@ -1,0 +1,12 @@
+---
+import { type Page } from "payload-instance";
+import RenderBlock from "./RenderBlock.astro";
+
+interface Props {
+  blocks: Page["layout"];
+}
+
+const { blocks } = Astro.props;
+---
+
+{blocks?.map((block) => <RenderBlock block={block} />)}

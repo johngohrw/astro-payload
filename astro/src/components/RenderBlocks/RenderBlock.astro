@@ -1,0 +1,13 @@
+---
+import type { Page } from "payload-instance";
+
+interface Props {
+  block: NonNullable<Page["layout"]>[number];
+}
+
+const { block } = Astro.props;
+---
+
+<div>
+  hi {block.blockType}
+</div>

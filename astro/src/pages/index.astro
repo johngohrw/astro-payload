@@ -1,0 +1,17 @@
+---
+import RenderBlocks from "@/components/RenderBlocks/RenderBlocks.astro";
+import { ReactCounter } from "@/components/React/ReactCounter";
+import Layout from "../layouts/Layout.astro";
+import { payloadQuery } from "../utils/payloadQuery";
+
+const pageResponse = await payloadQuery.find({
+  collection: "pages",
+  where: { slug: { equals: "home" } },
+});
+const page = pageResponse.docs[0];
+---
+
+<Layout title={page.title}>
+  <!-- <ReactCounter client:load /> -->
+  <RenderBlocks blocks={page.layout} />
+</Layout>

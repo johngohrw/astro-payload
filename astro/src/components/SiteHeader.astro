@@ -1,0 +1,34 @@
+---
+import { payloadQuery } from "@/utils/payloadQuery";
+
+const navItemsResp = await payloadQuery.find({
+  collection: "pages",
+  where: {
+    includeInNav: {
+      equals: true,
+    },
+  },
+});
+const navItems = navItemsResp.docs;
+---
+
+<div class="header">
+  <a href="/">Brand</a>
+  <nav>
+    {navItems.map((ni) => <a href={`/${ni.slug}`}>{ni.title}</a>)}
+    <a href={`/articles`}>Articles</a>
+  </nav>
+</div>
+
+<style>
+  .header {
+    display: flex;
+    flex-flow: row nowrap;
+
+    padding: 12px;
+    border: 1px solid black;
+  }
+  nav {
+    margin-left: 12px;
+  }
+</style>

@@ -1,0 +1,22 @@
+---
+import { RichText } from "@/components/React/RichText";
+import Layout from "@/layouts/Layout.astro";
+import { payloadQuery } from "@/utils/payloadQuery";
+
+export async function getStaticPaths() {
+  const articles = await payloadQuery.find({
+    collection: "articles",
+  });
+
+  return articles.docs.map((article) => ({
+    params: { slug: article.slug },
+    props: { article: article },
+  }));
+}
+
+const { article } = Astro.props;
+---
+
+<Layout title={article.title}>
+  <RichText data={article.content} />
+</Layout>
