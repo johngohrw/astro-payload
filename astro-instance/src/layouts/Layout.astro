@@ -20,7 +20,6 @@ const { title = "Astro Site" } = Astro.props;
     <div class="content">
       <main>
         <slot />
-        {Array.from(Array(100).keys()).map((i) => <div>{i}</div>)}
       </main>
     </div>
   </body>
