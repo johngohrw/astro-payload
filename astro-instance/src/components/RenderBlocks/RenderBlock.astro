@@ -1,8 +1,6 @@
 ---
 import type { Page } from "payload-instance";
 
-import Hero from "./Blocks/Hero.astro";
-
 export type BlockType = NonNullable<Page["layout"]>[number];
 type BlockComponent = (_props: { block: BlockType }) => any;
 
@@ -13,7 +11,7 @@ interface Props {
 const { block } = Astro.props;
 
 const typeRendererMap: Record<string, BlockComponent> = {
-  hero: Hero,
+  // hero: Hero,
 };
 
 const Renderer = typeRendererMap["hero"];
