@@ -203,15 +203,25 @@ export interface Page {
   layout?:
     | (
         | {
-            headline: string;
-            subheadline?: string | null;
-            cta?: {
+            title: string;
+            subtitle?: string | null;
+            images?:
+              | {
+                  image: number | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            primaryAction?: {
               label?: string | null;
-              url?: string | null;
+              href?: string | null;
+            };
+            secondaryAction?: {
+              label?: string | null;
+              href?: string | null;
             };
             id?: string | null;
             blockName?: string | null;
-            blockType: 'hero';
+            blockType: 'heroWithOffsetImage';
           }
         | {
             content: {
@@ -448,16 +458,28 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
-        hero?:
+        heroWithOffsetImage?:
           | T
           | {
-              headline?: T;
-              subheadline?: T;
-              cta?:
+              title?: T;
+              subtitle?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              primaryAction?:
                 | T
                 | {
                     label?: T;
-                    url?: T;
+                    href?: T;
+                  };
+              secondaryAction?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
                   };
               id?: T;
               blockName?: T;

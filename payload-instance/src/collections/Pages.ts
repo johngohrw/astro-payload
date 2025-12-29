@@ -1,4 +1,4 @@
-import { Hero } from '@/blocks/Hero'
+import { HeroWithOffsetImage } from '@/blocks/HeroWithOffsetImage'
 import { ImageGrid } from '@/blocks/ImageGrid'
 import { RichText } from '@/blocks/RichText'
 import { CollectionConfig } from 'payload'
@@ -45,7 +45,7 @@ export const Pages: CollectionConfig = {
     {
       name: 'layout',
       type: 'blocks',
-      blocks: [Hero, RichText, ImageGrid],
+      blocks: [HeroWithOffsetImage, RichText, ImageGrid],
     },
   ],
 }

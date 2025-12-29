@@ -1,0 +1,20 @@
+---
+import HeroWithOffsetImgBlock from "./Blocks/HeroWithOffsetImgBlock.astro";
+import type { BlockComponent, BlockType, BlockTypeEnum } from "./types";
+
+interface Props {
+  block: BlockType;
+}
+
+const { block } = Astro.props;
+
+const typeRendererMap: Record<BlockTypeEnum, BlockComponent> = {
+  heroWithOffsetImage: HeroWithOffsetImgBlock,
+  imageGrid: HeroWithOffsetImgBlock,
+  richText: HeroWithOffsetImgBlock,
+};
+
+const Renderer = typeRendererMap[block.blockType];
+---
+
+{Renderer && <Renderer block={block} />}

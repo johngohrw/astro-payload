@@ -1,6 +1,6 @@
 ---
 import { type Page } from "payload-instance";
-import RenderBlock from "./RenderBlock.astro";
+import RenderSingleBlock from "./RenderSingleBlock.astro";
 
 interface Props {
   blocks: Page["layout"];
@@ -9,4 +9,4 @@ interface Props {
 const { blocks } = Astro.props;
 ---
 
-{blocks?.map((block) => <RenderBlock block={block} />)}
+{blocks?.map((block) => <RenderSingleBlock block={block} />)}
