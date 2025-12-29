@@ -12,5 +12,5 @@ const page = pageResponse.docs[0];
 
 <Layout title={page.title}>
   <!-- <ReactCounter client:load /> -->
-  <RenderBlocks blocks={page.layout} />
+  <RenderBlocks blocks={page.contentBlocks} />
 </Layout>

@@ -3,7 +3,7 @@ import { type Page } from "payload-instance";
 import RenderSingleBlock from "./RenderSingleBlock.astro";
 
 interface Props {
-  blocks: Page["layout"];
+  blocks: Page["contentBlocks"];
 }
 
 const { blocks } = Astro.props;
