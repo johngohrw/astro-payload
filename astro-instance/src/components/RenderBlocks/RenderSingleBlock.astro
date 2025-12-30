@@ -1,4 +1,6 @@
 ---
+import ContactSimpleFourColBlock from "./Blocks/ContactSimpleFourColBlock.astro";
+import FeatSimpleThreeColBlock from "./Blocks/FeatSimpleThreeColBlock.astro";
 import HeroWithOffsetImgBlock from "./Blocks/HeroWithOffsetImgBlock.astro";
 import type { BlockComponent, BlockType, BlockTypeEnum } from "./types";
 
@@ -12,6 +14,8 @@ const typeRendererMap: Record<BlockTypeEnum, BlockComponent> = {
   heroWithOffsetImage: HeroWithOffsetImgBlock,
   imageGrid: HeroWithOffsetImgBlock,
   richText: HeroWithOffsetImgBlock,
+  featSimpleThreeCol: FeatSimpleThreeColBlock,
+  contactSimpleFourCol: ContactSimpleFourColBlock,
 };
 
 const Renderer = typeRendererMap[block.blockType];

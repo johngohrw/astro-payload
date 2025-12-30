@@ -1,0 +1,17 @@
+---
+import type { BlockTypeOf } from "../types";
+import ContactSimpleFourCol from "@/components/TailwindPlus/Contact/ContactSimpleFourCol.astro";
+
+const { block: incomingBlock } = Astro.props;
+
+const block: BlockTypeOf<"contactSimpleFourCol"> = incomingBlock;
+---
+
+<ContactSimpleFourCol
+  title={block.title}
+  subtitle={block.subtitle ?? ""}
+  offices={block.offices.map((o) => ({
+    name: o.name,
+    lines: (o.lines ?? []).map((l) => l.line),
+  }))}
+/>

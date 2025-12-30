@@ -1,34 +1,32 @@
 ---
 import FeatSimpleThreeCol from "@/components/TailwindPlus/Feature/FeatSimpleThreeCol.astro";
 
-// todo: payload block schema and handle block type
+import type { BlockTypeOf } from "../types";
+
+const { block: incomingBlock } = Astro.props;
+
+const block: BlockTypeOf<"featSimpleThreeCol"> = incomingBlock;
+
+const columns = block.columns.map((col) => ({
+  title: col.title,
+  caption: col.caption ?? "",
+  icon: col.icon ?? "",
+  actionLabel: col.action?.label ?? "",
+  actionHref: col.action?.href ?? "",
+}));
+
+type Column = (typeof columns)[number];
+const _cols = columns as [Column, Column, Column]; // trust me bro its gonna be 3
+const isInvalid = _cols.length !== 3;
 ---
 
-<FeatSimpleThreeCol
-  columns={[
-    {
-      title: "Title",
-      actionHref: "#",
-      actionLabel: "Label",
-      caption: "Caption caption caption",
-      icon: "#",
-    },
-    {
-      title: "Title",
-      actionHref: "#",
-      actionLabel: "Label",
-      caption: "Caption caption caption",
-      icon: "#",
-    },
-    {
-      title: "Title",
-      actionHref: "#",
-      actionLabel: "Label",
-      caption: "Caption caption caption",
-      icon: "#",
-    },
-  ]}
-  subtitle="subtitle"
-  title="title"
-  topCaption="topCaption"
-/>
+{
+  isInvalid ? null : (
+    <FeatSimpleThreeCol
+      topCaption={block.topCaption ?? ""}
+      title={block.title}
+      subtitle={block.subtitle ?? ""}
+      columns={_cols}
+    />
+  )
+}
