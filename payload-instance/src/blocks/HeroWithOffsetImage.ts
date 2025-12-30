@@ -21,6 +21,7 @@ export const HeroWithOffsetImage: Block = {
       type: 'array',
       minRows: 5,
       maxRows: 5, // all 5 images required
+      required: true,
       fields: [
         {
           name: 'image',

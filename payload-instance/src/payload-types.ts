@@ -200,17 +200,15 @@ export interface Page {
   slug: string;
   published?: boolean | null;
   includeInNav?: boolean | null;
-  layout?:
+  contentBlocks?:
     | (
         | {
             title: string;
             subtitle?: string | null;
-            images?:
-              | {
-                  image: number | Media;
-                  id?: string | null;
-                }[]
-              | null;
+            images: {
+              image: number | Media;
+              id?: string | null;
+            }[];
             primaryAction?: {
               label?: string | null;
               href?: string | null;
@@ -254,6 +252,41 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'imageGrid';
+          }
+        | {
+            topCaption?: string | null;
+            title: string;
+            subtitle?: string | null;
+            columns: {
+              icon?: string | null;
+              title: string;
+              caption?: string | null;
+              action?: {
+                label?: string | null;
+                href?: string | null;
+              };
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featSimpleThreeCol';
+          }
+        | {
+            title: string;
+            subtitle?: string | null;
+            offices: {
+              name: string;
+              lines?:
+                | {
+                    line: string;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactSimpleFourCol';
           }
       )[]
     | null;
@@ -455,7 +488,7 @@ export interface PagesSelect<T extends boolean = true> {
   slug?: T;
   published?: T;
   includeInNav?: T;
-  layout?:
+  contentBlocks?:
     | T
     | {
         heroWithOffsetImage?:
@@ -499,6 +532,49 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     image?: T;
                     caption?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featSimpleThreeCol?:
+          | T
+          | {
+              topCaption?: T;
+              title?: T;
+              subtitle?: T;
+              columns?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    caption?: T;
+                    action?:
+                      | T
+                      | {
+                          label?: T;
+                          href?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactSimpleFourCol?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              offices?:
+                | T
+                | {
+                    name?: T;
+                    lines?:
+                      | T
+                      | {
+                          line?: T;
+                          id?: T;
+                        };
                     id?: T;
                   };
               id?: T;
