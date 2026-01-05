@@ -1,0 +1,23 @@
+---
+import HeroWithOffsetImg from "@/components/TailwindPlus/Hero/HeroWithOffsetImg.astro";
+import DefaultLayout from "@_default/layouts/DefaultLayout.astro";
+---
+
+<DefaultLayout>
+  <h1>HeroWithOffsetImg</h1>
+  <HeroWithOffsetImg
+    title={"This is a title"}
+    subtitle={"This is a subtitle"}
+    buttonLabel={"Button Label"}
+    buttonHref={"#"}
+    subActionLabel={"Sub Label"}
+    subActionHref={"#"}
+    images={[
+      "https://picsum.photos/200",
+      "https://picsum.photos/200",
+      "https://picsum.photos/200",
+      "https://picsum.photos/200",
+      "https://picsum.photos/200",
+    ]}
+  />
+</DefaultLayout>

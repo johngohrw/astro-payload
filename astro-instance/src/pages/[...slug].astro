@@ -1,0 +1,49 @@
+---
+export async function getStaticPaths() {
+  const SITE = import.meta.env.PUBLIC_SITE || "_default";
+
+  // Get all .astro files from the site's pages directory
+  const pages = import.meta.glob(`../sites/*/pages/**/*.astro`);
+
+  const paths = Object.keys(pages)
+    .filter((path) => path.includes(`/sites/${SITE}/pages/`))
+    .map((path) => {
+      const match = path.match(/\/sites\/[^/]+\/pages\/(.+)\.astro$/);
+      if (!match) return null;
+
+      let slug: string | undefined = match[1];
+
+      // Handle index files
+      if (slug.endsWith("/index")) slug = slug.replace("/index", "");
+      if (slug === "index") slug = undefined; // Root path
+      return { params: { slug: slug || undefined } };
+    })
+    .filter(Boolean);
+
+  return paths;
+}
+
+const SITE = import.meta.env.PUBLIC_SITE || "_default";
+const slug = Astro.params.slug || "index";
+const props: Record<any, any> = Astro.props;
+
+const pagePath = Array.isArray(slug) ? slug.join("/") : slug;
+
+let SitePage;
+
+try {
+  SitePage = await import(`../sites/${SITE}/pages/${pagePath}.astro`);
+} catch {
+  try {
+    SitePage = await import(`../sites/${SITE}/pages/${pagePath}/index.astro`);
+  } catch {
+    try {
+      SitePage = await import(`../sites/${SITE}/pages/index.astro`);
+    } catch (e) {
+      return Astro.redirect("/404");
+    }
+  }
+}
+---
+
+<SitePage.default {...props} />

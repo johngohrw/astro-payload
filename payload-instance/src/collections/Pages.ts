@@ -1,3 +1,4 @@
+import { allBlocks } from '@/blocks/_allBlocks'
 import { ContactSimpleFourCol } from '@/blocks/ContactSimpleFourColBlock'
 import { FeatSimpleThreeCol } from '@/blocks/FeatSimpleThreeColBlock'
 import { HeroWithOffsetImage } from '@/blocks/HeroWithOffsetImage'
@@ -47,7 +48,7 @@ export const Pages: CollectionConfig = {
     {
       name: 'contentBlocks',
       type: 'blocks',
-      blocks: [HeroWithOffsetImage, RichText, ImageGrid, FeatSimpleThreeCol, ContactSimpleFourCol],
+      blocks: allBlocks,
     },
   ],
 }

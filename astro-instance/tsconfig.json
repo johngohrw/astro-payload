@@ -5,6 +5,7 @@
   "compilerOptions": {
     "paths": {
       "@cogue/*": ["./src/sites/cogue/*"],
+      "@_default/*": ["./src/sites/_default/*"],
       "@/*": ["./src/*"]
     },
     "jsx": "react-jsx",
