@@ -1,15 +1,6 @@
 ---
-import RenderBlocks from "@/components/RenderBlocks/RenderBlocks.astro";
-import Layout from "../layouts/Layout.astro";
-import { payloadQuery } from "../utils/payloadQuery";
-
-const pageResponse = await payloadQuery.find({
-  collection: "pages",
-  where: { slug: { equals: "home" } },
-});
-const page = pageResponse.docs[0];
+const SITE = import.meta.env.PUBLIC_SITE || "_default";
+const SitePage = await import(`../sites/${SITE}/pages/index.astro`);
 ---
 
-<Layout title={page.title}>
-  <RenderBlocks blocks={page.contentBlocks} />
-</Layout>
+<SitePage.default />

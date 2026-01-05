@@ -1,6 +1,6 @@
 ---
-import Layout from "@/layouts/Layout.astro";
 import { payloadQuery } from "@/utils/payloadQuery";
+import CogueLayout from "@cogue/layouts/CogueLayout.astro";
 
 const articlesResponse = await payloadQuery.find({
   collection: "articles",
@@ -8,11 +8,11 @@ const articlesResponse = await payloadQuery.find({
 const articles = articlesResponse.docs;
 ---
 
-<Layout title="Articles">
+<CogueLayout title="Articles">
   <div>Articles</div>
   {
     articles.map((article) => (
       <a href={`/articles/${article.slug}`}>{article.title}</a>
     ))
   }
-</Layout>
+</CogueLayout>
