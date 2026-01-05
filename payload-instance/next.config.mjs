@@ -13,6 +13,14 @@ const nextConfig = {
     return webpackConfig
   },
   output: 'standalone',
+  // below: https://github.com/payloadcms/payload/issues/11790
+  outputFileTracingIncludes: {
+    '*': [
+      'node_modules/@libsql/**',
+      'node_modules/.pnpm/@libsql*/node_modules/**',
+      'node_modules/.pnpm/@neon-rs*/node_modules/**',
+    ],
+  },
 }
 
 export default withPayload(nextConfig, { devBundleServerPackages: false })
