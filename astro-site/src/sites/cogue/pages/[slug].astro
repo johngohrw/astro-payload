@@ -1,0 +1,23 @@
+---
+import RenderBlocks from "@/components/RenderBlocks/RenderBlocks.astro";
+
+import CogueLayout from "@cogue/layouts/CogueLayout.astro";
+import { payloadQuery } from "@cogue/utils/payloadQuery";
+
+export async function getStaticPaths() {
+  const pages = await payloadQuery.find({
+    collection: "pages",
+  });
+
+  return pages.docs.map((page) => ({
+    params: { slug: page.slug },
+    props: { page: page },
+  }));
+}
+
+const { page } = Astro.props;
+---
+
+<CogueLayout title={page.title}>
+  <RenderBlocks blocks={page.contentBlocks} />
+</CogueLayout>

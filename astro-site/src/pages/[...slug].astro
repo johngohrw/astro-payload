@@ -1,0 +1,71 @@
+---
+export async function getStaticPaths() {
+  const SITE = import.meta.env.PUBLIC_SITE || "_default";
+  const allPages = import.meta.glob(`../sites/*/pages/**/*.astro`, {
+    eager: true,
+  });
+
+  const paths = [];
+
+  for (const [path, module] of Object.entries(allPages)) {
+    if (!path.includes(`/sites/${SITE}/pages/`)) continue;
+
+    const match = path.match(/\/sites\/[^/]+\/pages\/(.+)\.astro$/);
+    if (!match) continue;
+
+    let slug = match[1];
+
+    // Check if this page has its own getStaticPaths (dynamic route)
+    if (module && typeof (module as any).getStaticPaths === "function") {
+      const dynamicPaths = await (module as any).getStaticPaths();
+      paths.push(...dynamicPaths);
+      continue;
+    }
+
+    // Handle static pages
+    if (slug.endsWith("/index")) slug = slug.replace("/index", "");
+    if (slug === "index") {
+      paths.push({ params: { slug: undefined } });
+    } else if (!slug.includes("[")) {
+      paths.push({ params: { slug } });
+    }
+  }
+
+  console.log("Generated paths:", paths);
+  return paths;
+}
+
+const SITE = import.meta.env.PUBLIC_SITE || "_default";
+const slugParam = Astro.params.slug;
+
+const pagePath = !slugParam
+  ? "index"
+  : Array.isArray(slugParam)
+    ? slugParam.join("/")
+    : slugParam;
+
+const allPages = import.meta.glob(`../sites/*/pages/**/*.astro`);
+
+const possiblePaths = [
+  `../sites/${SITE}/pages/${pagePath}.astro`,
+  `../sites/${SITE}/pages/${pagePath}/index.astro`,
+  `../sites/${SITE}/pages/[slug].astro`,
+];
+
+let SitePage: any;
+
+for (const path of possiblePaths) {
+  if (allPages[path]) {
+    console.log("Found page at:", path);
+    SitePage = await allPages[path]();
+    break;
+  }
+}
+
+if (!SitePage) {
+  console.log("No page found, redirecting to 404");
+  return Astro.redirect("/404");
+}
+---
+
+<SitePage.default {...Astro.props} />

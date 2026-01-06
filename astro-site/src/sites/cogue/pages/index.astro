@@ -1,0 +1,16 @@
+---
+import RenderBlocks from "@/components/RenderBlocks/RenderBlocks.astro";
+
+import CogueLayout from "@cogue/layouts/CogueLayout.astro";
+import { payloadQuery } from "@cogue/utils/payloadQuery";
+
+const pageResponse = await payloadQuery.find({
+  collection: "pages",
+  where: { slug: { equals: "home" } },
+});
+const page = pageResponse.docs[0];
+---
+
+<CogueLayout title={page.title}>
+  <RenderBlocks blocks={page.contentBlocks} />
+</CogueLayout>

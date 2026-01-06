@@ -1,17 +1,9 @@
 {
   "name": "astro-payload",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "keywords": [],
   "license": "ISC",
   "author": "",
-  "main": "index.js",
-  "scripts": {
-    "dev:payload": "cd payload && pnpm dev",
-    "i:payload": "cd payload && pnpm i",
-    "dev:astro": "cd astro && pnpm dev",
-    "i:astro": "cd astro && pnpm i",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
 }
