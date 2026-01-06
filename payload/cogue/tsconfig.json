@@ -19,7 +19,7 @@
       }
     ],
     "paths": {
-      "@payload-default-config": ["./src/payload.config.ts"]
+      "@payload-cogue-config": ["./src/payload.config.ts"]
     },
     "target": "ES2022"
   },

@@ -1,12 +1,12 @@
 [Unit]
-Description=Default Payload Instance
+Description=Payload for Cogue
 After=syslog.target network.target
 
 [Service]
 Type=simple
 Restart=always
 RestartSec=1
-ExecStart=/var/www/astro-payload/payload/default/serve.sh
+ExecStart=/var/www/astro-payload/payload/cogue/serve.sh
 User=root
 
 [Install]

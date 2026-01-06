@@ -1,13 +1,13 @@
 import { CollectionConfig } from "payload";
-import { allBlocks } from "../blocks/_allBlocks";
 
-export const Pages: CollectionConfig = {
-  slug: "pages",
+export const Articles: CollectionConfig = {
+  slug: "articles",
   admin: {
     useAsTitle: "title",
+    defaultColumns: ["title", "publishedAt"],
   },
   access: {
-    read: () => true, // public read for build-time fetch
+    read: () => true,
   },
   fields: [
     {
@@ -25,25 +25,29 @@ export const Pages: CollectionConfig = {
       },
     },
     {
+      name: "excerpt",
+      type: "textarea",
+    },
+    {
+      name: "content",
+      type: "richText",
+      required: true,
+    },
+    {
+      name: "publishedAt",
+      type: "date",
+      defaultValue: () => new Date(),
+      admin: {
+        position: "sidebar",
+      },
+    },
+    {
       name: "published",
       type: "checkbox",
       defaultValue: true,
       admin: {
         position: "sidebar",
       },
-    },
-    {
-      name: "includeInNav",
-      type: "checkbox",
-      defaultValue: false,
-      admin: {
-        position: "sidebar",
-      },
-    },
-    {
-      name: "contentBlocks",
-      type: "blocks",
-      blocks: allBlocks,
     },
   ],
 };

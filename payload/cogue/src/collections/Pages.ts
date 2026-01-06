@@ -1,5 +1,5 @@
+import { allBlocksLocal } from "@/blocks/_allBlocks";
 import { CollectionConfig } from "payload";
-import { allBlocks } from "../blocks/_allBlocks";
 
 export const Pages: CollectionConfig = {
   slug: "pages",
@@ -43,7 +43,7 @@ export const Pages: CollectionConfig = {
     {
       name: "contentBlocks",
       type: "blocks",
-      blocks: allBlocks,
+      blocks: allBlocksLocal,
     },
   ],
 };
