@@ -1,0 +1,28 @@
+[Unit]
+Description=My Payload Instance
+After=network.target
+
+[Service]
+Type=simple
+
+User=node
+Group=node
+
+WorkingDirectory=/var/www/astro-payload/payload-instance
+
+# Ensure pnpm and node are on PATH
+Environment=PATH=/usr/bin:/usr/local/bin
+
+# Optional: production env
+Environment=NODE_ENV=production
+
+ExecStart=/usr/local/bin/pnpm start
+
+Restart=always
+RestartSec=5
+
+# Prevent runaway memory usage
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
