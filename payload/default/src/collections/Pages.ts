@@ -1,5 +1,5 @@
+import { allBlocks } from "@payload-default/blocks/_allBlocks";
 import { CollectionConfig } from "payload";
-import { allBlocks } from "../blocks/_allBlocks";
 
 export const Pages: CollectionConfig = {
   slug: "pages",

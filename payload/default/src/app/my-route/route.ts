@@ -1,4 +1,4 @@
-import configPromise from "@payload-default-config";
+import configPromise from "@payload-default/payload.config";
 import { getPayload } from "payload";
 
 export const GET = async (request: Request) => {

@@ -1,4 +1,4 @@
-import configPromise from "@payload-cogue-config";
+import configPromise from "@payload-cogue/payload.config";
 import { getPayload } from "payload";
 
 export const GET = async (request: Request) => {

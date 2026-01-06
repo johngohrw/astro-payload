@@ -1,0 +1,22 @@
+---
+import { RichText } from "@astro-cogue/components/React/RichText";
+import CogueLayout from "@astro-cogue/layouts/CogueLayout.astro";
+import { payloadQuery } from "@astro-cogue/utils/payloadQuery";
+
+export async function getStaticPaths() {
+  const articles = await payloadQuery.find({
+    collection: "articles",
+  });
+
+  return articles.docs.map((article) => ({
+    params: { slug: article.slug },
+    props: { article: article },
+  }));
+}
+
+const { article } = Astro.props;
+---
+
+<CogueLayout title={article.title}>
+  <RichText data={article.content} />
+</CogueLayout>

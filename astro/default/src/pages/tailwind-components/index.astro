@@ -1,0 +1,26 @@
+---
+import CareerHeroSection from "@astro-default/components/TailwindPlus/HeaderSections/CareerHeroSection";
+import HeroWithOffsetImg from "@astro-default/components/TailwindPlus/Hero/HeroWithOffsetImg.astro";
+import DefaultLayout from "@astro-default/layouts/DefaultLayout.astro";
+---
+
+<DefaultLayout>
+  <h1>HeroWithOffsetImg</h1>
+  <HeroWithOffsetImg
+    title={"This is a title"}
+    subtitle={"This is a subtitle"}
+    buttonLabel={"Button Label"}
+    buttonHref={"#"}
+    subActionLabel={"Sub Label"}
+    subActionHref={"#"}
+    images={[
+      "https://picsum.photos/200",
+      "https://picsum.photos/200",
+      "https://picsum.photos/200",
+      "https://picsum.photos/200",
+      "https://picsum.photos/200",
+    ]}
+  />
+  <h1>CareerHeroSection</h1>
+  <CareerHeroSection />
+</DefaultLayout>
