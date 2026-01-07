@@ -10,6 +10,12 @@ const pageResponse = await payloadQuery.find({
 const page = pageResponse.docs[0];
 ---
 
-<CogueLayout title={page.title}>
-  <RenderBlocks blocks={page.contentBlocks} />
-</CogueLayout>
+{
+  !page ? (
+    <div>Page with 'home' slug not defined in Payload CMS</div>
+  ) : (
+    <CogueLayout title={page.title}>
+      <RenderBlocks blocks={page.contentBlocks} />
+    </CogueLayout>
+  )
+}

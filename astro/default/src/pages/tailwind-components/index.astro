@@ -1,5 +1,6 @@
 ---
-import CareerHeroSection from "@astro-default/components/TailwindPlus/HeaderSections/CareerHeroSection";
+import FeatSimpleThreeCol from "@astro-default/components/TailwindPlus/Feature/FeatSimpleThreeCol.astro";
+import CareerHeroSection from "@astro-default/components/TailwindPlus/HeaderSections/CareerHeroSection.astro";
 import HeroWithOffsetImg from "@astro-default/components/TailwindPlus/Hero/HeroWithOffsetImg.astro";
 import DefaultLayout from "@astro-default/layouts/DefaultLayout.astro";
 ---
@@ -23,4 +24,33 @@ import DefaultLayout from "@astro-default/layouts/DefaultLayout.astro";
   />
   <h1>CareerHeroSection</h1>
   <CareerHeroSection />
+  <h1>FeatSimpleThreeCol</h1>
+  <FeatSimpleThreeCol
+    title="Title"
+    subtitle="subtitle"
+    topCaption="top caption"
+    columns={[
+      {
+        actionHref: "#",
+        actionLabel: "action",
+        caption: "Caption",
+        icon: "lucide:biceps-flexed",
+        title: "title",
+      },
+      {
+        actionHref: "#",
+        actionLabel: "action",
+        caption: "Caption",
+        icon: "lucide:biceps-flexed",
+        title: "title",
+      },
+      {
+        actionHref: "#",
+        actionLabel: "action",
+        caption: "Caption",
+        icon: "lucide:biceps-flexed",
+        title: "title",
+      },
+    ]}
+  />
 </DefaultLayout>
