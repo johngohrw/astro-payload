@@ -1,56 +1,135 @@
 ---
+import ContactSimpleCentered from "@astro-default/components/TailwindPlus/Contact/ContactSimpleCentered.astro";
+import ContactSimpleFourCol from "@astro-default/components/TailwindPlus/Contact/ContactSimpleFourCol.astro";
+import ContactSplitWithForm from "@astro-default/components/TailwindPlus/Contact/ContactSplitWithForm.astro";
+import CtaCenteredPanel from "@astro-default/components/TailwindPlus/Cta/CtaCenteredPanel.astro";
+import CtaCenteredPlain from "@astro-default/components/TailwindPlus/Cta/CtaCenteredPlain.astro";
+import CtaImageTiles from "@astro-default/components/TailwindPlus/Cta/CtaImageTiles.astro";
+import CtaSimpleCenteredGradient from "@astro-default/components/TailwindPlus/Cta/CtaSimpleCenteredGradient.astro";
+import CtaSplitWithImage from "@astro-default/components/TailwindPlus/Cta/CtaSplitWithImage.astro";
 import FeatSimpleThreeCol from "@astro-default/components/TailwindPlus/Feature/FeatSimpleThreeCol.astro";
-import CareerHeroSection from "@astro-default/components/TailwindPlus/HeaderSections/CareerHeroSection.astro";
+import HeadingWithStats from "@astro-default/components/TailwindPlus/Headings/HeadingWithStats.astro";
+import HeadingSimpleLeft from "@astro-default/components/TailwindPlus/Headings/HeadingSimpleLeft.astro";
+import HeroSimpleCentered from "@astro-default/components/TailwindPlus/Hero/HeroSimpleCentered.astro";
+import HeroSplitWithImage from "@astro-default/components/TailwindPlus/Hero/HeroSplitWithImage.astro";
+import HeroSplitWithImageAngled from "@astro-default/components/TailwindPlus/Hero/HeroSplitWithImageAngled.astro";
 import HeroWithOffsetImg from "@astro-default/components/TailwindPlus/Hero/HeroWithOffsetImg.astro";
 import DefaultLayout from "@astro-default/layouts/DefaultLayout.astro";
 ---
 
 <DefaultLayout>
-  <h1>HeroWithOffsetImg</h1>
+  <div class="title transparent-checker">HeroWithOffsetImg</div>
   <HeroWithOffsetImg
-    title={"This is a title"}
-    subtitle={"This is a subtitle"}
-    buttonLabel={"Button Label"}
+    title={"Welcome to our Website"}
+    subtitle={"Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat."}
+    buttonLabel={"Our Story"}
     buttonHref={"#"}
-    subActionLabel={"Sub Label"}
+    subActionLabel={"Learn More"}
     subActionHref={"#"}
     images={[
-      "https://picsum.photos/200",
-      "https://picsum.photos/200",
-      "https://picsum.photos/200",
-      "https://picsum.photos/200",
-      "https://picsum.photos/200",
+      "https://picsum.photos/400",
+      "https://picsum.photos/401",
+      "https://picsum.photos/402",
+      "https://picsum.photos/403",
+      "https://picsum.photos/404",
     ]}
   />
-  <h1>CareerHeroSection</h1>
-  <CareerHeroSection />
-  <h1>FeatSimpleThreeCol</h1>
+  <div class="title transparent-checker">FeatSimpleThreeCol</div>
   <FeatSimpleThreeCol
-    title="Title"
-    subtitle="subtitle"
-    topCaption="top caption"
+    topCaption="Work faster"
+    title="Everything you need in a world-class product"
+    subtitle="Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat."
     columns={[
       {
         actionHref: "#",
-        actionLabel: "action",
-        caption: "Caption",
+        actionLabel: "Learn More",
+        caption:
+          "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.",
         icon: "lucide:biceps-flexed",
-        title: "title",
+        title: "Advanced security",
       },
       {
         actionHref: "#",
-        actionLabel: "action",
-        caption: "Caption",
+        actionLabel: "Learn More",
+        caption:
+          "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.",
         icon: "lucide:biceps-flexed",
-        title: "title",
+        title: "Advanced security",
       },
       {
         actionHref: "#",
-        actionLabel: "action",
-        caption: "Caption",
+        actionLabel: "Learn More",
+        caption:
+          "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.",
         icon: "lucide:biceps-flexed",
-        title: "title",
+        title: "Advanced security",
       },
     ]}
   />
+
+  <div class="title transparent-checker">ContactSimpleFourCol</div>
+  <ContactSimpleFourCol
+    title="Our Locations"
+    subtitle="Consequat sunt cillum cillum elit sint. Qui occaecat nisi in ipsum commodo."
+    offices={[
+      {
+        name: "Office 1",
+        lines: ["3142 Address Line 1", "Address Line 2", "Address Line 3"],
+      },
+      {
+        name: "Office 2",
+        lines: ["534 Address Line 1", "Address Line 2", "Address Line 3"],
+      },
+      {
+        name: "Office 3",
+        lines: ["22 Address Line 1", "Address Line 2", "Address Line 3"],
+      },
+      {
+        name: "Office 4",
+        lines: ["990 Address Line 1", "Address Line 2", "Address Line 3"],
+      },
+    ]}
+  />
+  <div class="title transparent-checker">ContactSplitWithForm</div>
+  <ContactSplitWithForm />
+  <div class="title transparent-checker">ContactSimpleCentered</div>
+  <ContactSimpleCentered />
+  <div class="title transparent-checker">HeroSimpleCentered</div>
+  <HeroSimpleCentered />
+  <div class="title transparent-checker">HeroSplitWithImage</div>
+  <HeroSplitWithImage />
+  <div class="title transparent-checker">HeroSplitWithImageAngled</div>
+  <HeroSplitWithImageAngled />
+  <div class="title transparent-checker">CtaCenteredPanel</div>
+  <CtaCenteredPanel />
+  <div class="title transparent-checker">CtaSimpleCenteredGradient</div>
+  <CtaSimpleCenteredGradient />
+  <div class="title transparent-checker">CtaCenteredPlain</div>
+  <CtaCenteredPlain />
+  <div class="title transparent-checker">CtaSplitWithImage</div>
+  <CtaSplitWithImage />
+  <div class="title transparent-checker">CtaImageTiles</div>
+  <CtaImageTiles />
+  <div class="title transparent-checker">HeadingWithStats</div>
+  <HeadingWithStats />
+  <div class="title transparent-checker">HeadingSimpleLeft</div>
+  <HeadingSimpleLeft />
 </DefaultLayout>
+
+<style>
+  .title {
+    padding: 1.5rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  .transparent-checker {
+    background: conic-gradient(
+      rgba(0, 0, 0, 0.04) 0 90deg,
+      rgba(255, 255, 255, 0.04) 0 180deg,
+      rgba(0, 0, 0, 0.04) 0 270deg,
+      rgba(255, 255, 255, 0.04) 0
+    );
+    background-size: 20px 20px;
+  }
+</style>

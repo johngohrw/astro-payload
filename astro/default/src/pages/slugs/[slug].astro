@@ -1,0 +1,23 @@
+---
+import RenderBlocks from "@astro-default/components/RenderBlocks/RenderBlocks.astro";
+
+import DefaultLayout from "@astro-default/layouts/DefaultLayout.astro";
+import { payloadQuery } from "@astro-default/utils/payloadQuery";
+
+export async function getStaticPaths() {
+  const pages = await payloadQuery.find({
+    collection: "pages",
+  });
+
+  return pages.docs.map((page) => ({
+    params: { slug: page.slug },
+    props: { page: page },
+  }));
+}
+
+const { page } = Astro.props;
+---
+
+<DefaultLayout title={page.title}>
+  <RenderBlocks blocks={page.contentBlocks} />
+</DefaultLayout>

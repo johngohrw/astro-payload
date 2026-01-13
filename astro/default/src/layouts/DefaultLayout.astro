@@ -13,6 +13,12 @@ const { title = "Astro" } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <div class="nav-wrapper">
+      <nav>
+        <a href="/">Home</a>
+        <a href="/tailwind-components">Tailwind Components</a>
+      </nav>
+    </div>
     <slot />
   </body>
 </html>
@@ -27,5 +33,21 @@ const { title = "Astro" } = Astro.props;
   body {
     display: flex;
     flex-flow: column nowrap;
+  }
+  .nav-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  nav {
+    height: 48px;
+    padding: 0 1rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    background: rgb(55, 55, 105);
+    color: white;
   }
 </style>
