@@ -1,6 +1,6 @@
 ---
-import FeatSimpleThreeColBlock from "./Blocks/FeatSimpleThreeColBlock.astro";
-import type { BlockComponent, BlockType, BlockTypeEnum } from "./types";
+import { type BlockType } from "../../blocks/_blockTypes";
+import { allBlockRenderersMap } from "../../blocks/rendererMap";
 
 interface Props {
   block: BlockType;
@@ -8,11 +8,7 @@ interface Props {
 
 const { block } = Astro.props;
 
-const typeRendererMap: Record<BlockTypeEnum, BlockComponent> = {
-  featSimpleThreeCol: FeatSimpleThreeColBlock,
-};
-
-const Renderer = typeRendererMap[block.blockType];
+const Renderer = allBlockRenderersMap[block.blockType];
 ---
 
 {Renderer && <Renderer block={block} />}

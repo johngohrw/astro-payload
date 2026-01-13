@@ -2,7 +2,7 @@
 import ContactSimpleFourColBlock from "./Blocks/ContactSimpleFourColBlock.astro";
 import FeatSimpleThreeColBlock from "./Blocks/FeatSimpleThreeColBlock.astro";
 import HeroWithOffsetImgBlock from "./Blocks/HeroWithOffsetImgBlock.astro";
-import type { BlockComponent, BlockType, BlockTypeEnum } from "./types";
+import type { BlockRenderer, BlockType, BlockTypeEnum } from "./types";
 
 interface Props {
   block: BlockType;
@@ -10,7 +10,7 @@ interface Props {
 
 const { block } = Astro.props;
 
-const typeRendererMap: Record<BlockTypeEnum, BlockComponent> = {
+const typeRendererMap: Record<BlockTypeEnum, BlockRenderer> = {
   heroWithOffsetImage: HeroWithOffsetImgBlock,
   imageGrid: HeroWithOffsetImgBlock,
   richText: HeroWithOffsetImgBlock,

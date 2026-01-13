@@ -8,7 +8,6 @@
     "jsxImportSource": "react",
     "baseUrl": ".",
     "paths": {
-      // "@/*": ["./*"],
       "@astro-default/*": ["./astro/default/src/*"],
       "@astro-cogue/*": ["./astro/cogue/src/*"],
       "@payload-default/*": ["./payload/default/src/*"],

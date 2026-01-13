@@ -1,4 +1,4 @@
-import { allBlocksLocal } from "@payload-cogue/blocks/_allBlocks";
+import { allBlocksArray } from "@astro-cogue/blocks/blockMap";
 import { CollectionConfig } from "payload";
 
 export const Pages: CollectionConfig = {
@@ -43,7 +43,7 @@ export const Pages: CollectionConfig = {
     {
       name: "contentBlocks",
       type: "blocks",
-      blocks: allBlocksLocal,
+      blocks: allBlocksArray,
     },
   ],
 };

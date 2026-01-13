@@ -6,4 +6,4 @@ export type BlockTypeOf<T extends BlockTypeEnum> = Extract<
   BlockType,
   { blockType: T }
 >;
-export type BlockComponent = (_props: { block: BlockType }) => any;
+export type BlockRenderer = (_props: { block: BlockType }) => any;
