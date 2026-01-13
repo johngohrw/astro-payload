@@ -1,0 +1,19 @@
+---
+import type { BlockTypeOf } from "../../_blockTypes";
+import HeroWithOffsetImage from "./HeroWithOffsetImage.astro";
+
+const block: BlockTypeOf<"heroWithOffsetImage"> = Astro.props.block;
+
+const remappedProps = {
+  heading: block.heading ?? undefined,
+  description: block.description ?? undefined,
+  primaryCtaLabel: block.primaryCta?.label ?? undefined,
+  primaryCtaHref: block.primaryCta?.href ?? undefined,
+  secondaryCtaLabel: block.secondaryCta?.label ?? undefined,
+  secondaryCtaHref: block.secondaryCta?.href ?? undefined,
+  heroImageSrc: block.heroImage?.src ?? undefined,
+  heroImageAlt: block.heroImage?.alt ?? undefined,
+};
+---
+
+<HeroWithOffsetImage {...remappedProps} />

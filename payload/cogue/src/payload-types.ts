@@ -239,6 +239,25 @@ export interface Page {
             blockName?: string | null;
             blockType: 'heroSimpleCentered';
           }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            primaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            secondaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            heroImage?: {
+              src?: string | null;
+              alt?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroWithOffsetImage';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -487,6 +506,32 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     label?: T;
                     href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroWithOffsetImage?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              heroImage?:
+                | T
+                | {
+                    src?: T;
+                    alt?: T;
                   };
               id?: T;
               blockName?: T;

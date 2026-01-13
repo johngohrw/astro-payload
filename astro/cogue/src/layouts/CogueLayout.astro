@@ -43,8 +43,14 @@ const { title = "Cogue" } = Astro.props;
   .header {
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    mix-blend-mode: difference;
+    backdrop-filter: blur(16px);
+
+    width: 100%;
     z-index: 100;
   }
 
