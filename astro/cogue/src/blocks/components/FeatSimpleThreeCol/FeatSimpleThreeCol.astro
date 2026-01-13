@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
+import LucideIcon from "@astro-cogue/components/LucideIcon/LucideIcon.astro";
 
 interface Props {
   topCaption: string;
@@ -42,7 +42,7 @@ const props = Astro.props;
           props.columns.map((col) => (
             <div class="flex flex-col">
               <dt class="flex items-center gap-x-3 text-base/7 font-semibold text-white">
-                {/* <Icon name={"lucide:bug"} /> */}
+                <LucideIcon name={col.icon as any} />
                 {col.title}
               </dt>
               <dd class="mt-4 flex flex-auto flex-col text-base/7 text-gray-400">

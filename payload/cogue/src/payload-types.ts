@@ -201,24 +201,45 @@ export interface Page {
   published?: boolean | null;
   includeInNav?: boolean | null;
   contentBlocks?:
-    | {
-        topCaption?: string | null;
-        title: string;
-        subtitle?: string | null;
-        columns: {
-          icon?: string | null;
-          title: string;
-          caption?: string | null;
-          action?: {
-            label?: string | null;
-            href?: string | null;
-          };
-          id?: string | null;
-        }[];
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'featSimpleThreeCol';
-      }[]
+    | (
+        | {
+            topCaption?: string | null;
+            title: string;
+            subtitle?: string | null;
+            columns: {
+              icon?: string | null;
+              title: string;
+              caption?: string | null;
+              action?: {
+                label?: string | null;
+                href?: string | null;
+              };
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featSimpleThreeCol';
+          }
+        | {
+            announcement?: {
+              text?: string | null;
+              href?: string | null;
+            };
+            heading?: string | null;
+            description?: string | null;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroSimpleCentered';
+          }
+      )[]
     | null;
   updatedAt: string;
   createdAt: string;
@@ -440,6 +461,32 @@ export interface PagesSelect<T extends boolean = true> {
                           href?: T;
                         };
                     id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroSimpleCentered?:
+          | T
+          | {
+              announcement?:
+                | T
+                | {
+                    text?: T;
+                    href?: T;
+                  };
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
                   };
               id?: T;
               blockName?: T;
