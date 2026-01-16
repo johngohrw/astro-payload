@@ -1,0 +1,9 @@
+@import "tailwindcss"; 
+
+@source "../../../default/src/blocks";
+@source "../../../default/src/components/";
+
+
+@theme {
+  --color-primary: oklch(0.72 0.11 178);
+}

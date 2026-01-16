@@ -70,7 +70,6 @@ export interface Config {
     users: User;
     media: Media;
     pages: Page;
-    articles: Article;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -81,7 +80,6 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
-    articles: ArticlesSelect<false> | ArticlesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -199,60 +197,8 @@ export interface Page {
   title: string;
   slug: string;
   published?: boolean | null;
-  includeInNav?: boolean | null;
   contentBlocks?:
     | (
-        | {
-            title: string;
-            subtitle?: string | null;
-            images: {
-              image: number | Media;
-              id?: string | null;
-            }[];
-            primaryAction?: {
-              label?: string | null;
-              href?: string | null;
-            };
-            secondaryAction?: {
-              label?: string | null;
-              href?: string | null;
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'heroWithOffsetImage';
-          }
-        | {
-            content: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'richText';
-          }
-        | {
-            images?:
-              | {
-                  image: number | Media;
-                  caption?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'imageGrid';
-          }
         | {
             topCaption?: string | null;
             title: string;
@@ -272,53 +218,45 @@ export interface Page {
             blockType: 'featSimpleThreeCol';
           }
         | {
-            title: string;
-            subtitle?: string | null;
-            offices: {
-              name: string;
-              lines?:
-                | {
-                    line: string;
-                    id?: string | null;
-                  }[]
-                | null;
-              id?: string | null;
-            }[];
+            announcement?: {
+              text?: string | null;
+              href?: string | null;
+            };
+            heading?: string | null;
+            description?: string | null;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
             id?: string | null;
             blockName?: string | null;
-            blockType: 'contactSimpleFourCol';
+            blockType: 'heroSimpleCentered';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            primaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            secondaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            heroImage?: {
+              src?: string | null;
+              alt?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroWithOffsetImage';
           }
       )[]
     | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "articles".
- */
-export interface Article {
-  id: number;
-  title: string;
-  slug: string;
-  excerpt?: string | null;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  publishedAt?: string | null;
-  published?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -357,10 +295,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
-      } | null)
-    | ({
-        relationTo: 'articles';
-        value: number | Article;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -487,56 +421,9 @@ export interface PagesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   published?: T;
-  includeInNav?: T;
   contentBlocks?:
     | T
     | {
-        heroWithOffsetImage?:
-          | T
-          | {
-              title?: T;
-              subtitle?: T;
-              images?:
-                | T
-                | {
-                    image?: T;
-                    id?: T;
-                  };
-              primaryAction?:
-                | T
-                | {
-                    label?: T;
-                    href?: T;
-                  };
-              secondaryAction?:
-                | T
-                | {
-                    label?: T;
-                    href?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        richText?:
-          | T
-          | {
-              content?: T;
-              id?: T;
-              blockName?: T;
-            };
-        imageGrid?:
-          | T
-          | {
-              images?:
-                | T
-                | {
-                    image?: T;
-                    caption?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
         featSimpleThreeCol?:
           | T
           | {
@@ -560,41 +447,59 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        contactSimpleFourCol?:
+        heroSimpleCentered?:
           | T
           | {
-              title?: T;
-              subtitle?: T;
-              offices?:
+              announcement?:
                 | T
                 | {
-                    name?: T;
-                    lines?:
-                      | T
-                      | {
-                          line?: T;
-                          id?: T;
-                        };
-                    id?: T;
+                    text?: T;
+                    href?: T;
+                  };
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroWithOffsetImage?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              heroImage?:
+                | T
+                | {
+                    src?: T;
+                    alt?: T;
                   };
               id?: T;
               blockName?: T;
             };
       };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "articles_select".
- */
-export interface ArticlesSelect<T extends boolean = true> {
-  title?: T;
-  slug?: T;
-  excerpt?: T;
-  content?: T;
-  publishedAt?: T;
-  published?: T;
   updatedAt?: T;
   createdAt?: T;
 }

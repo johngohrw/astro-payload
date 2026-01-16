@@ -8,62 +8,14 @@ importers:
 
   .: {}
 
-  astro/cogue:
-    dependencies:
-      '@astrojs/react':
-        specifier: ^4.4.2
-        version: 4.4.2(@types/node@22.19.3)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.77.4)(tsx@4.20.6)
-      '@iconify-json/lucide':
-        specifier: ^1.2.82
-        version: 1.2.82
-      '@lucide/astro':
-        specifier: ^0.562.0
-        version: 0.562.0(astro@5.16.6(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.1)(sass@1.77.4)(tsx@4.20.6)(typescript@5.7.3))
-      '@payloadcms/richtext-lexical':
-        specifier: 3.69.0
-        version: 3.69.0(@faceless-ui/modal@3.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@payloadcms/next@3.69.0(@types/react@19.2.7)(graphql@16.12.0)(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.56.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.77.4))(payload@3.69.0(graphql@16.12.0)(typescript@5.7.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.7.3))(@types/react@19.2.7)(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.56.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.77.4))(payload@3.69.0(graphql@16.12.0)(typescript@5.7.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.7.3)(yjs@13.6.29)
-      '@payloadcms/sdk':
-        specifier: ^3.69.0
-        version: 3.69.0(graphql@16.12.0)(typescript@5.7.3)
-      '@tailwindcss/vite':
-        specifier: ^4.1.18
-        version: 4.1.18(vite@6.4.1(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.77.4)(tsx@4.20.6))
-      '@tailwindplus/elements':
-        specifier: ^1.0.21
-        version: 1.0.22
-      '@types/react':
-        specifier: ^19.2.7
-        version: 19.2.7
-      '@types/react-dom':
-        specifier: ^19.2.3
-        version: 19.2.3(@types/react@19.2.7)
-      astro:
-        specifier: ^5.16.6
-        version: 5.16.6(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.1)(sass@1.77.4)(tsx@4.20.6)(typescript@5.7.3)
-      astro-icon:
-        specifier: ^1.1.5
-        version: 1.1.5
-      payload:
-        specifier: 3.69.0
-        version: 3.69.0(graphql@16.12.0)(typescript@5.7.3)
-      payload-cogue:
-        specifier: workspace:*
-        version: link:../../payload/cogue
-      react:
-        specifier: ^19.2.3
-        version: 19.2.3
-      react-dom:
-        specifier: ^19.2.3
-        version: 19.2.3(react@19.2.3)
-      tailwindcss:
-        specifier: ^4.1.18
-        version: 4.1.18
-
   astro/default:
     dependencies:
       '@astrojs/react':
         specifier: ^4.4.2
         version: 4.4.2(@types/node@22.19.3)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.77.4)(tsx@4.20.6)
+      '@lucide/astro':
+        specifier: ^0.562.0
+        version: 0.562.0(astro@5.16.6(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.1)(sass@1.77.4)(tsx@4.20.6)(typescript@5.7.3))
       '@payloadcms/richtext-lexical':
         specifier: 3.69.0
         version: 3.69.0(@faceless-ui/modal@3.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@payloadcms/next@3.69.0(@types/react@19.2.7)(graphql@16.12.0)(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.56.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.77.4))(payload@3.69.0(graphql@16.12.0)(typescript@5.7.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.7.3))(@types/react@19.2.7)(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.56.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.77.4))(payload@3.69.0(graphql@16.12.0)(typescript@5.7.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.7.3)(yjs@13.6.29)
@@ -108,7 +60,52 @@ importers:
         specifier: ^1.2.82
         version: 1.2.82
 
-  payload/cogue:
+  astro/quine:
+    dependencies:
+      '@astrojs/react':
+        specifier: ^4.4.2
+        version: 4.4.2(@types/node@22.19.3)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.77.4)(tsx@4.20.6)
+      '@lucide/astro':
+        specifier: ^0.562.0
+        version: 0.562.0(astro@5.16.6(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.1)(sass@1.77.4)(tsx@4.20.6)(typescript@5.7.3))
+      '@payloadcms/richtext-lexical':
+        specifier: 3.69.0
+        version: 3.69.0(@faceless-ui/modal@3.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@payloadcms/next@3.69.0(@types/react@19.2.7)(graphql@16.12.0)(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.56.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.77.4))(payload@3.69.0(graphql@16.12.0)(typescript@5.7.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.7.3))(@types/react@19.2.7)(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.56.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.77.4))(payload@3.69.0(graphql@16.12.0)(typescript@5.7.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.7.3)(yjs@13.6.29)
+      '@payloadcms/sdk':
+        specifier: ^3.69.0
+        version: 3.69.0(graphql@16.12.0)(typescript@5.7.3)
+      '@tailwindcss/vite':
+        specifier: ^4.1.18
+        version: 4.1.18(vite@6.4.1(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.77.4)(tsx@4.20.6))
+      '@tailwindplus/elements':
+        specifier: ^1.0.21
+        version: 1.0.22
+      '@types/react':
+        specifier: ^19.2.7
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.7)
+      astro:
+        specifier: ^5.16.6
+        version: 5.16.6(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.55.1)(sass@1.77.4)(tsx@4.20.6)(typescript@5.7.3)
+      payload:
+        specifier: 3.69.0
+        version: 3.69.0(graphql@16.12.0)(typescript@5.7.3)
+      payload-quine:
+        specifier: workspace:*
+        version: link:../../payload/quine
+      react:
+        specifier: ^19.2.3
+        version: 19.2.3
+      react-dom:
+        specifier: ^19.2.3
+        version: 19.2.3(react@19.2.3)
+      tailwindcss:
+        specifier: ^4.1.18
+        version: 4.1.18
+
+  payload/default:
     dependencies:
       '@libsql/client':
         specifier: ^0.15.15
@@ -146,9 +143,6 @@ importers:
       payload:
         specifier: 3.69.0
         version: 3.69.0(graphql@16.12.0)(typescript@5.7.3)
-      payload-default:
-        specifier: workspace:*
-        version: link:../default
       react:
         specifier: 19.2.1
         version: 19.2.1
@@ -193,7 +187,7 @@ importers:
         specifier: 5.1.4
         version: 5.1.4(typescript@5.7.3)(vite@6.4.1(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.77.4)(tsx@4.20.6))
 
-  payload/default:
+  payload/quine:
     dependencies:
       '@libsql/client':
         specifier: ^0.15.15
@@ -231,6 +225,9 @@ importers:
       payload:
         specifier: 3.69.0
         version: 3.69.0(graphql@16.12.0)(typescript@5.7.3)
+      payload-default:
+        specifier: workspace:*
+        version: link:../default
       react:
         specifier: 19.2.1
         version: 19.2.1

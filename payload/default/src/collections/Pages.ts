@@ -1,4 +1,5 @@
-import { allBlocks } from "@payload-default/blocks/_allBlocks";
+// import { allBlocksArray } from "@astro-default/blocks/blockMap";
+import { allBlocksArray } from "@astro-default/blocks/blockMap";
 import { CollectionConfig } from "payload";
 
 export const Pages: CollectionConfig = {
@@ -33,17 +34,9 @@ export const Pages: CollectionConfig = {
       },
     },
     {
-      name: "includeInNav",
-      type: "checkbox",
-      defaultValue: false,
-      admin: {
-        position: "sidebar",
-      },
-    },
-    {
       name: "contentBlocks",
       type: "blocks",
-      blocks: allBlocks,
+      blocks: allBlocksArray,
     },
   ],
 };

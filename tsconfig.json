@@ -9,9 +9,10 @@
     "baseUrl": ".",
     "paths": {
       "@astro-default/*": ["./astro/default/src/*"],
-      "@astro-cogue/*": ["./astro/cogue/src/*"],
+      "@astro-quine/*": ["./astro/quine/src/*"],
       "@payload-default/*": ["./payload/default/src/*"],
-      "@payload-cogue/*": ["./payload/cogue/src/*"]
+      "@payload-quine/*": ["./payload/quine/src/*"],
+      "@@/*": ["./*"]
     }
   }
 }

@@ -1,0 +1,68 @@
+---
+import { Image } from "astro:assets";
+
+import quineLogo from "@/assets/images/logos/quine.svg";
+
+import { payloadQuery } from "@/utils/payloadQuery";
+
+const navItemsResp = await payloadQuery.find({
+  collection: "pages",
+  where: { includeInNav: { equals: true } },
+});
+const navItems = navItemsResp.docs;
+---
+
+<div class="header">
+  <div class="content">
+    <a class="logo" href="/">
+      <Image src={quineLogo} alt="" width={48} height={48} />
+    </a>
+    <nav>
+      {navItems.map((ni) => <a href={`/${ni.slug}`}>{ni.title}</a>)}
+      <a href={`/#`}>Home</a>
+      <a href={`/#`}>Services</a>
+      <a href={`/#`}>Blog</a>
+      <a href={`/#`}>Our Company</a>
+      <a href={`/#`}>Careers</a>
+    </nav>
+  </div>
+</div>
+
+<style>
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 64px;
+    width: 100%;
+    padding: 0.5rem 2rem;
+  }
+
+  .content {
+    position: relative;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 1220px;
+  }
+
+  .logo {
+    position: absolute;
+    left: 0;
+  }
+  nav {
+    color: white;
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+</style>
