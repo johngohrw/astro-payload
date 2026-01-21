@@ -35,7 +35,6 @@ import QuineLayout from "@/layouts/QuineLayout.astro";
   <style>
     .heroText {
       margin: calc(var(--content-scale) * 2) 0;
-      /* height: calc(var(--content-scale) * 20); */
     }
 
     .captionAfterHero {
@@ -43,8 +42,8 @@ import QuineLayout from "@/layouts/QuineLayout.astro";
     }
     .captionAfterHeroText {
       padding-top: 4rem;
-      max-width: 36rem;
-      text-wrap-style: balance;
+      max-width: 40rem;
+      text-wrap: balance;
     }
     @media (max-width: 867px) {
       .captionAfterHero {
@@ -55,6 +54,7 @@ import QuineLayout from "@/layouts/QuineLayout.astro";
       .captionAfterHeroText {
         text-align: right;
         padding-top: 3rem;
+        max-width: 37rem;
       }
     }
   </style>
