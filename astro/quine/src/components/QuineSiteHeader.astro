@@ -1,32 +1,40 @@
 ---
 import { Image } from "astro:assets";
 
-import quineLogo from "@/assets/images/logos/quine.svg";
+import quineSmallLogo from "@/assets/images/logos/QuineSmall.svg";
+import quineFullLogo from "@/assets/images/logos/QuineFull.svg";
+import quineLogo from "@/assets/images/logos/QuineLogo.svg";
 
-import { payloadQuery } from "@/utils/payloadQuery";
+import { cls } from "rengwutils";
+import { Button } from "./Button/Button";
 
-const navItemsResp = await payloadQuery.find({
-  collection: "pages",
-  where: { includeInNav: { equals: true } },
-});
-const navItems = navItemsResp.docs;
+const { props } = Astro;
 ---
 
-<div class="header">
+<div class={cls("header", props.class)} {...props}>
   <div class="content">
-    <a class="logo" href="/">
-      <Image src={quineLogo} alt="" width={48} height={48} />
+    <a class="brand" href="/">
+      <Image class="logo" src={quineLogo} alt="logo" />
     </a>
-    <nav>
-      {navItems.map((ni) => <a href={`/${ni.slug}`}>{ni.title}</a>)}
-      <a href={`/#`}>Home</a>
-      <a href={`/#`}>Services</a>
-      <a href={`/#`}>Blog</a>
-      <a href={`/#`}>Our Company</a>
-      <a href={`/#`}>Careers</a>
-    </nav>
+    <div class="subcontent">
+      <nav>
+        <navlink>Services</navlink>
+        <navlink>Work</navlink>
+        <navlink>About</navlink>
+      </nav>
+      <Button className="" href="#" client:load>Get in touch</Button>
+    </div>
+    <div class="subcontent-mobile">
+      <button>Menu</button>
+    </div>
   </div>
 </div>
+
+<style is:global>
+  html {
+    --site-header-height: 80px;
+  }
+</style>
 
 <style>
   .header {
@@ -34,35 +42,74 @@ const navItems = navItemsResp.docs;
     align-items: center;
     justify-content: center;
 
-    height: 64px;
     width: 100%;
-    padding: 0.5rem 2rem;
+    padding: 0 var(--content-padding-x);
+    height: var(--site-header-height);
   }
 
   .content {
     position: relative;
-
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 
     width: 100%;
-    max-width: 1220px;
+    max-width: 1440px;
+  }
+
+  .brand {
+    margin-right: 4rem;
   }
 
   .logo {
-    position: absolute;
-    left: 0;
+    height: 2rem;
+    width: auto;
+    padding-bottom: 0.25rem;
   }
+
+  .subcontent {
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   nav {
-    color: white;
     display: flex;
     gap: 2rem;
   }
+  navlink {
+    /* font-size: 0.9rem; */
+    /* font-weight: 500; */
+  }
 
-  nav a {
-    font-size: 0.9rem;
-    font-weight: 500;
+  .subcontent-mobile {
+    display: none;
+
+    flex-grow: 1;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: 1440px) {
+    .subcontent {
+      justify-content: flex-end;
+    }
+    nav {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 678px) {
+    .subcontent {
+      display: none;
+    }
+    .subcontent-mobile {
+      display: flex;
+    }
   }
 </style>

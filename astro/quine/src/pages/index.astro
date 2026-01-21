@@ -1,21 +1,60 @@
 ---
-import RenderBlocks from "@astro-default/components/RenderBlocks/RenderBlocks.astro";
+import { Button } from "@/components/Button/Button";
+import HeroLetters from "@/components/HeroLetters/HeroLetters.astro";
+import PageFrame from "@/components/PageFrame.astro";
+import ScatterText from "@/components/ScatterText";
+import ScrollSmootherWrapper from "@/components/ScrollSmoother/ScrollSmootherWrapper.astro";
+import SectionHeaderText from "@/components/SectionHeaderText.astro";
 import QuineLayout from "@/layouts/QuineLayout.astro";
-import { payloadQuery } from "@/utils/payloadQuery";
-
-const pageResponse = await payloadQuery.find({
-  collection: "pages",
-  where: { slug: { equals: "home" } },
-});
-const page = pageResponse.docs[0];
 ---
 
-{
-  !page ? (
-    <div>Page with 'home' slug not defined in Payload CMS</div>
-  ) : (
-    <QuineLayout title={page.title}>
-      <RenderBlocks blocks={page.contentBlocks} />
-    </QuineLayout>
-  )
-}
+<QuineLayout>
+  <ScrollSmootherWrapper>
+    <PageFrame
+      innerProps={{
+        style: { height: "100vh", paddingTop: "var(--site-header-height)" },
+      }}
+    >
+      <!-- <div style={{ padding: "2rem 0" }}><StackedLetters client:only /></div> -->
+      <div class="heroText">
+        <HeroLetters />
+      </div>
+
+      <div class="captionAfterHero">
+        <SectionHeaderText class="captionAfterHeroText">
+          We help founders and businesses make big moves by crafting delightful
+          websites with design that works.
+        </SectionHeaderText>
+        <Button className="" href="#" client:load>Get in touch</Button>
+      </div>
+    </PageFrame>
+    <PageFrame style={{ height: "100vh" }} />
+  </ScrollSmootherWrapper>
+
+  <style>
+    .heroText {
+      margin: calc(var(--content-scale) * 2) 0;
+      /* height: calc(var(--content-scale) * 20); */
+    }
+
+    .captionAfterHero {
+      width: 100%;
+    }
+    .captionAfterHeroText {
+      padding-top: 4rem;
+      max-width: 36rem;
+      text-wrap-style: balance;
+    }
+    @media (max-width: 867px) {
+      .captionAfterHero {
+        display: flex;
+        flex-flow: column;
+        align-items: end;
+      }
+      .captionAfterHeroText {
+        text-align: right;
+        padding-top: 3rem;
+      }
+    }
+  </style>
+</QuineLayout>

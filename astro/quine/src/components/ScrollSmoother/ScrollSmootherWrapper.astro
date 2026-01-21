@@ -1,0 +1,19 @@
+---
+import { ScrollSmootherInit } from "./ScrollSmootherInit";
+---
+
+<div id="smooth-wrapper">
+  <div id="smooth-content">
+    <slot />
+  </div>
+</div>
+<ScrollSmootherInit client:only />
+
+<style>
+  #smooth-wrapper {
+    width: 100%;
+  }
+  #smooth-content {
+    width: 100%;
+  }
+</style>

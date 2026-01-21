@@ -1,0 +1,21 @@
+<!-- ---
+import RenderBlocks from "@astro-default/components/RenderBlocks/RenderBlocks.astro";
+import QuineLayout from "@/layouts/QuineLayout.astro";
+import { payloadQuery } from "@/utils/payloadQuery";
+
+const pageResponse = await payloadQuery.find({
+  collection: "pages",
+  where: { slug: { equals: "home" } },
+});
+const page = pageResponse.docs[0];
+---
+
+{
+  !page ? (
+    <div>Page with 'home' slug not defined in Payload CMS</div>
+  ) : (
+    <QuineLayout title={page.title}>
+      <RenderBlocks blocks={page.contentBlocks} />
+    </QuineLayout>
+  )
+} -->
