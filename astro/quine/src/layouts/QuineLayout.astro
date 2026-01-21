@@ -6,7 +6,8 @@ const { title = "Quine Systems" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<!-- <html lang="en" class="dark"> -->
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -40,10 +41,14 @@ const { title = "Quine Systems" } = Astro.props;
     --content-width: min(calc(var(--vw-safe) - var(--side-margins)), 1440px);
     --content-scale: calc(var(--content-width) * 0.01);
 
+    --color-fg: #222;
+    --color-bg: #e6e0dd;
+
     font-size: 16px;
     // font-family: "Spline Sans Mono";
     font-family: "Geist";
-    background: #eceae9;
+    background: var(--color-bg);
+    color: var(--color-fg);
   }
 
   @media (max-width: 1440px) {
@@ -80,7 +85,7 @@ const { title = "Quine Systems" } = Astro.props;
     top: 0;
     width: 100%;
     filter: invert(1);
-    mix-blend-mode: exclusion;
+    mix-blend-mode: difference;
     z-index: 100;
   }
 

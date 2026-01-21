@@ -2,7 +2,6 @@
 import { Button } from "@/components/Button/Button";
 import HeroLetters from "@/components/HeroLetters/HeroLetters.astro";
 import PageFrame from "@/components/PageFrame.astro";
-import ScatterText from "@/components/ScatterText";
 import ScrollSmootherWrapper from "@/components/ScrollSmoother/ScrollSmootherWrapper.astro";
 import SectionHeaderText from "@/components/SectionHeaderText.astro";
 import QuineLayout from "@/layouts/QuineLayout.astro";
@@ -12,10 +11,12 @@ import QuineLayout from "@/layouts/QuineLayout.astro";
   <ScrollSmootherWrapper>
     <PageFrame
       innerProps={{
-        style: { height: "100vh", paddingTop: "var(--site-header-height)" },
+        style: {
+          height: "100vh",
+          paddingTop: "var(--site-header-height)",
+        },
       }}
     >
-      <!-- <div style={{ padding: "2rem 0" }}><StackedLetters client:only /></div> -->
       <div class="heroText">
         <HeroLetters />
       </div>
