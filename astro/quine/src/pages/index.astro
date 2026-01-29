@@ -3,29 +3,34 @@ import { Button } from "@/components/Button/Button";
 import HeroLetters from "@/components/HeroLetters/HeroLetters.astro";
 import PageFrame from "@/components/PageFrame.astro";
 import ScrollSmootherWrapper from "@/components/ScrollSmoother/ScrollSmootherWrapper.astro";
+import SectionBodyText from "@/components/SectionBodyText.astro";
 import SectionHeaderText from "@/components/SectionHeaderText.astro";
 import QuineLayout from "@/layouts/QuineLayout.astro";
 ---
 
 <QuineLayout>
   <ScrollSmootherWrapper>
+    <div style={{ paddingTop: "var(--site-header-height)" }}></div>
     <PageFrame
       innerProps={{
         style: {
-          height: "100vh",
-          paddingTop: "var(--site-header-height)",
+          paddingBottom: "8rem",
+          display: "flex",
+          flexFlow: "column nowrap",
         },
       }}
     >
       <div class="heroText">
         <HeroLetters />
       </div>
-
       <div class="captionAfterHero">
         <SectionHeaderText class="captionAfterHeroText">
-          We help founders and businesses make big moves by crafting delightful
-          websites with design that works.
+          Creating memorable brand experiences engineered for maximum impact.
         </SectionHeaderText>
+        <SectionBodyText
+          >We help founders and businesses make big moves by crafting delightful
+          websites with design that works.
+        </SectionBodyText>
         <Button className="" href="#" client:load>Get in touch</Button>
       </div>
     </PageFrame>
@@ -35,17 +40,18 @@ import QuineLayout from "@/layouts/QuineLayout.astro";
   <style>
     .heroText {
       margin: calc(var(--content-scale) * 2) 0;
+      flex-grow: 1;
     }
 
     .captionAfterHero {
       width: 100%;
+      max-width: 45rem;
+      text-wrap: balance;
     }
     .captionAfterHeroText {
       padding-top: 4rem;
-      max-width: 40rem;
-      text-wrap: balance;
     }
-    @media (max-width: 867px) {
+    /* @media (max-width: 867px) {
       .captionAfterHero {
         display: flex;
         flex-flow: column;
@@ -53,9 +59,9 @@ import QuineLayout from "@/layouts/QuineLayout.astro";
       }
       .captionAfterHeroText {
         text-align: right;
-        padding-top: 3rem;
+        padding-top: 6rem;
         max-width: 37rem;
       }
-    }
+    } */
   </style>
 </QuineLayout>

@@ -1,0 +1,31 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cls } from "rengwutils";
+
+interface Props extends HTMLAttributes<"div"> {}
+const { ...restProps } = Astro.props;
+---
+
+<div class={cls("text", restProps.class ?? false)} {...restProps}>
+  <slot />
+</div>
+
+<style>
+  .text {
+    font-family: "Geist";
+    font-size: 1rem;
+    /* line-height: 1.25; */
+    margin-bottom: 1.2rem;
+  }
+
+  /* @media (max-width: 978px) {
+    .text {
+      font-size: 2rem;
+    }
+  }
+  @media (max-width: 768px) {
+    .text {
+      font-size: 1.75rem;
+    }
+  } */
+</style>

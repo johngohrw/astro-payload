@@ -1,4 +1,4 @@
-import { motion, type Variants } from "motion/react";
+import { motion, stagger, type Variants } from "motion/react";
 import { css } from "@emotion/css";
 
 import { type ComponentProps, type CSSProperties } from "react";
@@ -20,9 +20,9 @@ export const HeroLettersBig = ({
       {...rest}
     >
       {letters.map((el, i) => (
-        <motion.span variants={item} key={i} className={styles.letter}>
+        <motion.div variants={item} key={i} className={styles.letter}>
           {el}
-        </motion.span>
+        </motion.div>
       ))}
     </motion.div>
   );
@@ -33,14 +33,14 @@ const container: Variants = {
   show: {
     transition: {
       delay: 1,
-      staggerChildren: 0.05,
+      delayChildren: stagger(0.3, { from: "first" }),
       duration: 1.5,
     },
   },
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, y: "8%" },
+  hidden: { opacity: 0, y: 8 },
   show: {
     opacity: 1,
     y: 0,
@@ -53,6 +53,8 @@ const item: Variants = {
 
 const styles = {
   letterContainer: css({
+    display: "flex",
+    flexFlow: "row nowrap",
     width: "100%",
     whiteSpace: "nowrap",
     ["@media (max-width: 867px)"]: {
@@ -60,6 +62,8 @@ const styles = {
     },
   }),
   letter: css({
+    flex: "1 0",
+    display: "inline-block",
     fontFamily: "Quintessential",
     fontSize: "calc(var(--content-width) * 0.173)",
     lineHeight: 1,
