@@ -15,89 +15,87 @@ import { Icon } from "astro-icon/components";
 ---
 
 <QuineLayout>
-  <ScrollSmootherWrapper>
-    <div style={{ paddingTop: "var(--site-header-height)" }}></div>
-    <PageFrame
-      innerProps={{
-        style: {
-          paddingBottom: "6rem",
-          display: "flex",
-          flexFlow: "column nowrap",
-        },
+  <div style={{ paddingTop: "var(--site-header-height)" }}></div>
+  <PageFrame
+    innerProps={{
+      style: {
+        paddingBottom: "6rem",
+        display: "flex",
+        flexFlow: "column nowrap",
+      },
+    }}
+  >
+    <div class="heroLettersWrapper" style={{ padding: "2rem 0 6rem" }}>
+      <HeroLetters />
+    </div>
+    <div
+      style={{
+        width: "100%",
+        maxWidth: "45rem",
+        textWrap: "balance",
       }}
     >
-      <div class="heroLettersWrapper" style={{ padding: "2rem 0 6rem" }}>
-        <HeroLetters />
-      </div>
+      <SectionCaptionText pill style={{ marginBottom: "0.5rem" }}>
+        digital design studio
+      </SectionCaptionText>
+      <SectionHeaderText>
+        Creating memorable brand experiences, engineered for maximum impact.
+      </SectionHeaderText>
+      <SectionBodyText
+        >We help founders and businesses make big moves by crafting delightful
+        websites with design that works.
+      </SectionBodyText>
+      <Button className="" href="#" client:load>
+        <span style={{ marginRight: "0.5rem" }}>Get in touch</span>
+        <Icon name="lucide:arrow-right" />
+      </Button>
+    </div>
+  </PageFrame>
+  <PageFrame
+    innerProps={{
+      style: { padding: "2rem 0" },
+    }}
+  >
+    <PixelBlastCard style={{ minHeight: "38rem" }}>
       <div
         style={{
-          width: "100%",
-          maxWidth: "45rem",
+          maxWidth: "38rem",
+          textAlign: "center",
           textWrap: "balance",
+          zIndex: "10",
+          pointerEvents: "none",
+          filter: "invert(1)",
         }}
       >
         <SectionCaptionText pill style={{ marginBottom: "0.5rem" }}>
-          digital design studio
+          what we do
         </SectionCaptionText>
-        <SectionHeaderText>
-          Creating memorable brand experiences, engineered for maximum impact.
+        <SectionHeaderText noMargin>
+          We create bespoke websites and experiences to help brands and founders
+          establish trust, build traction, and disrupt categories.
         </SectionHeaderText>
-        <SectionBodyText
-          >We help founders and businesses make big moves by crafting delightful
-          websites with design that works.
-        </SectionBodyText>
-        <Button className="" href="#" client:load>
-          <span style={{ marginRight: "0.5rem" }}>Get in touch</span>
-          <Icon name="lucide:arrow-right" />
-        </Button>
       </div>
-    </PageFrame>
-    <PageFrame
-      innerProps={{
-        style: { padding: "2rem 0" },
-      }}
-    >
-      <PixelBlastCard style={{ minHeight: "38rem" }}>
-        <div
-          style={{
-            maxWidth: "38rem",
-            textAlign: "center",
-            textWrap: "balance",
-            zIndex: "10",
-            pointerEvents: "none",
-            filter: "invert(1)",
-          }}
-        >
-          <SectionCaptionText pill style={{ marginBottom: "0.5rem" }}>
-            what we do
-          </SectionCaptionText>
-          <SectionHeaderText noMargin>
-            We create bespoke websites and experiences to help brands and
-            founders establish trust, build traction, and disrupt categories.
-          </SectionHeaderText>
-        </div>
-      </PixelBlastCard>
-    </PageFrame>
-    <PageFrame
-      innerProps={{
-        style: { padding: "2rem 0" },
-      }}
-    >
-      <ServicesSection />
-    </PageFrame>
-    <PageFrame innerProps={{ style: { height: "100vh" } }}> yeah </PageFrame>
-  </ScrollSmootherWrapper>
-
-  <style>
-    .heroLettersWrapper {
-      margin: calc(var(--content-scale) * 2) 0;
-      flex-grow: 1;
-    }
-
-    .heroCaption {
-      width: 100%;
-      max-width: 45rem;
-      text-wrap: balance;
-    }
-  </style>
+    </PixelBlastCard>
+  </PageFrame>
+  <PageFrame
+    innerProps={{
+      style: { display: "flex", padding: "2rem 0", alignItems: "center" },
+    }}
+  >
+    <ServicesSection />
+  </PageFrame>
+  <PageFrame innerProps={{ style: { height: "100vh" } }}> yeah </PageFrame>
 </QuineLayout>
+
+<style>
+  .heroLettersWrapper {
+    margin: calc(var(--content-scale) * 2) 0;
+    flex-grow: 1;
+  }
+
+  .heroCaption {
+    width: 100%;
+    max-width: 45rem;
+    text-wrap: balance;
+  }
+</style>

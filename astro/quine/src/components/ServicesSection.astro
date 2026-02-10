@@ -26,48 +26,116 @@ const services = [
 ];
 ---
 
-<div class="cascade-container">
-  <div class="left"></div>
-  <div class="right">
-    {
-      services.map((s) => {
-        return (
-          <div class="cascade-card">
+<div class="servicesContainer">
+  {
+    services.map((s, i) => {
+      return (
+        <div class="card" style={{ "--offset": `${i * 3}rem` }}>
+          <div class="visuals" />
+          <div class="descriptions">
             <SectionHeaderTextSmaller>{s.title}</SectionHeaderTextSmaller>
             <SectionBodyText noMargin>{s.description}</SectionBodyText>
           </div>
-        );
-      })
-    }
-  </div>
+        </div>
+      );
+    })
+  }
 </div>
+<style define:vars={{ cardHeight: 24 }}>
+  .servicesContainer {
+    position: relative;
 
-<style>
-  .cascade-container {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 12rem;
+
+    margin-top: calc(calc(var(--cardHeight) * 1rem) / 2);
+    margin-bottom: calc(calc(var(--cardHeight) * -1rem) / 2);
+    max-width: 800px;
+    border: 1px solid red;
+  }
+
+  .card {
+    position: sticky;
+    top: 50vh;
+    transform: translateY(calc(calc(var(--cardHeight) * -1rem) / 2));
+
+    height: calc(var(--cardHeight) * 1rem);
+
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+
+    /* border: 1px solid black; */
+    background: var(--color-bg);
+  }
+
+  .visuals {
+    height: 100%;
+    aspect-ratio: 1;
+    background: grey;
+  }
+  .descriptions {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    max-width: 42rem;
+    width: 100%;
+
+    padding: 1rem;
+  }
+
+  /* desktop */
+  /* @media (min-width: 1024px) {
+  } */
+</style>
+
+<!-- 
+<div class="container">
+  {
+    services.map((s) => {
+      return (
+        <div class="card">
+          <div class="visuals">
+            <div
+              style={{ height: "100%", aspectRatio: 1, background: "red" }}
+            />
+          </div>
+          <div class="descriptions">
+            <SectionHeaderTextSmaller>{s.title}</SectionHeaderTextSmaller>
+            <SectionBodyText noMargin>{s.description}</SectionBodyText>
+          </div>
+        </div>
+      );
+    })
+  }
+</div> -->
+
+<!-- <style>
+  .container {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 2rem;
+  }
+
+  .card {
     display: flex;
     flex-flow: row nowrap;
     gap: 2rem;
   }
 
-  .left {
-    width: 60%;
-    /* background: red; */
+  .visuals {
+    height: 12rem;
   }
 
-  .right {
-    width: 40%;
+  .descriptions {
     display: flex;
     flex-flow: column nowrap;
-
-    /* background: red; */
-
-    /* align-items: flex-end; */
+    max-width: 36rem;
+    padding: 2rem;
   }
 
-  .cascade-card {
-    margin-bottom: 8rem;
+  /* desktop */
+  @media (min-width: 1024px) {
   }
-
-  @media {
-  }
-</style>
+</style> -->
