@@ -1,0 +1,46 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cls } from "rengwutils";
+
+interface Props extends HTMLAttributes<"div"> {
+  pill?: boolean;
+}
+
+const { pill, ...restProps } = Astro.props;
+---
+
+<div
+  class={cls("text", pill && "pill", restProps.class ?? false)}
+  {...restProps}
+>
+  <slot />
+</div>
+
+<style>
+  .text {
+    font-family: "Chivo Mono";
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .pill {
+    display: inline-block;
+    border: 1px solid black;
+    margin-bottom: 0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+  }
+
+  @media (max-width: 978px) {
+    .text {
+      font-size: 0.8rem;
+    }
+  }
+  @media (max-width: 768px) {
+    .text {
+      font-size: 0.75rem;
+    }
+  }
+</style>

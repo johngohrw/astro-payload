@@ -1,0 +1,22 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cls } from "rengwutils";
+
+interface Props extends HTMLAttributes<"div"> {}
+const { ...restProps } = Astro.props;
+---
+
+<div
+  class={cls(
+    "card rounded-2xl bg-gray-100 shadow-4xl/10 p-6",
+    restProps.class ?? false,
+  )}
+  {...restProps}
+>
+  <slot />
+</div>
+
+<style>
+  .card {
+  }
+</style>

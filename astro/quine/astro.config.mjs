@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
+import icon from "astro-icon";
 
 import { loadEnv } from "payload/node";
 
@@ -10,7 +11,7 @@ loadEnv();
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react()],
+  integrations: [react(), icon()],
   vite: {
     plugins: [tailwindcss()],
   },

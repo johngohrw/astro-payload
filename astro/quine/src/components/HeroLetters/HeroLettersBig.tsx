@@ -6,25 +6,53 @@ import { cls } from "rengwutils";
 
 const letters = "Quine Systems".split("");
 
+const lettersMob1 = "Quine".split("");
+const lettersMob2 = "Systems".split("");
+
 export const HeroLettersBig = ({
   className,
   ...rest
 }: ComponentProps<typeof motion.div>) => {
   return (
-    <motion.div
-      variants={container}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.5 }}
-      className={cls(styles.letterContainer, className)}
-      {...rest}
-    >
-      {letters.map((el, i) => (
-        <motion.div variants={item} key={i} className={styles.letter}>
-          {el}
-        </motion.div>
-      ))}
-    </motion.div>
+    <>
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.5 }}
+        className={cls(styles.desktopContainer, className)}
+        {...rest}
+      >
+        {letters.map((el, i) => (
+          <motion.div variants={item} key={i} className={styles.letter}>
+            {el}
+          </motion.div>
+        ))}
+      </motion.div>
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.5 }}
+        className={cls(styles.mobileContainer, className)}
+        {...rest}
+      >
+        <div>
+          {lettersMob1.map((el, i) => (
+            <motion.div variants={item} key={i} className={styles.letter}>
+              {el}
+            </motion.div>
+          ))}
+        </div>
+        <div>
+          {lettersMob2.map((el, i) => (
+            <motion.div variants={item} key={i} className={styles.letter}>
+              {el}
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </>
   );
 };
 
@@ -33,7 +61,7 @@ const container: Variants = {
   show: {
     transition: {
       delay: 1,
-      delayChildren: stagger(0.3, { from: "first" }),
+      delayChildren: stagger(0.1, { from: "first" }),
       duration: 1.5,
     },
   },
@@ -52,15 +80,6 @@ const item: Variants = {
 };
 
 const styles = {
-  letterContainer: css({
-    display: "flex",
-    flexFlow: "row nowrap",
-    width: "100%",
-    whiteSpace: "nowrap",
-    ["@media (max-width: 867px)"]: {
-      whiteSpace: "wrap",
-    },
-  }),
   letter: css({
     flex: "1 0",
     display: "inline-block",
@@ -69,6 +88,24 @@ const styles = {
     lineHeight: 1,
     ["@media (max-width: 867px)"]: {
       fontSize: "calc(var(--content-width) * 0.323)",
+    },
+  }),
+  desktopContainer: css({
+    display: "flex",
+    flexFlow: "row nowrap",
+    width: "100%",
+    whiteSpace: "nowrap",
+    ["@media (max-width: 867px)"]: {
+      display: "none",
+    },
+  }),
+  mobileContainer: css({
+    display: "none",
+    flexFlow: "row nowrap",
+    width: "100%",
+    whiteSpace: "nowrap",
+    ["@media (max-width: 867px)"]: {
+      display: "block",
     },
   }),
 };

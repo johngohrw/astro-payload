@@ -1,11 +1,16 @@
 ---
 import { Button } from "@/components/Button/Button";
+import CardSection from "@/components/CardSection.astro";
 import HeroLetters from "@/components/HeroLetters/HeroLetters.astro";
 import PageFrame from "@/components/PageFrame.astro";
+import PixelBlast from "@/components/PixelBlast";
+import PixelBlastCard from "@/components/PixelBlastCard.astro";
 import ScrollSmootherWrapper from "@/components/ScrollSmoother/ScrollSmootherWrapper.astro";
 import SectionBodyText from "@/components/SectionBodyText.astro";
+import SectionCaptionText from "@/components/SectionCaptionText.astro";
 import SectionHeaderText from "@/components/SectionHeaderText.astro";
 import QuineLayout from "@/layouts/QuineLayout.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <QuineLayout>
@@ -14,50 +19,85 @@ import QuineLayout from "@/layouts/QuineLayout.astro";
     <PageFrame
       innerProps={{
         style: {
-          paddingBottom: "8rem",
+          paddingBottom: "6rem",
           display: "flex",
           flexFlow: "column nowrap",
         },
       }}
     >
-      <div class="heroText">
+      <div class="heroLettersWrapper" style={{ padding: "2rem 0 6rem" }}>
         <HeroLetters />
       </div>
-      <div class="captionAfterHero">
-        <SectionHeaderText class="captionAfterHeroText">
-          Creating memorable brand experiences engineered for maximum impact.
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "45rem",
+          textWrap: "balance",
+        }}
+      >
+        <SectionCaptionText pill style={{ marginBottom: "0.5rem" }}>
+          digital design studio
+        </SectionCaptionText>
+        <SectionHeaderText>
+          Creating memorable brand experiences, engineered for maximum impact.
         </SectionHeaderText>
         <SectionBodyText
           >We help founders and businesses make big moves by crafting delightful
           websites with design that works.
         </SectionBodyText>
-        <Button className="" href="#" client:load>Get in touch</Button>
+        <Button className="" href="#" client:load>
+          <span style={{ marginRight: "0.5rem" }}>Get in touch</span>
+          <Icon name="lucide:arrow-right" />
+        </Button>
       </div>
     </PageFrame>
-    <PageFrame style={{ height: "100vh" }} />
+    <PageFrame
+      innerProps={{
+        style: { padding: "2rem 0" },
+      }}
+    >
+      <PixelBlastCard style={{ minHeight: "38rem" }}>
+        <div
+          style={{
+            maxWidth: "38rem",
+            textAlign: "center",
+            textWrap: "balance",
+            zIndex: "10",
+            pointerEvents: "none",
+            filter: "invert(1)",
+          }}
+        >
+          <SectionCaptionText pill style={{ marginBottom: "0.5rem" }}>
+            what we do
+          </SectionCaptionText>
+          <SectionHeaderText noMargin>
+            We create bespoke websites and experiences to help brands and
+            founders establish trust, build traction, and disrupt categories.
+          </SectionHeaderText>
+        </div>
+      </PixelBlastCard>
+    </PageFrame>
+    <PageFrame innerProps={{}}> Yeah next frame </PageFrame>
   </ScrollSmootherWrapper>
 
   <style>
-    .heroText {
+    .heroLettersWrapper {
       margin: calc(var(--content-scale) * 2) 0;
       flex-grow: 1;
     }
 
-    .captionAfterHero {
+    .heroCaption {
       width: 100%;
       max-width: 45rem;
       text-wrap: balance;
     }
-    .captionAfterHeroText {
-      padding-top: 4rem;
-    }
     /* @media (max-width: 867px) {
-      .captionAfterHero {
+      .heroCaption {
         display: flex;
         flex-flow: column;
         align-items: end;
       }
-      .captionAfterHeroText {
+      .heroCaptionText {
         text-align: right;
         padding-top: 6rem;
         max-width: 37rem;

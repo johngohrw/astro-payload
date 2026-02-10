@@ -10,7 +10,11 @@ export const ButtonPure = ({
   return (
     <motion.button
       className={cls(
-        "py-2 px-6 rounded-4xl cursor-pointer select-none bg-black text-white",
+        "flex flex-row items-center flex-nowrap",
+        "bg-black text-white",
+        "py-2 px-6",
+        "rounded-4xl",
+        "cursor-pointer select-none",
         className,
       )}
       whileHover={{ scale: 1.1 }}
