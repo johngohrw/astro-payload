@@ -5,11 +5,14 @@ import HeroLetters from "@/components/HeroLetters/HeroLetters.astro";
 import PageFrame from "@/components/PageFrame.astro";
 import PixelBlast from "@/components/PixelBlast";
 import PixelBlastCard from "@/components/PixelBlastCard.astro";
+import { ScrambleInWrapper } from "@/components/ScrambleIn/ScrambleInWrapper";
 import ScrollSmootherWrapper from "@/components/ScrollSmoother/ScrollSmootherWrapper.astro";
 import SectionBodyText from "@/components/SectionBodyText.astro";
 import SectionCaptionText from "@/components/SectionCaptionText.astro";
 import SectionHeaderText from "@/components/SectionHeaderText.astro";
 import ServicesSection from "@/components/ServicesSection.astro";
+import ShinyText from "@/components/ShinyText/ShinyText";
+import { WorksSection } from "@/components/WorksSection";
 import QuineLayout from "@/layouts/QuineLayout.astro";
 import { Icon } from "astro-icon/components";
 ---
@@ -35,9 +38,7 @@ import { Icon } from "astro-icon/components";
         textWrap: "balance",
       }}
     >
-      <SectionCaptionText pill style={{ marginBottom: "0.5rem" }}>
-        digital design studio
-      </SectionCaptionText>
+      <SectionCaptionText> a digital design studio </SectionCaptionText>
       <SectionHeaderText>
         Creating memorable brand experiences, engineered for maximum impact.
       </SectionHeaderText>
@@ -45,15 +46,21 @@ import { Icon } from "astro-icon/components";
         >We help founders and businesses make big moves by crafting delightful
         websites with design that works.
       </SectionBodyText>
-      <Button className="" href="#" client:load>
-        <span style={{ marginRight: "0.5rem" }}>Get in touch</span>
-        <Icon name="lucide:arrow-right" />
-      </Button>
+      <div class="flex flex-row flex-nowrap gap-4">
+        <Button type="secondary" smoothScrollTo="#contact" client:load>
+          <span style={{ marginRight: "0.5rem" }}>Get in touch</span>
+        </Button>
+        <Button smoothScrollTo="#services" client:load>
+          <span style={{ marginRight: "0.5rem" }}>Learn how</span>
+          <Icon name="lucide:arrow-right" />
+        </Button>
+      </div>
     </div>
   </PageFrame>
   <PageFrame
     innerProps={{
-      style: { padding: "2rem 0" },
+      id: "services",
+      style: { padding: "var(--site-header-height) 0 2rem" },
     }}
   >
     <PixelBlastCard style={{ minHeight: "38rem" }}>
@@ -67,35 +74,77 @@ import { Icon } from "astro-icon/components";
           filter: "invert(1)",
         }}
       >
-        <SectionCaptionText pill style={{ marginBottom: "0.5rem" }}>
-          what we do
-        </SectionCaptionText>
+        <SectionCaptionText> what we do </SectionCaptionText>
         <SectionHeaderText noMargin>
-          We create bespoke websites and experiences to help brands and founders
-          establish trust, build traction, and disrupt categories.
+          We create bespoke websites and digital experiences to help brands and
+          founders establish trust, build traction, and disrupt categories.
         </SectionHeaderText>
       </div>
     </PixelBlastCard>
   </PageFrame>
   <PageFrame
     innerProps={{
-      style: { display: "flex", padding: "2rem 0", alignItems: "center" },
+      style: { display: "flex", padding: "3rem 0", alignItems: "center" },
     }}
   >
     <ServicesSection />
   </PageFrame>
-  <PageFrame innerProps={{ style: { height: "100vh" } }}> yeah </PageFrame>
+  <PageFrame
+    innerProps={{
+      style: { paddingTop: "var(--site-header-height)", paddingBottom: "4rem" },
+    }}
+  >
+    <SectionHeaderText>Works</SectionHeaderText>
+    <SectionCaptionText>collection of past projects</SectionCaptionText>
+
+    <WorksSection client:visible />
+  </PageFrame>
+  <PageFrame
+    innerProps={{
+      id: "contact",
+      style: {
+        paddingTop: "var(--site-header-height)",
+        paddingBottom: "4rem",
+        minHeight: "48rem",
+      },
+    }}
+  >
+    <SectionHeaderText> Contact us </SectionHeaderText>
+    <SectionCaptionText>Let's work together</SectionCaptionText>
+    <div>hi</div>
+  </PageFrame>
+  <PageFrame
+    innerProps={{
+      class: "border-t py-8",
+    }}
+  >
+    <div class="flex flex-col items-center">
+      <ShinyText
+        text={`Quine Systems © ${new Date().getFullYear()}`}
+        speed={2}
+        delay={5}
+        color="var(--color-fg)"
+        shineColor="#ddd"
+        spread={120}
+        direction="left"
+        yoyo={false}
+        pauseOnHover={false}
+        disabled={false}
+        client:load
+      />
+    </div>
+  </PageFrame>
+
+  <style>
+    .heroLettersWrapper {
+      margin: calc(var(--content-scale) * 2) 0;
+      flex-grow: 1;
+    }
+
+    .heroCaption {
+      width: 100%;
+      max-width: 45rem;
+      text-wrap: balance;
+    }
+  </style>
 </QuineLayout>
-
-<style>
-  .heroLettersWrapper {
-    margin: calc(var(--content-scale) * 2) 0;
-    flex-grow: 1;
-  }
-
-  .heroCaption {
-    width: 100%;
-    max-width: 45rem;
-    text-wrap: balance;
-  }
-</style>

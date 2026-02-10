@@ -1,10 +1,13 @@
 ---
+import { cls } from "rengwutils";
 import SectionBodyText from "./SectionBodyText.astro";
 import SectionHeaderTextSmaller from "./SectionHeaderTextSmaller.astro";
+import SectionCaptionText from "./SectionCaptionText.astro";
+import SectionHeaderText from "./SectionHeaderText.astro";
 
 const services = [
   {
-    title: "How it helps",
+    title: "How it helps you",
     description:
       "We help you create a memorable first impression for the right audience that reflects the quality of your offering and the ambitions of your company.",
   },
@@ -14,7 +17,7 @@ const services = [
       "We deliver the most value when helping new and existing ventures to (re)shape their brand and digital presence. Typically across tech, lifestyle and finance.",
   },
   {
-    title: "When to engage",
+    title: "When to engage us",
     description:
       "You’re ready to invest in safeguarding your business from being indistinct, ineffective and falling short of customer expectations, both online and offline.",
   },
@@ -27,115 +30,94 @@ const services = [
 ---
 
 <div class="servicesContainer">
-  {
-    services.map((s, i) => {
-      return (
-        <div class="card" style={{ "--offset": `${i * 3}rem` }}>
-          <div class="visuals" />
-          <div class="descriptions">
-            <SectionHeaderTextSmaller>{s.title}</SectionHeaderTextSmaller>
-            <SectionBodyText noMargin>{s.description}</SectionBodyText>
-          </div>
-        </div>
-      );
-    })
-  }
+  <div class="sectionTitle">
+    <SectionHeaderText>Working with us</SectionHeaderText>
+  </div>
+  <div class="tableContainer">
+    <div class="spacer"></div>
+    <div class="table">
+      {
+        services.map((s, i) => {
+          const isEven = i % 2 == 0;
+          return (
+            <div class={cls("tableRow", isEven && "even")}>
+              <div class="tableContent">
+                <div class="caption">
+                  <SectionCaptionText>{s.title}</SectionCaptionText>
+                </div>
+                <div class="desc">
+                  <SectionBodyText>{s.description}</SectionBodyText>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
 </div>
-<style define:vars={{ cardHeight: 24 }}>
+<style>
   .servicesContainer {
-    position: relative;
-
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 12rem;
-
-    margin-top: calc(calc(var(--cardHeight) * 1rem) / 2);
-    margin-bottom: calc(calc(var(--cardHeight) * -1rem) / 2);
-    max-width: 800px;
-    border: 1px solid red;
-  }
-
-  .card {
-    position: sticky;
-    top: 50vh;
-    transform: translateY(calc(calc(var(--cardHeight) * -1rem) / 2));
-
-    height: calc(var(--cardHeight) * 1rem);
-
-    display: flex;
-    flex-flow: row nowrap;
-    gap: 1rem;
-
-    /* border: 1px solid black; */
-    background: var(--color-bg);
-  }
-
-  .visuals {
-    height: 100%;
-    aspect-ratio: 1;
-    background: grey;
-  }
-  .descriptions {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    max-width: 42rem;
     width: 100%;
-
-    padding: 1rem;
   }
-
-  /* desktop */
-  /* @media (min-width: 1024px) {
-  } */
-</style>
-
-<!-- 
-<div class="container">
-  {
-    services.map((s) => {
-      return (
-        <div class="card">
-          <div class="visuals">
-            <div
-              style={{ height: "100%", aspectRatio: 1, background: "red" }}
-            />
-          </div>
-          <div class="descriptions">
-            <SectionHeaderTextSmaller>{s.title}</SectionHeaderTextSmaller>
-            <SectionBodyText noMargin>{s.description}</SectionBodyText>
-          </div>
-        </div>
-      );
-    })
+  .sectionTitle {
+    margin-bottom: 4rem;
   }
-</div> -->
-
-<!-- <style>
-  .container {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 2rem;
+  @media (max-width: 672px) {
+    .sectionTitle {
+      margin-bottom: 2rem;
+    }
   }
-
-  .card {
+  .tableContainer {
     display: flex;
     flex-flow: row nowrap;
+  }
+  .spacer {
+    flex-grow: 1;
+  }
+  .table {
+    position: relative;
+    width: 100%;
+    max-width: 75rem;
+    flex-shrink: 0;
+
+    display: flex;
+    flex-flow: column nowrap;
     gap: 2rem;
   }
 
-  .visuals {
-    height: 12rem;
+  @media (max-width: 672px) {
+    .table {
+      gap: 1rem;
+    }
   }
 
-  .descriptions {
+  .tableRow {
     display: flex;
-    flex-flow: column nowrap;
-    max-width: 36rem;
-    padding: 2rem;
+    flex-flow: row nowrap;
+    border-top: 1px solid black;
+    padding-top: 1rem;
   }
 
-  /* desktop */
-  @media (min-width: 1024px) {
+  .tableContent {
+    display: flex;
+    flex-flow: row nowrap;
   }
-</style> -->
+  @media (max-width: 672px) {
+    .tableContent {
+      flex-flow: column nowrap;
+    }
+  }
+
+  .caption {
+    width: 100%;
+    max-width: 18rem;
+    margin-top: 0.25rem;
+  }
+
+  .desc {
+    max-width: 55rem;
+    flex-shrink: 1;
+    text-wrap-style: pretty;
+  }
+</style>

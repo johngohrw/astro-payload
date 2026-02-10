@@ -4,13 +4,19 @@ import { cls } from "rengwutils";
 
 interface Props extends HTMLAttributes<"div"> {
   pill?: boolean;
+  noMargin?: boolean;
 }
 
-const { pill, ...restProps } = Astro.props;
+const { pill, noMargin, ...restProps } = Astro.props;
 ---
 
 <div
-  class={cls("text", pill && "pill", restProps.class ?? false)}
+  class={cls(
+    "text",
+    pill && "pill",
+    !noMargin && "margin",
+    restProps.class ?? false,
+  )}
   {...restProps}
 >
   <slot />
@@ -21,8 +27,11 @@ const { pill, ...restProps } = Astro.props;
     font-family: "Chivo Mono";
     font-size: 0.85rem;
     text-transform: uppercase;
-    line-height: 1;
-    margin-bottom: 0.5rem;
+    line-height: 1.25;
+  }
+
+  .margin {
+    margin-bottom: 0.75rem;
   }
 
   .pill {

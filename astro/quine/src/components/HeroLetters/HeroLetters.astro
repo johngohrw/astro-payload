@@ -2,4 +2,21 @@
 import { HeroLettersBig } from "./HeroLettersBig";
 ---
 
-<HeroLettersBig client:only />
+<HeroLettersBig client:only>
+  <Fragment slot="fallback">
+    <div class="filler"></div>
+  </Fragment>
+</HeroLettersBig>
+
+<style>
+  .filler {
+    height: calc(min(calc(100vw - 2rem), 1440px) / 5.75);
+  }
+  /* mobile */
+  @media (max-width: 867px) {
+    .filler {
+      height: calc(calc(min(100vw, 1440px) - 2rem) / 1.6);
+    }
+  }
+</style>
+<!-- 585 538 347 -->
