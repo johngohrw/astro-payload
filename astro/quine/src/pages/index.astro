@@ -94,8 +94,8 @@ import { Icon } from "astro-icon/components";
       style: { paddingTop: "var(--site-header-height)", paddingBottom: "4rem" },
     }}
   >
-    <SectionHeaderText>Works</SectionHeaderText>
     <SectionCaptionText>collection of past projects</SectionCaptionText>
+    <SectionHeaderText>Works</SectionHeaderText>
 
     <WorksSection client:visible />
   </PageFrame>
@@ -109,9 +109,25 @@ import { Icon } from "astro-icon/components";
       },
     }}
   >
-    <SectionHeaderText> Contact us </SectionHeaderText>
     <SectionCaptionText>Let's work together</SectionCaptionText>
-    <div>hi</div>
+    <SectionHeaderText> Contact us </SectionHeaderText>
+
+    <PixelBlastCard style={{ minHeight: "38rem" }}>
+      <div
+        style={{
+          textAlign: "center",
+          textWrap: "balance",
+          zIndex: "10",
+          pointerEvents: "none",
+          filter: "invert(1)",
+        }}
+      >
+        <SectionCaptionText> off for a break </SectionCaptionText>
+        <SectionHeaderText noMargin>
+          (not available for work at the moment, sorry)
+        </SectionHeaderText>
+      </div>
+    </PixelBlastCard>
   </PageFrame>
   <PageFrame
     innerProps={{
