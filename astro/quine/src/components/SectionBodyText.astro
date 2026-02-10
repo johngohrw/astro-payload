@@ -2,19 +2,26 @@
 import type { HTMLAttributes } from "astro/types";
 import { cls } from "rengwutils";
 
-interface Props extends HTMLAttributes<"div"> {}
-const { ...restProps } = Astro.props;
+interface Props extends HTMLAttributes<"div"> {
+  noMargin?: boolean;
+}
+const { noMargin, ...restProps } = Astro.props;
 ---
 
-<div class={cls("text", restProps.class ?? false)} {...restProps}>
+<div
+  class={cls("text", !noMargin && "margin", restProps.class ?? false)}
+  {...restProps}
+>
   <slot />
 </div>
 
 <style>
   .text {
-    font-family: "Geist";
+    font-family: "DM Sans";
     font-size: 1rem;
     line-height: 1.5;
+  }
+  .margin {
     margin-bottom: 1.5rem;
   }
 

@@ -1,0 +1,73 @@
+---
+import SectionBodyText from "./SectionBodyText.astro";
+import SectionHeaderTextSmaller from "./SectionHeaderTextSmaller.astro";
+
+const services = [
+  {
+    title: "How it helps",
+    description:
+      "We help you create a memorable first impression for the right audience that reflects the quality of your offering and the ambitions of your company.",
+  },
+  {
+    title: "Who are we for",
+    description:
+      "We deliver the most value when helping new and existing ventures to (re)shape their brand and digital presence. Typically across tech, lifestyle and finance.",
+  },
+  {
+    title: "When to engage",
+    description:
+      "You’re ready to invest in safeguarding your business from being indistinct, ineffective and falling short of customer expectations, both online and offline.",
+  },
+  {
+    title: "What it costs",
+    description:
+      "We avoid the traditional agency model of hourly billing. Instead, we offer transparent, flat-rate pricing packages to suit a range of budgets and business sizes.",
+  },
+];
+---
+
+<div class="cascade-container">
+  <div class="left"></div>
+  <div class="right">
+    {
+      services.map((s) => {
+        return (
+          <div class="cascade-card">
+            <SectionHeaderTextSmaller>{s.title}</SectionHeaderTextSmaller>
+            <SectionBodyText noMargin>{s.description}</SectionBodyText>
+          </div>
+        );
+      })
+    }
+  </div>
+</div>
+
+<style>
+  .cascade-container {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 2rem;
+  }
+
+  .left {
+    width: 60%;
+    /* background: red; */
+  }
+
+  .right {
+    width: 40%;
+    display: flex;
+    flex-flow: column nowrap;
+
+    /* background: red; */
+
+    /* align-items: flex-end; */
+  }
+
+  .cascade-card {
+    margin-bottom: 8rem;
+  }
+
+  @media {
+  }
+</style>

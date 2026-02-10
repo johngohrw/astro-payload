@@ -9,6 +9,7 @@ import ScrollSmootherWrapper from "@/components/ScrollSmoother/ScrollSmootherWra
 import SectionBodyText from "@/components/SectionBodyText.astro";
 import SectionCaptionText from "@/components/SectionCaptionText.astro";
 import SectionHeaderText from "@/components/SectionHeaderText.astro";
+import ServicesSection from "@/components/ServicesSection.astro";
 import QuineLayout from "@/layouts/QuineLayout.astro";
 import { Icon } from "astro-icon/components";
 ---
@@ -77,7 +78,14 @@ import { Icon } from "astro-icon/components";
         </div>
       </PixelBlastCard>
     </PageFrame>
-    <PageFrame innerProps={{}}> Yeah next frame </PageFrame>
+    <PageFrame
+      innerProps={{
+        style: { padding: "2rem 0" },
+      }}
+    >
+      <ServicesSection />
+    </PageFrame>
+    <PageFrame innerProps={{ style: { height: "100vh" } }}> yeah </PageFrame>
   </ScrollSmootherWrapper>
 
   <style>
@@ -91,17 +99,5 @@ import { Icon } from "astro-icon/components";
       max-width: 45rem;
       text-wrap: balance;
     }
-    /* @media (max-width: 867px) {
-      .heroCaption {
-        display: flex;
-        flex-flow: column;
-        align-items: end;
-      }
-      .heroCaptionText {
-        text-align: right;
-        padding-top: 6rem;
-        max-width: 37rem;
-      }
-    } */
   </style>
 </QuineLayout>
