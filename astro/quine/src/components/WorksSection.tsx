@@ -44,7 +44,7 @@ export const WorksSection = () => {
       <div
         className={cls(
           css({
-            width: "45%",
+            width: "55%",
             ["@media (max-width: 987px)"]: {
               width: "100%",
             },
@@ -63,7 +63,7 @@ export const WorksSection = () => {
         className={cls(
           "bg-white/20",
           css({
-            width: "55%",
+            width: "45%",
             ["@media (max-width: 987px)"]: {
               width: "100%",
             },
