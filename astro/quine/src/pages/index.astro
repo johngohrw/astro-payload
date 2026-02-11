@@ -1,8 +1,10 @@
 ---
 import { Button } from "@/components/Button/Button";
 import CardSection from "@/components/CardSection.astro";
+import ContactsSection from "@/components/ContactsSection.astro";
 import HeroLetters from "@/components/HeroLetters/HeroLetters.astro";
 import PageFrame from "@/components/PageFrame.astro";
+import PageWidthBrandLetters from "@/components/PageWidthBrandLetters.astro";
 import PixelBlast from "@/components/PixelBlast";
 import PixelBlastCard from "@/components/PixelBlastCard.astro";
 import { ScrambleInWrapper } from "@/components/ScrambleIn/ScrambleInWrapper";
@@ -60,7 +62,7 @@ import { Icon } from "astro-icon/components";
   <PageFrame
     innerProps={{
       id: "services",
-      style: { padding: "var(--site-header-height) 0 2rem" },
+      style: { padding: "var(--site-header-height) 0 6rem" },
     }}
   >
     <PixelBlastCard style={{ minHeight: "38rem" }}>
@@ -84,14 +86,18 @@ import { Icon } from "astro-icon/components";
   </PageFrame>
   <PageFrame
     innerProps={{
-      style: { display: "flex", padding: "3rem 0", alignItems: "center" },
+      style: { display: "flex", padding: "4rem 0", alignItems: "center" },
     }}
   >
     <ServicesSection />
   </PageFrame>
   <PageFrame
     innerProps={{
-      style: { paddingTop: "var(--site-header-height)", paddingBottom: "4rem" },
+      style: {
+        paddingTop: "var(--site-header-height)",
+        paddingBottom: "12rem",
+      },
+      id: "works",
     }}
   >
     <SectionCaptionText>collection of past projects</SectionCaptionText>
@@ -99,57 +105,8 @@ import { Icon } from "astro-icon/components";
 
     <WorksSection client:visible />
   </PageFrame>
-  <PageFrame
-    innerProps={{
-      id: "contact",
-      style: {
-        paddingTop: "var(--site-header-height)",
-        paddingBottom: "4rem",
-        minHeight: "48rem",
-      },
-    }}
-  >
-    <SectionCaptionText>Let's work together</SectionCaptionText>
-    <SectionHeaderText> Contact us </SectionHeaderText>
-
-    <PixelBlastCard style={{ minHeight: "38rem" }}>
-      <div
-        style={{
-          textAlign: "center",
-          textWrap: "balance",
-          zIndex: "10",
-          pointerEvents: "none",
-          filter: "invert(1)",
-        }}
-      >
-        <SectionCaptionText> off for a break </SectionCaptionText>
-        <SectionHeaderText noMargin>
-          (not available for work at the moment, sorry)
-        </SectionHeaderText>
-      </div>
-    </PixelBlastCard>
-  </PageFrame>
-  <PageFrame
-    innerProps={{
-      class: "border-t py-8",
-    }}
-  >
-    <div class="flex flex-col items-center">
-      <ShinyText
-        text={`Quine Systems © ${new Date().getFullYear()}`}
-        speed={2}
-        delay={5}
-        color="var(--color-fg)"
-        shineColor="#ddd"
-        spread={120}
-        direction="left"
-        yoyo={false}
-        pauseOnHover={false}
-        disabled={false}
-        client:load
-      />
-    </div>
-  </PageFrame>
+  <div id="contact"></div>
+  <ContactsSection />
 
   <style>
     .heroLettersWrapper {

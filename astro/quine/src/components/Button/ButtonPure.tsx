@@ -3,7 +3,7 @@ import { cls } from "rengwutils";
 import { motion, type HTMLMotionProps } from "motion/react";
 import { css } from "@emotion/css";
 
-type ButtonType = "primary" | "secondary";
+type ButtonType = "primary" | "secondary" | "link";
 
 export const ButtonPure = ({
   children,
@@ -15,21 +15,31 @@ export const ButtonPure = ({
     <motion.button
       className={cls(
         "flex flex-row items-center flex-nowrap",
-        "bg-black text-white",
-        "py-2 px-4",
+
+        type !== "link" && "py-2 px-4",
         "rounded-4xl",
         "cursor-pointer select-none",
         type === "secondary" && secondaryStyles,
+        type === "primary" && primaryStyles,
         className,
       )}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.9 }}
+      {...(type !== "link"
+        ? {
+            whileHover: { scale: 1.05 },
+            whileTap: { scale: 0.9 },
+          }
+        : {})}
       {...rest}
     >
       {children}
     </motion.button>
   );
 };
+
+const primaryStyles = css({
+  background: "black",
+  color: "white",
+});
 
 const secondaryStyles = css({
   background: "none",

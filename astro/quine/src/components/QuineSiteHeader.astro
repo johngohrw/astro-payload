@@ -19,18 +19,23 @@ const { props } = Astro;
     </a>
     <div class="subcontent">
       <nav>
-        <navlink>About</navlink>
-        <navlink>Services</navlink>
-        <navlink>Works</navlink>
+        <Button client:load type="link" smoothScrollTo="#services">
+          Services
+        </Button>
+        <Button client:load type="link" smoothScrollTo="#works">Works</Button>
       </nav>
 
-      <Button className="" smoothScrollTo="#contact" client:load>
+      <Button smoothScrollTo="#contact" client:load>
         <span style={{ marginRight: "0.5rem" }}>Get in touch</span>
         <Icon name="lucide:arrow-right" />
       </Button>
     </div>
     <div class="subcontent-mobile">
-      <button>Menu</button>
+      <!-- <button>Menu</button> -->
+      <Button smoothScrollTo="#contact" client:load>
+        <span style={{ marginRight: "0.5rem" }}>Get in touch</span>
+        <Icon name="lucide:arrow-right" />
+      </Button>
     </div>
   </div>
 </div>

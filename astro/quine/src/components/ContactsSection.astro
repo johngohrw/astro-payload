@@ -1,0 +1,135 @@
+---
+import { Icon } from "astro-icon/components";
+import PageFrame from "./PageFrame.astro";
+import PageWidthBrandLetters from "./PageWidthBrandLetters.astro";
+import SectionHeaderText from "./SectionHeaderText.astro";
+import SectionBodyText from "./SectionBodyText.astro";
+---
+
+<PageFrame
+  class="w-full overflow-hidden frame-container"
+  innerProps={{ class: "flex flex-col" }}
+>
+  <div class="content">
+    <div class="left">
+      <SectionHeaderText class="text-nowrap" noMargin>
+        Contact us
+      </SectionHeaderText>
+      <div class="line">
+        <Icon name="bxs:right-arrow" size="1rem" class="line-icon" />
+      </div>
+    </div>
+
+    <div class="right">
+      <a href="mailto:hello@quinesystems.com" class="hover-link">
+        hello@quinesystems.com <Icon size="2rem" name="lucide:arrow-up-right" />
+      </a>
+    </div>
+  </div>
+  <div class="grow"></div>
+  <div style={{ padding: "2rem 0 0rem" }} class="huge-letters">
+    <PageWidthBrandLetters />
+  </div>
+</PageFrame>
+
+<style>
+  .frame-container {
+    --contacts-bg: #030303;
+    --contacts-fg: #e7e7e7;
+    background: var(--contacts-bg);
+
+    height: 100vh;
+  }
+
+  .content {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 8rem 0 24rem;
+
+    color: var(--contacts-fg);
+  }
+
+  .left {
+    flex-grow: 1;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  .line {
+    height: 2px;
+    background: var(--contacts-fg);
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1rem;
+  }
+
+  .line-icon {
+  }
+
+  .right {
+  }
+
+  .hover-link {
+    font-size: 1.5rem;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 0.5rem;
+
+    transition-duration: 100ms;
+
+    padding: 0.25rem 1rem;
+    border-radius: 2rem;
+  }
+  .hover-link:hover {
+    background: var(--contacts-fg);
+    color: var(--contacts-bg);
+  }
+  .huge-letters {
+    color: var(--contacts-fg);
+  }
+
+  @media (max-width: 867px) {
+    .content {
+      flex-flow: column nowrap;
+      align-items: start;
+
+      padding: 6rem 0 24rem;
+    }
+    .left {
+      margin-bottom: 5rem;
+      padding: 0 1rem;
+    }
+    .right {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+    }
+    .line {
+      display: none;
+    }
+
+    .line-mobile-line {
+      height: 8rem;
+      width: 2px;
+      background: var(--contacts-fg);
+    }
+
+    .hover-link {
+      text-decoration: underline;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .hover-link {
+      font-size: 1.3rem;
+    }
+  }
+</style>
