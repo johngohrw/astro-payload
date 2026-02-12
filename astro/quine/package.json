@@ -14,6 +14,7 @@
     "@iconify-json/bxs": "^1.2.2",
     "@iconify-json/lucide": "^1.2.82",
     "@lucide/astro": "^0.562.0",
+    "@paper-design/shaders-react": "^0.0.71",
     "@payloadcms/richtext-lexical": "3.69.0",
     "@payloadcms/sdk": "^3.69.0",
     "@react-three/fiber": "^9.5.0",

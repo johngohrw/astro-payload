@@ -4,12 +4,34 @@ import PageFrame from "./PageFrame.astro";
 import PageWidthBrandLetters from "./PageWidthBrandLetters.astro";
 import SectionHeaderText from "./SectionHeaderText.astro";
 import SectionBodyText from "./SectionBodyText.astro";
+import { ImageDithering, HalftoneDots } from "@paper-design/shaders-react";
 ---
 
 <PageFrame
-  class="w-full overflow-hidden frame-container"
-  innerProps={{ class: "flex flex-col" }}
+  class="w-full overflow-hidden frame-container relative"
+  innerProps={{ class: "flex flex-col relative" }}
 >
+  <div slot="prefix" class="absolute inset-0">
+    <HalftoneDots
+      client:idle
+      width="100%"
+      height="100%"
+      image="/images/4ch3.jpg"
+      colorBack="#056b1b"
+      colorFront="#041801"
+      originalColors={false}
+      type="gooey"
+      grid="hex"
+      inverted={false}
+      size={0.15}
+      radius={1.59}
+      contrast={0.26}
+      grainMixer={0.19}
+      grainOverlay={0.21}
+      grainSize={0.3}
+      fit="cover"
+    />
+  </div>
   <div class="content">
     <div class="left">
       <SectionHeaderText class="text-nowrap" noMargin>

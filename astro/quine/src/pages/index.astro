@@ -17,6 +17,7 @@ import ShinyText from "@/components/ShinyText/ShinyText";
 import { WorksSection } from "@/components/WorksSection";
 import QuineLayout from "@/layouts/QuineLayout.astro";
 import { Icon } from "astro-icon/components";
+import { HalftoneDots } from "@paper-design/shaders-react";
 ---
 
 <QuineLayout>
@@ -65,14 +66,15 @@ import { Icon } from "astro-icon/components";
       style: { padding: "var(--site-header-height) 0 6rem" },
     }}
   >
-    <PixelBlastCard style={{ minHeight: "38rem" }}>
+    <div
+      class="w-full h-[48rem] flex items-center justify-center relative rounded-xl overflow-hidden"
+    >
       <div
         style={{
           maxWidth: "38rem",
           textAlign: "center",
           textWrap: "balance",
           zIndex: "10",
-          pointerEvents: "none",
           filter: "invert(1)",
         }}
       >
@@ -82,7 +84,28 @@ import { Icon } from "astro-icon/components";
           founders establish trust, build traction, and disrupt categories.
         </SectionHeaderText>
       </div>
-    </PixelBlastCard>
+      <div class="absolute inset-0 z-0">
+        <HalftoneDots
+          client:idle
+          width="100%"
+          height="100%"
+          image="/images/unsplash1.jpg"
+          colorBack="#4c4343"
+          colorFront="#1a1709"
+          originalColors={false}
+          type="gooey"
+          grid="hex"
+          inverted={false}
+          size={0.33}
+          radius={1.63}
+          contrast={0.1}
+          grainMixer={0.31}
+          grainOverlay={0.21}
+          grainSize={0.1}
+          fit="cover"
+        />
+      </div>
+    </div>
   </PageFrame>
   <PageFrame
     innerProps={{

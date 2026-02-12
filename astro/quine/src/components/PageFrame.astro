@@ -11,9 +11,11 @@ const { class: innerClass, ...innerRestProps } = innerProps ?? {};
 ---
 
 <div class={cls("frame", outerClass ?? false)} {...restProps}>
+  <slot name="prefix" />
   <div class={cls("frame-content", innerClass ?? false)} {...innerRestProps}>
     <slot />
   </div>
+  <slot name="suffix" />
 </div>
 
 <style>
