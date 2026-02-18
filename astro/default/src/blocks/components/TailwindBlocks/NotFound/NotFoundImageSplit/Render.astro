@@ -1,0 +1,64 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"notFoundImageSplit"> = block;
+
+const {
+  companyName,
+  logo,
+  errorCode,
+  heading,
+  description,
+  back,
+  footerLinks,
+  backgroundImage,
+} = blockProps;
+
+const defaultLogoLight =
+  "/plus-assets/img/logos/mark.svg?color=indigo&shade=600";
+const defaultLogoDark =
+  "/plus-assets/img/logos/mark.svg?color=indigo&shade=500";
+const defaultBgLight =
+  "https://images.unsplash.com/photo-1470847355775-e0e3c35a9a2c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1825&q=80";
+const defaultBgDark =
+  "https://images.unsplash.com/photo-1583585635793-0e1894c169bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1825&q=80";
+
+const remappedProps = {
+  companyName: companyName ?? undefined,
+  logoLightSrc: logo?.light
+    ? typeof logo.light === "string"
+      ? logo.light
+      : ((logo.light as any)?.url ?? defaultLogoLight)
+    : defaultLogoLight,
+  logoDarkSrc: logo?.dark
+    ? typeof logo.dark === "string"
+      ? logo.dark
+      : ((logo.dark as any)?.url ?? defaultLogoDark)
+    : defaultLogoDark,
+  logoHref: logo?.href ?? undefined,
+  errorCode: errorCode ?? undefined,
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  backLabel: back?.label ?? undefined,
+  backHref: back?.href ?? undefined,
+  footerLinks: footerLinks?.map((link) => ({
+    label: link.label,
+    href: link.href,
+  })),
+  backgroundImageLight: backgroundImage?.light
+    ? typeof backgroundImage.light === "string"
+      ? backgroundImage.light
+      : ((backgroundImage.light as any)?.url ?? defaultBgLight)
+    : defaultBgLight,
+  backgroundImageDark: backgroundImage?.dark
+    ? typeof backgroundImage.dark === "string"
+      ? backgroundImage.dark
+      : ((backgroundImage.dark as any)?.url ?? defaultBgDark)
+    : defaultBgDark,
+};
+---
+
+<Component {...remappedProps} />

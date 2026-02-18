@@ -1,0 +1,24 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"ctaImageTiles"> = block;
+
+const { heading, subheading, description, cta, images } = blockProps;
+
+const remappedProps = {
+  heading: heading ?? undefined,
+  subheading: subheading ?? undefined,
+  description: description ?? undefined,
+  ctaLabel: cta?.label ?? undefined,
+  ctaHref: cta?.href ?? undefined,
+  images: images?.map((image) => ({
+    src: typeof image.src === "string" ? image.src : image.src?.url ?? "",
+    alt: image.alt ?? undefined,
+  })),
+};
+---
+
+<Component {...remappedProps} />

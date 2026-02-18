@@ -1,0 +1,24 @@
+---
+import type { BlockTypeOf } from "@astro-default/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"contactSimpleCentered"> = block;
+
+const { heading, description, items } = blockProps;
+
+const remappedProps = {
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  items: items?.map((item) => ({
+    title: item.title,
+    description: item.description,
+    linkLabel: item.linkLabel,
+    linkHref: item.linkHref,
+    iconSvg: item.iconSvg ?? undefined,
+  })),
+};
+---
+
+<Component {...remappedProps} />

@@ -1,0 +1,31 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"contactSplitWithForm"> = block;
+
+const { heading, description, address, phone, email, form } = blockProps;
+
+const remappedProps = {
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+
+  addressLabel: address?.label ?? undefined,
+  addressHtml: address?.html ?? undefined,
+
+  phoneLabel: phone?.label ?? undefined,
+  phoneText: phone?.text ?? undefined,
+  phoneHref: phone?.href ?? undefined,
+
+  emailLabel: email?.label ?? undefined,
+  emailText: email?.text ?? undefined,
+  emailHref: email?.href ?? undefined,
+
+  formAction: form?.action ?? undefined,
+  submitLabel: form?.submitLabel ?? undefined,
+};
+---
+
+<Component {...remappedProps} />

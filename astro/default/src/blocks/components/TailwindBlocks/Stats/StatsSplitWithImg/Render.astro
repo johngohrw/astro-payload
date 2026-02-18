@@ -1,0 +1,24 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"statsSplitWithImg"> = block;
+
+const { image, eyebrow, heading, description, stats } = blockProps;
+
+const remappedProps = {
+  imageSrc: image?.src ?? undefined,
+  imageAlt: image?.alt ?? undefined,
+  eyebrow: eyebrow ?? undefined,
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  stats: stats?.map((item) => ({
+    label: item.label,
+    value: item.value,
+  })),
+};
+---
+
+<Component {...remappedProps} />

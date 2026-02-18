@@ -1,5 +1,4 @@
-// import { allBlocksArray } from "@astro-default/blocks/blockMap";
-import { allBlocksArray } from "@astro-default/blocks/blockMap";
+import { allBlocksArray } from "@astro-default/blocks/blockSchemas";
 import { CollectionConfig } from "payload";
 
 export const Pages: CollectionConfig = {

@@ -1,0 +1,21 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"statsSimpleGrid"> = block;
+
+const { heading, description, stats } = blockProps;
+
+const remappedProps = {
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  stats: stats?.map((item) => ({
+    label: item.label,
+    value: item.value,
+  })),
+};
+---
+
+<Component {...remappedProps} />

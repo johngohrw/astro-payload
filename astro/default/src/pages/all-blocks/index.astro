@@ -1,0 +1,26 @@
+---
+import { allBlocksArray } from "@astro-default/blocks/blockSchemas";
+import RenderSingleBlock from "@astro-default/blocks/RenderBlocks/RenderSingleBlock.astro";
+import DefaultLayout from "@astro-default/layouts/DefaultLayout.astro";
+const allBlocksButEmpty = allBlocksArray.map((o) => {
+  return { blockType: o.slug };
+});
+---
+
+<DefaultLayout>
+  {
+    allBlocksButEmpty?.map((emptyBlock) => (
+      <div>
+        <div class="p-3 bg-black text-white font-semibold">
+          {emptyBlock.blockType}
+        </div>
+        <RenderSingleBlock block={emptyBlock as any} />
+      </div>
+    ))
+  }
+</DefaultLayout>
+<style>
+  .content-wrapper {
+    padding: 1rem;
+  }
+</style>

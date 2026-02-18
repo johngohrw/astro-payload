@@ -10,8 +10,10 @@
     "paths": {
       "@astro-default/*": ["./astro/default/src/*"],
       "@astro-quine/*": ["./astro/quine/src/*"],
+      "@astro-wueelong/*": ["./astro/wueelong/src/*"],
       "@payload-default/*": ["./payload/default/src/*"],
       "@payload-quine/*": ["./payload/quine/src/*"],
+      "@payload-wueelong/*": ["./payload/wueelong/src/*"],
       "@@/*": ["./*"]
     }
   }

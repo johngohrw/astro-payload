@@ -1,0 +1,21 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"newsletterSimple"> = block;
+
+const { heading, emailPlaceholder, subscribeLabel, privacyText, privacyLink } = blockProps;
+
+const remappedProps = {
+  heading: heading ?? undefined,
+  emailPlaceholder: emailPlaceholder ?? undefined,
+  subscribeLabel: subscribeLabel ?? undefined,
+  privacyText: privacyText ?? undefined,
+  privacyLinkLabel: privacyLink?.label ?? undefined,
+  privacyLinkHref: privacyLink?.href ?? undefined,
+};
+---
+
+<Component {...remappedProps} />

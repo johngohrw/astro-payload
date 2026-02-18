@@ -1,0 +1,15 @@
+---
+import type { BlockType } from "@astro-default/blocks/blockTypes";
+import { allBlockRenderersMap } from "@astro-default/blocks/blockRenderers";
+import type { Block } from "payload";
+
+interface Props {
+  block: BlockType;
+}
+
+const { block } = Astro.props;
+
+const Renderer = allBlockRenderersMap[block.blockType];
+---
+
+{Renderer && <Renderer block={block} />}

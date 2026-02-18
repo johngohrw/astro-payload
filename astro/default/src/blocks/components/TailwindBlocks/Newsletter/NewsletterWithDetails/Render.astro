@@ -1,0 +1,24 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"newsletterWithDetails"> = block;
+
+const { heading, description, emailPlaceholder, subscribeLabel, features } = blockProps;
+
+const remappedProps = {
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  emailPlaceholder: emailPlaceholder ?? undefined,
+  subscribeLabel: subscribeLabel ?? undefined,
+  features: features?.map((item) => ({
+    iconSvg: item.iconSvg,
+    title: item.title,
+    description: item.description,
+  })),
+};
+---
+
+<Component {...remappedProps} />

@@ -200,24 +200,6 @@ export interface Page {
   contentBlocks?:
     | (
         | {
-            topCaption?: string | null;
-            title: string;
-            subtitle?: string | null;
-            columns: {
-              icon?: string | null;
-              title: string;
-              caption?: string | null;
-              action?: {
-                label?: string | null;
-                href?: string | null;
-              };
-              id?: string | null;
-            }[];
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'featSimpleThreeCol';
-          }
-        | {
             announcement?: {
               text?: string | null;
               href?: string | null;
@@ -237,6 +219,15 @@ export interface Page {
             blockType: 'heroSimpleCentered';
           }
         | {
+            companyName?: string | null;
+            logo?: {
+              light?: (number | null) | Media;
+              dark?: (number | null) | Media;
+            };
+            badge?: {
+              text?: string | null;
+              link?: string | null;
+            };
             heading?: string | null;
             description?: string | null;
             primaryCta?: {
@@ -247,13 +238,458 @@ export interface Page {
               label?: string | null;
               href?: string | null;
             };
-            heroImage?: {
-              src?: string | null;
+            heroImage?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroSplitWithImage';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            primaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            secondaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            heroImage?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroSplitWithImageAngled';
+          }
+        | {
+            title?: string | null;
+            subtitle?: string | null;
+            button?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            subAction?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            images?:
+              | {
+                  image: number | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroWithOffsetImg';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'headingSimpleLeft';
+          }
+        | {
+            backgroundImage?: {
+              light?: (number | null) | Media;
+              dark?: (number | null) | Media;
+            };
+            title?: string | null;
+            description?: string | null;
+            links?:
+              | {
+                  label: string;
+                  href: string;
+                  id?: string | null;
+                }[]
+              | null;
+            stats?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'headingWithStats';
+          }
+        | {
+            lightImage: {
+              src: number | Media;
+              alt?: string | null;
+            };
+            darkImage: {
+              src: number | Media;
+              alt?: string | null;
+            };
+            heading?: string | null;
+            description?: string | null;
+            cards?:
+              | {
+                  iconSvg: string;
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'headingWithCards';
+          }
+        | {
+            topCaption?: string | null;
+            title: string;
+            subtitle?: string | null;
+            columns: {
+              icon?: string | null;
+              title: string;
+              caption?: string | null;
+              action?: {
+                label?: string | null;
+                href?: string | null;
+              };
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featSimpleThreeCol';
+          }
+        | {
+            stats?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statsSimple';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            stats?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statsSimpleGrid';
+          }
+        | {
+            lightImage: {
+              src: number | Media;
+              alt?: string | null;
+            };
+            darkImage: {
+              src: number | Media;
+              alt?: string | null;
+            };
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            stats?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statsWithBg';
+          }
+        | {
+            image: {
+              src: number | Media;
+              alt?: string | null;
+            };
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            stats?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statsSplitWithImg';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            descriptionColumns?:
+              | {
+                  paragraphs?:
+                    | {
+                        text: string;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            stats?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statsTwoColDesc';
+          }
+        | {
+            heading?: string | null;
+            leadText?: string | null;
+            bodyText?: string | null;
+            stats?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statsWithDesc';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            primaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            secondaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ctaCenteredPanel';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            primaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            secondaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ctaCenteredPlain';
+          }
+        | {
+            heading?: string | null;
+            subheading?: string | null;
+            description?: string | null;
+            cta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            images?:
+              | {
+                  src: number | Media;
+                  alt?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ctaImageTiles';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            primaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            secondaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ctaSimpleCenteredGradient';
+          }
+        | {
+            badge?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            cta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            image?: {
+              src?: (number | null) | Media;
               alt?: string | null;
             };
             id?: string | null;
             blockName?: string | null;
-            blockType: 'heroWithOffsetImage';
+            blockType: 'ctaSplitWithImage';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            items?:
+              | {
+                  title: string;
+                  description: string;
+                  linkLabel: string;
+                  linkHref: string;
+                  /**
+                   * Paste raw SVG markup. Must include class="size-6 text-white" on the root element.
+                   */
+                  iconSvg?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactSimpleCentered';
+          }
+        | {
+            title?: string | null;
+            subtitle?: string | null;
+            offices?:
+              | {
+                  name: string;
+                  lines: {
+                    line: string;
+                    id?: string | null;
+                  }[];
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactSimpleFourCol';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            address?: {
+              label?: string | null;
+              html?: string | null;
+            };
+            phone?: {
+              label?: string | null;
+              text?: string | null;
+              href?: string | null;
+            };
+            email?: {
+              label?: string | null;
+              text?: string | null;
+              href?: string | null;
+            };
+            form?: {
+              action?: string | null;
+              submitLabel?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactSplitWithForm';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            emailPlaceholder?: string | null;
+            subscribeLabel?: string | null;
+            features?:
+              | {
+                  iconSvg: string;
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'newsletterWithDetails';
+          }
+        | {
+            heading?: string | null;
+            emailPlaceholder?: string | null;
+            subscribeLabel?: string | null;
+            privacyText?: string | null;
+            privacyLink?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'newsletterSimple';
+          }
+        | {
+            heading?: string | null;
+            emailPlaceholder?: string | null;
+            subscribeLabel?: string | null;
+            privacyText?: string | null;
+            privacyLink?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'newsletterSimpleStacked';
+          }
+        | {
+            errorCode?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            primaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            secondaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'notFoundSimple';
+          }
+        | {
+            companyName?: string | null;
+            logo?: {
+              light?: (number | null) | Media;
+              dark?: (number | null) | Media;
+              href?: string | null;
+            };
+            errorCode?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            back?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            footerLinks?:
+              | {
+                  label: string;
+                  href: string;
+                  id?: string | null;
+                }[]
+              | null;
+            backgroundImage?: {
+              light?: (number | null) | Media;
+              dark?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'notFoundImageSplit';
           }
       )[]
     | null;
@@ -424,29 +860,6 @@ export interface PagesSelect<T extends boolean = true> {
   contentBlocks?:
     | T
     | {
-        featSimpleThreeCol?:
-          | T
-          | {
-              topCaption?: T;
-              title?: T;
-              subtitle?: T;
-              columns?:
-                | T
-                | {
-                    icon?: T;
-                    title?: T;
-                    caption?: T;
-                    action?:
-                      | T
-                      | {
-                          label?: T;
-                          href?: T;
-                        };
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
         heroSimpleCentered?:
           | T
           | {
@@ -473,7 +886,41 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        heroWithOffsetImage?:
+        heroSplitWithImage?:
+          | T
+          | {
+              companyName?: T;
+              logo?:
+                | T
+                | {
+                    light?: T;
+                    dark?: T;
+                  };
+              badge?:
+                | T
+                | {
+                    text?: T;
+                    link?: T;
+                  };
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              heroImage?: T;
+              id?: T;
+              blockName?: T;
+            };
+        heroSplitWithImageAngled?:
           | T
           | {
               heading?: T;
@@ -490,11 +937,521 @@ export interface PagesSelect<T extends boolean = true> {
                     label?: T;
                     href?: T;
                   };
-              heroImage?:
+              heroImage?: T;
+              id?: T;
+              blockName?: T;
+            };
+        heroWithOffsetImg?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              button?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              subAction?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              images?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        headingSimpleLeft?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              id?: T;
+              blockName?: T;
+            };
+        headingWithStats?:
+          | T
+          | {
+              backgroundImage?:
+                | T
+                | {
+                    light?: T;
+                    dark?: T;
+                  };
+              title?: T;
+              description?: T;
+              links?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    id?: T;
+                  };
+              stats?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        headingWithCards?:
+          | T
+          | {
+              lightImage?:
                 | T
                 | {
                     src?: T;
                     alt?: T;
+                  };
+              darkImage?:
+                | T
+                | {
+                    src?: T;
+                    alt?: T;
+                  };
+              heading?: T;
+              description?: T;
+              cards?:
+                | T
+                | {
+                    iconSvg?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featSimpleThreeCol?:
+          | T
+          | {
+              topCaption?: T;
+              title?: T;
+              subtitle?: T;
+              columns?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    caption?: T;
+                    action?:
+                      | T
+                      | {
+                          label?: T;
+                          href?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        statsSimple?:
+          | T
+          | {
+              stats?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        statsSimpleGrid?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              stats?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        statsWithBg?:
+          | T
+          | {
+              lightImage?:
+                | T
+                | {
+                    src?: T;
+                    alt?: T;
+                  };
+              darkImage?:
+                | T
+                | {
+                    src?: T;
+                    alt?: T;
+                  };
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
+              stats?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        statsSplitWithImg?:
+          | T
+          | {
+              image?:
+                | T
+                | {
+                    src?: T;
+                    alt?: T;
+                  };
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
+              stats?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        statsTwoColDesc?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              descriptionColumns?:
+                | T
+                | {
+                    paragraphs?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              stats?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        statsWithDesc?:
+          | T
+          | {
+              heading?: T;
+              leadText?: T;
+              bodyText?: T;
+              stats?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaCenteredPanel?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaCenteredPlain?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaImageTiles?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              description?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              images?:
+                | T
+                | {
+                    src?: T;
+                    alt?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaSimpleCenteredGradient?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaSplitWithImage?:
+          | T
+          | {
+              badge?: T;
+              heading?: T;
+              description?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              image?:
+                | T
+                | {
+                    src?: T;
+                    alt?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactSimpleCentered?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    linkLabel?: T;
+                    linkHref?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactSimpleFourCol?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              offices?:
+                | T
+                | {
+                    name?: T;
+                    lines?:
+                      | T
+                      | {
+                          line?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactSplitWithForm?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              address?:
+                | T
+                | {
+                    label?: T;
+                    html?: T;
+                  };
+              phone?:
+                | T
+                | {
+                    label?: T;
+                    text?: T;
+                    href?: T;
+                  };
+              email?:
+                | T
+                | {
+                    label?: T;
+                    text?: T;
+                    href?: T;
+                  };
+              form?:
+                | T
+                | {
+                    action?: T;
+                    submitLabel?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        newsletterWithDetails?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              emailPlaceholder?: T;
+              subscribeLabel?: T;
+              features?:
+                | T
+                | {
+                    iconSvg?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        newsletterSimple?:
+          | T
+          | {
+              heading?: T;
+              emailPlaceholder?: T;
+              subscribeLabel?: T;
+              privacyText?: T;
+              privacyLink?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        newsletterSimpleStacked?:
+          | T
+          | {
+              heading?: T;
+              emailPlaceholder?: T;
+              subscribeLabel?: T;
+              privacyText?: T;
+              privacyLink?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        notFoundSimple?:
+          | T
+          | {
+              errorCode?: T;
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        notFoundImageSplit?:
+          | T
+          | {
+              companyName?: T;
+              logo?:
+                | T
+                | {
+                    light?: T;
+                    dark?: T;
+                    href?: T;
+                  };
+              errorCode?: T;
+              heading?: T;
+              description?: T;
+              back?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              footerLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    id?: T;
+                  };
+              backgroundImage?:
+                | T
+                | {
+                    light?: T;
+                    dark?: T;
                   };
               id?: T;
               blockName?: T;
