@@ -2,23 +2,10 @@ import type { Block } from "payload";
 
 export const statsSimpleGridSchema: Block = {
   slug: "statsSimpleGrid",
-  labels: {
-    singular: "Stats Simple Grid",
-    plural: "Stats Simple Grids",
-  },
+  labels: { singular: "Stats Simple Grid", plural: "Stats Simple Grids" },
   fields: [
-    {
-      name: "heading",
-      type: "text",
-      label: "Heading",
-      defaultValue: "Trusted by creators worldwide",
-    },
-    {
-      name: "description",
-      type: "textarea",
-      label: "Description",
-      defaultValue: "Lorem ipsum dolor sit amet consect adipisicing possimus.",
-    },
+    { name: "heading", type: "text", label: "Heading", defaultValue: "Trusted by creators worldwide" },
+    { name: "description", type: "textarea", label: "Description", defaultValue: "Lorem ipsum dolor sit amet consect adipisicing possimus." },
     {
       name: "stats",
       type: "array",
@@ -30,18 +17,8 @@ export const statsSimpleGridSchema: Block = {
         { label: "Paid out to creators", value: "$70M" },
       ],
       fields: [
-        {
-          name: "label",
-          type: "text",
-          label: "Label",
-          required: true,
-        },
-        {
-          name: "value",
-          type: "text",
-          label: "Value",
-          required: true,
-        },
+        { name: "label", type: "text", label: "Label", required: true },
+        { name: "value", type: "text", label: "Value", required: true },
       ],
     },
   ],

@@ -3,19 +3,15 @@ import type { BlockTypeOf } from "@/blocks/blockTypes";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
-
 const blockProps: BlockTypeOf<"ctaSimpleCenteredGradient"> = block;
-
-const { heading, description, primaryCta, secondaryCta } = blockProps;
-
+const { heading, description, primaryCtaLabel, primaryCtaHref, secondaryCtaLabel, secondaryCtaHref } = blockProps;
 const remappedProps = {
   heading: heading ?? undefined,
   description: description ?? undefined,
-  primaryCtaLabel: primaryCta?.label ?? undefined,
-  primaryCtaHref: primaryCta?.href ?? undefined,
-  secondaryCtaLabel: secondaryCta?.label ?? undefined,
-  secondaryCtaHref: secondaryCta?.href ?? undefined,
+  primaryCtaLabel: primaryCtaLabel ?? undefined,
+  primaryCtaHref: primaryCtaHref ?? undefined,
+  secondaryCtaLabel: secondaryCtaLabel ?? undefined,
+  secondaryCtaHref: secondaryCtaHref ?? undefined,
 };
 ---
-
 <Component {...remappedProps} />

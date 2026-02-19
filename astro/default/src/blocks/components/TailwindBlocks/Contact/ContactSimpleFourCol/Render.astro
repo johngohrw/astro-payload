@@ -1,5 +1,5 @@
 ---
-import type { BlockTypeOf } from "@astro-default/blocks/blockTypes";
+import type { BlockTypeOf } from "@/blocks/blockTypes";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
@@ -12,8 +12,8 @@ const remappedProps = {
   title: title ?? undefined,
   subtitle: subtitle ?? undefined,
   offices: offices?.map((office) => ({
-    name: office.name,
-    lines: office.lines?.map((item) => item.line) ?? [],
+    name: office.name ?? undefined,
+    lines: office.lines?.map((l: any) => l.line ?? "").filter(Boolean) ?? [],
   })),
 };
 ---

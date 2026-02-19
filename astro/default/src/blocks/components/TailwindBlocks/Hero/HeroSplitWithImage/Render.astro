@@ -1,52 +1,23 @@
 ---
 import type { BlockTypeOf } from "@/blocks/blockTypes";
 import Component from "./Component.astro";
-import logoIpsum from "./logoipsum-384.svg";
 
 const { block } = Astro.props;
-
 const blockProps: BlockTypeOf<"heroSplitWithImage"> = block;
-
-const {
-  companyName,
-  logo,
-  badge,
-  heading,
-  description,
-  primaryCta,
-  secondaryCta,
-  heroImage,
-} = blockProps;
-
-const defaultHeroImage =
-  "https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2102&q=80";
-
+const { companyName, logoLight, logoDark, badge, heading, description, primaryCtaLabel, primaryCtaHref, secondaryCtaLabel, secondaryCtaHref, heroImage } = blockProps;
 const remappedProps = {
   companyName: companyName ?? undefined,
-  logoLightSrc: logo?.light
-    ? typeof logo.light === "string"
-      ? logo.light
-      : ((logo.light as any)?.url ?? logoIpsum.src)
-    : logoIpsum.src,
-  logoDarkSrc: logo?.dark
-    ? typeof logo.dark === "string"
-      ? logo.dark
-      : ((logo.dark as any)?.url ?? logoIpsum.src)
-    : logoIpsum.src,
+  logoLightSrc: typeof logoLight === "object" && logoLight !== null ? logoLight.url ?? undefined : undefined,
+  logoDarkSrc: typeof logoDark === "object" && logoDark !== null ? logoDark.url ?? undefined : undefined,
   badgeText: badge?.text ?? undefined,
   badgeLink: badge?.link ?? undefined,
   heading: heading ?? undefined,
   description: description ?? undefined,
-  primaryCtaLabel: primaryCta?.label ?? undefined,
-  primaryCtaHref: primaryCta?.href ?? undefined,
-  secondaryCtaLabel: secondaryCta?.label ?? undefined,
-  secondaryCtaHref: secondaryCta?.href ?? undefined,
-  heroImageSrc: heroImage
-    ? typeof heroImage === "string"
-      ? heroImage
-      : ((heroImage as any)?.url ?? defaultHeroImage)
-    : defaultHeroImage,
+  primaryCtaLabel: primaryCtaLabel ?? undefined,
+  primaryCtaHref: primaryCtaHref ?? undefined,
+  secondaryCtaLabel: secondaryCtaLabel ?? undefined,
+  secondaryCtaHref: secondaryCtaHref ?? undefined,
+  heroImageSrc: typeof heroImage === "object" && heroImage !== null ? heroImage.url ?? undefined : undefined,
 };
 ---
-
 <Component {...remappedProps} />

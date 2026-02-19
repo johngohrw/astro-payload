@@ -3,30 +3,19 @@ import type { BlockTypeOf } from "@/blocks/blockTypes";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
-
 const blockProps: BlockTypeOf<"heroSimpleCentered"> = block;
-
-const { announcement, heading, description, primaryCta, secondaryCta } =
-  blockProps;
-
+const { announcement, heading, description, primaryCta, secondaryCta } = blockProps;
 const remappedProps = {
   announcementText: announcement?.text ?? undefined,
   announcementHref: announcement?.href ?? undefined,
   heading: heading ?? undefined,
   description: description ?? undefined,
-  primaryCta: primaryCta
-    ? {
-        label: primaryCta.label,
-        href: primaryCta.href,
-      }
+  primaryCta: primaryCta && primaryCta !== null
+    ? { label: primaryCta.label ?? "", href: primaryCta.href ?? "" }
     : undefined,
-  secondaryCta: secondaryCta
-    ? {
-        label: secondaryCta.label,
-        href: secondaryCta.href,
-      }
+  secondaryCta: secondaryCta && secondaryCta !== null
+    ? { label: secondaryCta.label ?? "", href: secondaryCta.href ?? "" }
     : undefined,
 };
 ---
-
 <Component {...remappedProps} />

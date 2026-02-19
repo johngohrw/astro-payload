@@ -1,0 +1,13 @@
+[Unit]
+Description=Teleplex Payload Instance
+After=syslog.target network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/var/www/astro-payload/payload/teleplex/serve.sh
+User=root
+
+[Install]
+WantedBy=multi-user.target

@@ -2,10 +2,7 @@ import type { Block } from "payload";
 
 export const statsSimpleSchema: Block = {
   slug: "statsSimple",
-  labels: {
-    singular: "Stats Simple",
-    plural: "Stats Simples",
-  },
+  labels: { singular: "Stats Simple", plural: "Stats Simples" },
   fields: [
     {
       name: "stats",
@@ -17,18 +14,8 @@ export const statsSimpleSchema: Block = {
         { label: "New users annually", value: "46,000" },
       ],
       fields: [
-        {
-          name: "label",
-          type: "text",
-          label: "Label",
-          required: true,
-        },
-        {
-          name: "value",
-          type: "text",
-          label: "Value",
-          required: true,
-        },
+        { name: "label", type: "text", label: "Label", required: true },
+        { name: "value", type: "text", label: "Value", required: true },
       ],
     },
   ],

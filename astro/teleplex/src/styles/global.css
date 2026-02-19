@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* include default directory */
+@source "../../../default/src/";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* --color-primary: oklch(0.72 0.11 178); */
+}

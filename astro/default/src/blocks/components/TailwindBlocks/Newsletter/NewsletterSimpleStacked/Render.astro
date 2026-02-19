@@ -3,19 +3,15 @@ import type { BlockTypeOf } from "@/blocks/blockTypes";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
-
 const blockProps: BlockTypeOf<"newsletterSimpleStacked"> = block;
-
-const { heading, emailPlaceholder, subscribeLabel, privacyText, privacyLink } = blockProps;
-
+const { heading, emailPlaceholder, subscribeLabel, privacyText, privacyLinkLabel, privacyLinkHref } = blockProps;
 const remappedProps = {
   heading: heading ?? undefined,
   emailPlaceholder: emailPlaceholder ?? undefined,
   subscribeLabel: subscribeLabel ?? undefined,
   privacyText: privacyText ?? undefined,
-  privacyLinkLabel: privacyLink?.label ?? undefined,
-  privacyLinkHref: privacyLink?.href ?? undefined,
+  privacyLinkLabel: privacyLinkLabel ?? undefined,
+  privacyLinkHref: privacyLinkHref ?? undefined,
 };
 ---
-
 <Component {...remappedProps} />

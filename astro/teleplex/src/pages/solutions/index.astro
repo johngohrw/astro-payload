@@ -1,0 +1,27 @@
+---
+import RenderBlocks from "@astro-default/blocks/RenderBlocks/RenderBlocks.astro";
+import TeleplexLayout from "@astro-teleplex/layouts/TeleplexLayout.astro";
+import { payloadQuery } from "@astro-teleplex/utils/payloadQuery";
+
+export const prerender = false;
+
+const slug = "solutions";
+
+const pageResponse = await payloadQuery.find({
+  collection: "pages",
+  where: { slug: { equals: slug } },
+});
+const page = pageResponse.docs[0];
+---
+
+{
+  !page ? (
+    <div>Page with '{slug}' slug not defined in Payload CMS</div>
+  ) : (
+    <TeleplexLayout title={page.title}>
+      <RenderBlocks blocks={page.contentBlocks} />
+    </TeleplexLayout>
+  )
+}
+
+<style></style>

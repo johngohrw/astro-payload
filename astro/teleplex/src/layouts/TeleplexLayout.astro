@@ -1,0 +1,125 @@
+---
+import IconifyIcon from "@astro-teleplex/components/IconifyIcon/IconifyIcon.astro";
+import { MobileNavButton } from "@astro-teleplex/components/MobileNavButton/MobileNavButton";
+import "@astro-teleplex/styles/global.css";
+
+const { title = "Welcome" } = Astro.props;
+---
+
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} - Teleplex</title>
+    <!-- google fonts start -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <!-- google fonts end -->
+    <!-- iconify icons start -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@3.0.0/dist/iconify-icon.min.js"
+    ></script>
+    <!-- iconify icons end -->
+  </head>
+  <body>
+    <div class="nav-wrapper">
+      <div class="nav-contents">
+        <a href="/"><img class="logo" src="/teleplexLogo.webp" /></a>
+        <div class="grow"></div>
+        <nav class="desktop">
+          <a href="/">Home</a>
+          <a href="/about">About Us</a>
+          <a href="/products">Products</a>
+          <a href="/solutions">Solutions</a>
+          <a href="/news-events">News & Events</a>
+          <a href="/career">Career</a>
+          <a href="/contact">Contact Us</a>
+        </nav>
+        <nav class="mobile">
+          <MobileNavButton client:load />
+        </nav>
+      </div>
+    </div>
+    <slot />
+  </body>
+
+  <style lang="scss">
+    @import "../styles/breakpoints.scss";
+
+    html,
+    body {
+      margin: 0;
+      overscroll-behavior: none;
+
+      // font stuff
+      font-size: 16px;
+      font-family: "DM Sans", sans-serif;
+      font-style: normal;
+      font-optical-sizing: auto;
+    }
+
+    body {
+      display: flex;
+      flex-flow: column nowrap;
+    }
+    .nav-wrapper {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      z-index: 10;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      box-shadow: 0 0 18px -5px rgba(0, 0, 0, 0.2);
+      background: white;
+      height: 56px;
+    }
+
+    .nav-contents {
+      display: flex;
+      flex-flow: row nowrap;
+
+      width: 100%;
+      max-width: var(--screen-xl);
+      padding: 0 2rem; // todo: mobile padding
+    }
+
+    .nav-contents .logo {
+      max-width: 160px;
+      object-fit: contain;
+    }
+
+    nav.desktop {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+
+      color: black;
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 500;
+
+      @media (max-width: $screen-lg) {
+        display: none;
+      }
+    }
+
+    nav.mobile {
+      display: none;
+      align-items: center;
+
+      @media (max-width: $screen-lg) {
+        display: flex;
+      }
+    }
+  </style>
+</html>

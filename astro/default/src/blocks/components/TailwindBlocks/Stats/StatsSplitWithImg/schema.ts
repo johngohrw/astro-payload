@@ -2,49 +2,17 @@ import type { Block } from "payload";
 
 export const statsSplitWithImgSchema: Block = {
   slug: "statsSplitWithImg",
-  labels: {
-    singular: "Stats Split With Image",
-    plural: "Stats Split With Images",
-  },
+  labels: { singular: "Stats Split With Img", plural: "Stats Split With Imgs" },
   fields: [
-    {
-      name: "image",
-      type: "group",
-      label: "Image",
-      fields: [
-        {
-          name: "src",
-          type: "upload",
-          label: "Image",
-          relationTo: "media",
-          required: true,
-        },
-        {
-          name: "alt",
-          type: "text",
-          label: "Alt Text",
-          defaultValue: "",
-        },
-      ],
-    },
-    {
-      name: "eyebrow",
-      type: "text",
-      label: "Eyebrow",
-      defaultValue: "Our track record",
-    },
-    {
-      name: "heading",
-      type: "text",
-      label: "Heading",
-      defaultValue: "Trusted by thousands of creators worldwide",
-    },
+    { name: "image", type: "upload", relationTo: "media", label: "Image" },
+    { name: "imageAlt", type: "text", label: "Image Alt" },
+    { name: "eyebrow", type: "text", label: "Eyebrow", defaultValue: "Our track record" },
+    { name: "heading", type: "text", label: "Heading", defaultValue: "Trusted by thousands of creators worldwide" },
     {
       name: "description",
       type: "textarea",
       label: "Description",
-      defaultValue:
-        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
+      defaultValue: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
     },
     {
       name: "stats",
@@ -57,18 +25,8 @@ export const statsSplitWithImgSchema: Block = {
         { label: "Paid out to creators", value: "$70M" },
       ],
       fields: [
-        {
-          name: "label",
-          type: "text",
-          label: "Label",
-          required: true,
-        },
-        {
-          name: "value",
-          type: "text",
-          label: "Value",
-          required: true,
-        },
+        { name: "label", type: "text", label: "Label", required: true },
+        { name: "value", type: "text", label: "Value", required: true },
       ],
     },
   ],

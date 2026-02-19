@@ -3,24 +3,20 @@ import type { BlockTypeOf } from "@/blocks/blockTypes";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
-
 const blockProps: BlockTypeOf<"headingWithCards"> = block;
-
-const { lightImage, darkImage, heading, description, cards } = blockProps;
-
+const { lightImage, lightImageAlt, darkImage, darkImageAlt, heading, description, cards } = blockProps;
 const remappedProps = {
-  lightImageSrc: lightImage?.src ?? undefined,
-  lightImageAlt: lightImage?.alt ?? undefined,
-  darkImageSrc: darkImage?.src ?? undefined,
-  darkImageAlt: darkImage?.alt ?? undefined,
+  lightImageSrc: typeof lightImage === "object" && lightImage !== null ? lightImage.url ?? undefined : undefined,
+  lightImageAlt: lightImageAlt ?? undefined,
+  darkImageSrc: typeof darkImage === "object" && darkImage !== null ? darkImage.url ?? undefined : undefined,
+  darkImageAlt: darkImageAlt ?? undefined,
   heading: heading ?? undefined,
   description: description ?? undefined,
   cards: cards?.map((card) => ({
-    iconSvg: card.iconSvg,
-    title: card.title,
-    description: card.description,
+    iconSvg: card.iconSvg ?? undefined,
+    title: card.title ?? undefined,
+    description: card.description ?? undefined,
   })),
 };
 ---
-
 <Component {...remappedProps} />

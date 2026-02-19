@@ -3,20 +3,16 @@ import type { BlockTypeOf } from "@/blocks/blockTypes";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
-
 const blockProps: BlockTypeOf<"statsWithDesc"> = block;
-
 const { heading, leadText, bodyText, stats } = blockProps;
-
 const remappedProps = {
   heading: heading ?? undefined,
   leadText: leadText ?? undefined,
   bodyText: bodyText ?? undefined,
-  stats: stats?.map((item) => ({
-    label: item.label,
-    value: item.value,
+  stats: stats?.map((stat) => ({
+    label: stat.label ?? undefined,
+    value: stat.value ?? undefined,
   })),
 };
 ---
-
 <Component {...remappedProps} />

@@ -2,42 +2,16 @@ import type { Block } from "payload";
 
 export const headingWithStatsSchema: Block = {
   slug: "headingWithStats",
-  labels: {
-    singular: "Heading with Stats",
-    plural: "Headings with Stats",
-  },
+  labels: { singular: "Heading With Stats", plural: "Heading With Stats" },
   fields: [
-    {
-      name: "backgroundImage",
-      type: "group",
-      label: "Background Images",
-      fields: [
-        {
-          name: "light",
-          type: "upload",
-          relationTo: "media",
-          label: "Light Mode Image",
-        },
-        {
-          name: "dark",
-          type: "upload",
-          relationTo: "media",
-          label: "Dark Mode Image",
-        },
-      ],
-    },
-    {
-      name: "title",
-      type: "text",
-      label: "Title",
-      defaultValue: "Work with us",
-    },
+    { name: "lightBgImage", type: "upload", relationTo: "media", label: "Light Background Image" },
+    { name: "darkBgImage", type: "upload", relationTo: "media", label: "Dark Background Image" },
+    { name: "title", type: "text", label: "Title", defaultValue: "Work with us" },
     {
       name: "description",
       type: "textarea",
       label: "Description",
-      defaultValue:
-        "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.",
+      defaultValue: "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.",
     },
     {
       name: "links",
@@ -50,24 +24,14 @@ export const headingWithStatsSchema: Block = {
         { label: "Meet our leadership", href: "#" },
       ],
       fields: [
-        {
-          name: "label",
-          type: "text",
-          label: "Label",
-          required: true,
-        },
-        {
-          name: "href",
-          type: "text",
-          label: "Link",
-          required: true,
-        },
+        { name: "label", type: "text", label: "Label", required: true },
+        { name: "href", type: "text", label: "Href", required: true },
       ],
     },
     {
       name: "stats",
       type: "array",
-      label: "Statistics",
+      label: "Stats",
       defaultValue: [
         { label: "Offices worldwide", value: "12" },
         { label: "Full-time colleagues", value: "300+" },
@@ -75,18 +39,8 @@ export const headingWithStatsSchema: Block = {
         { label: "Paid time off", value: "Unlimited" },
       ],
       fields: [
-        {
-          name: "label",
-          type: "text",
-          label: "Label",
-          required: true,
-        },
-        {
-          name: "value",
-          type: "text",
-          label: "Value",
-          required: true,
-        },
+        { name: "label", type: "text", label: "Label", required: true },
+        { name: "value", type: "text", label: "Value", required: true },
       ],
     },
   ],

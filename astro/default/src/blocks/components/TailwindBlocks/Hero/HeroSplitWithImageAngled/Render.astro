@@ -3,28 +3,16 @@ import type { BlockTypeOf } from "@/blocks/blockTypes";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
-
 const blockProps: BlockTypeOf<"heroSplitWithImageAngled"> = block;
-
-const { heading, description, primaryCta, secondaryCta, heroImage } =
-  blockProps;
-
-const defaultHeroImage =
-  "https://images.unsplash.com/photo-1567532900872-f4e906cbf06a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1280&q=80";
-
+const { heading, description, primaryCtaLabel, primaryCtaHref, secondaryCtaLabel, secondaryCtaHref, heroImage } = blockProps;
 const remappedProps = {
   heading: heading ?? undefined,
   description: description ?? undefined,
-  primaryCtaLabel: primaryCta?.label ?? undefined,
-  primaryCtaHref: primaryCta?.href ?? undefined,
-  secondaryCtaLabel: secondaryCta?.label ?? undefined,
-  secondaryCtaHref: secondaryCta?.href ?? undefined,
-  heroImageSrc: heroImage
-    ? typeof heroImage === "string"
-      ? heroImage
-      : ((heroImage as any)?.url ?? defaultHeroImage)
-    : defaultHeroImage,
+  primaryCtaLabel: primaryCtaLabel ?? undefined,
+  primaryCtaHref: primaryCtaHref ?? undefined,
+  secondaryCtaLabel: secondaryCtaLabel ?? undefined,
+  secondaryCtaHref: secondaryCtaHref ?? undefined,
+  heroImageSrc: typeof heroImage === "object" && heroImage !== null ? heroImage.url ?? undefined : undefined,
 };
 ---
-
 <Component {...remappedProps} />
