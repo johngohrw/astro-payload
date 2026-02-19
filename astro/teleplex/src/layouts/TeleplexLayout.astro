@@ -1,5 +1,5 @@
 ---
-import IconifyIcon from "@astro-teleplex/components/IconifyIcon/IconifyIcon.astro";
+import { ClientRouter } from "astro:transitions";
 import { MobileNavButton } from "@astro-teleplex/components/MobileNavButton/MobileNavButton";
 import "@astro-teleplex/styles/global.css";
 
@@ -26,6 +26,7 @@ const { title = "Welcome" } = Astro.props;
       src="https://cdn.jsdelivr.net/npm/iconify-icon@3.0.0/dist/iconify-icon.min.js"
     ></script>
     <!-- iconify icons end -->
+    <ClientRouter />
   </head>
   <body>
     <div class="nav-wrapper">
@@ -47,9 +48,7 @@ const { title = "Welcome" } = Astro.props;
       </div>
     </div>
     <slot />
-  </body>
-
-  <style lang="scss">
+  </body><style lang="scss">
     @import "../styles/breakpoints.scss";
 
     html,
@@ -87,6 +86,7 @@ const { title = "Welcome" } = Astro.props;
     .nav-contents {
       display: flex;
       flex-flow: row nowrap;
+      align-items: center;
 
       width: 100%;
       max-width: var(--screen-xl);
@@ -116,6 +116,7 @@ const { title = "Welcome" } = Astro.props;
     nav.mobile {
       display: none;
       align-items: center;
+      justify-content: center;
 
       @media (max-width: $screen-lg) {
         display: flex;

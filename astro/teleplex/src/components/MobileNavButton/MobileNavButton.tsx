@@ -2,15 +2,16 @@ import { IconifyIconReact } from "../IconifyIcon/IconifyIconReact";
 
 export const MobileNavButton = () => {
   const handleClick = () => {
-    console.log("click!!");
+    console.log("click!!"); // todo
   };
   return (
-    <IconifyIconReact
-      color="black"
-      size="2rem"
-      style={{ cursor: "pointer" }}
-      name="lucide:menu"
-      onClick={handleClick}
-    />
+    <div className="p-2 cursor-pointer">
+      <IconifyIconReact
+        color="black"
+        size="1.5rem"
+        name="lucide:menu"
+        onClick={handleClick}
+      />
+    </div>
   );
 };

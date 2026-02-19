@@ -1,0 +1,21 @@
+---
+// requires iconify's cdn script to be loaded in <head> to use.
+import type { IconName } from "./icon-names";
+import type { CSSProperties } from "react";
+
+interface Props {
+  name: IconName;
+  style?: CSSProperties;
+  color?: string;
+  size?: string;
+}
+
+const { name, style, color, size, ...restProps } = Astro.props;
+---
+
+<iconify-icon
+  icon={name}
+  {...restProps}
+  style={{ color: color, fontSize: size, display: "block", ...style }}
+>
+</iconify-icon>

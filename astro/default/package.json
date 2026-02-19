@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
-    "@lucide/astro": "^0.562.0",
     "@payloadcms/richtext-lexical": "3.69.0",
     "@payloadcms/sdk": "^3.69.0",
     "@tailwindcss/vite": "^4.1.18",
@@ -18,7 +17,6 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "astro": "^5.16.6",
-    "astro-icon": "^1.1.5",
     "payload": "3.69.0",
     "payload-default": "workspace:*",
     "react": "^19.2.3",
@@ -32,9 +30,12 @@
     "motion": "^12.27.0",
     "ogl": "^1.0.11",
     "postprocessing": "^6.38.2",
-    "three": "^0.167.1"
+    "three": "^0.167.1",
+    "@iconify-json/lucide": "^1.2.82",
+    "@iconify-json/mdi": "^1.2.3"
   },
   "devDependencies": {
-    "@types/three": "^0.182.0"
+    "@types/three": "^0.182.0",
+    "@iconify-icon/react": "^3.0.3"
   }
 }

@@ -1,23 +1,11 @@
 ---
-// requires iconify's cdn script to be loaded to use
-import "iconify-icon";
-import type { IconName } from "./icon-names";
-import type { ComponentProps, CSSProperty, HTMLAttributes } from "astro/types";
-import type { CSSProperties } from "react";
+// this component is a perfect example of an astro component that works
+// exactly like another astro component, complete with types
+import Component from "@astro-default/components/IconifyIcon/IconifyIcon.astro";
 
-interface Props {
-  name: IconName;
-  style?: CSSProperties;
-  color?: string;
-  size?: string;
-}
+type Props = Parameters<typeof Component>[0];
 
-const { name, style, color, size, ...restProps } = Astro.props;
+const { ...restProps } = Astro.props as Props;
 ---
 
-<iconify-icon
-  icon={name}
-  {...restProps}
-  style={{ color: color, fontSize: size, ...style }}
->
-</iconify-icon>
+<Component {...restProps as any} />
