@@ -9,6 +9,10 @@ loadEnv();
 
 // https://astro.build/config
 export default defineConfig({
+  server: {
+    port: 4320,
+    host: true,
+  },
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],

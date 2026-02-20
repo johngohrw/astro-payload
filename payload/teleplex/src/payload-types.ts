@@ -267,6 +267,55 @@ export interface Page {
             blockType: 'heroWithOffsetImg';
           }
         | {
+            logo?: {
+              image?: (number | null) | Media;
+              darkImage?: (number | null) | Media;
+              companyName?: string | null;
+            };
+            navLinks?:
+              | {
+                  label: string;
+                  href: string;
+                  id?: string | null;
+                }[]
+              | null;
+            login?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            heading?: string | null;
+            description?: string | null;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            galleryCol1Images?:
+              | {
+                  image: number | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            galleryCol2Images?:
+              | {
+                  image: number | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            galleryCol3Images?:
+              | {
+                  image: number | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroWithOffsetImgV2';
+          }
+        | {
             heading?: string | null;
             description?: string | null;
             id?: string | null;
@@ -846,6 +895,64 @@ export interface PagesSelect<T extends boolean = true> {
               subActionLabel?: T;
               subActionHref?: T;
               images?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroWithOffsetImgV2?:
+          | T
+          | {
+              logo?:
+                | T
+                | {
+                    image?: T;
+                    darkImage?: T;
+                    companyName?: T;
+                  };
+              navLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    id?: T;
+                  };
+              login?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              galleryCol1Images?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              galleryCol2Images?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              galleryCol3Images?:
                 | T
                 | {
                     image?: T;

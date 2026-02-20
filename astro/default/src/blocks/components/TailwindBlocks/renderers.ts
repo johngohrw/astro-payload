@@ -29,6 +29,7 @@ import { StatsSplitWithImgRender } from "./Stats/StatsSplitWithImg";
 import { StatsTwoColDescRender } from "./Stats/StatsTwoColDesc";
 import { StatsWithBgRender } from "./Stats/StatsWithBg";
 import { StatsWithDescRender } from "./Stats/StatsWithDesc";
+import { HeroWithOffsetImgV2Render } from "./Hero/HeroWithOffsetImgV2";
 
 export const tailwindBlockRenderers = {
   contactSimpleCentered: ContactSimpleCenteredRender,
@@ -36,6 +37,7 @@ export const tailwindBlockRenderers = {
   heroSplitWithImage: HeroSplitWithImageRender,
   heroSplitWithImageAngled: HeroSplitWithImageAngledRender,
   heroWithOffsetImg: HeroWithOffsetImgRender,
+  heroWithOffsetImgV2: HeroWithOffsetImgV2Render,
   contactSimpleFourCol: ContactSimpleFourColRender,
   contactSplitWithForm: ContactSplitWithFormRender,
   ctaCenteredPanel: CtaCenteredPanelRender,

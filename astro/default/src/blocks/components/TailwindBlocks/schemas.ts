@@ -27,16 +27,17 @@ import { newsletterSimpleStackedSchema } from "./Newsletter/NewsletterSimpleStac
 import { newsletterWithDetailsSchema } from "./Newsletter/NewsletterWithDetails/schema";
 import { notFoundImageSplitSchema } from "./NotFound/NotFoundImageSplit/schema";
 import { notFoundSimpleSchema } from "./NotFound/NotFoundSimple/schema";
+import { heroWithOffsetImgV2Schema } from "./Hero/HeroWithOffsetImgV2/schema";
 
 export const tailwindBlockSchemas = {
   heroSimpleCentered: heroSimpleCenteredSchema,
   heroSplitWithImage: heroSplitWithImageSchema,
   heroSplitWithImageAngled: heroSplitWithImageAngledSchema,
   heroWithOffsetImg: heroWithOffsetImgSchema,
+  heroWithOffsetImgV2: heroWithOffsetImgV2Schema,
   headingSimpleLeft: headingSimpleLeftSchema,
   headingWithStats: headingWithStatsSchema,
   headingWithCards: headingWithCardsSchema,
-
   statsSimple: statsSimpleSchema,
   statsSimpleGrid: statsSimpleGridSchema,
   statsWithBg: statsWithBgSchema,
