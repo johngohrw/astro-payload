@@ -1,0 +1,34 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"footer4ColNewsletterBelow"> = block;
+
+const { logoSrc, logoDarkSrc, logoAlt, columns, newsletterHeading, newsletterDescription, newsletterButtonLabel, socialLinks, copyrightText } = blockProps;
+
+const remappedProps = {
+  logoSrc: typeof logoSrc === "object" && logoSrc !== null ? logoSrc.url ?? undefined : undefined,
+  logoDarkSrc: typeof logoDarkSrc === "object" && logoDarkSrc !== null ? logoDarkSrc.url ?? undefined : undefined,
+  logoAlt: logoAlt ?? undefined,
+  columns: columns?.map((col) => ({
+    heading: col.heading ?? "",
+    links: col.links?.map((link) => ({
+      label: link.label ?? "",
+      href: link.href ?? "",
+    })) ?? [],
+  })),
+  newsletterHeading: newsletterHeading ?? undefined,
+  newsletterDescription: newsletterDescription ?? undefined,
+  newsletterButtonLabel: newsletterButtonLabel ?? undefined,
+  socialLinks: socialLinks?.map((s) => ({
+    label: s.label ?? "",
+    href: s.href ?? "",
+    iconSvg: s.iconSvg ?? "",
+  })),
+  copyrightText: copyrightText ?? undefined,
+};
+---
+
+<Component {...remappedProps} />

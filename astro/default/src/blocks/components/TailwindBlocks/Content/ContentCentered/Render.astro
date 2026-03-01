@@ -1,0 +1,58 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"contentCentered"> = block;
+
+const {
+  eyebrow,
+  heading,
+  intro,
+  bodyParagraph1,
+  checklistItems,
+  bodyParagraph2,
+  subheading1,
+  subheading1Body,
+  quoteText,
+  quoteAuthorName,
+  quoteAuthorRole,
+  quoteAuthorImage,
+  bodyParagraph3,
+  mainImage,
+  mainImageAlt,
+  mainImageCaption,
+  subheading2,
+  subheading2Body,
+  bodyParagraph4,
+} = blockProps;
+
+const remappedProps = {
+  eyebrow: eyebrow ?? undefined,
+  heading: heading ?? undefined,
+  intro: intro ?? undefined,
+  bodyParagraph1: bodyParagraph1 ?? undefined,
+  checklistItems: checklistItems?.map((item) => ({
+    title: item.title ?? undefined,
+    description: item.description ?? undefined,
+  })),
+  bodyParagraph2: bodyParagraph2 ?? undefined,
+  subheading1: subheading1 ?? undefined,
+  subheading1Body: subheading1Body ?? undefined,
+  quoteText: quoteText ?? undefined,
+  quoteAuthorName: quoteAuthorName ?? undefined,
+  quoteAuthorRole: quoteAuthorRole ?? undefined,
+  quoteAuthorImageSrc: typeof quoteAuthorImage === "object" && quoteAuthorImage !== null ? quoteAuthorImage.url ?? undefined : undefined,
+  quoteAuthorImageAlt: typeof quoteAuthorImage === "object" && quoteAuthorImage !== null ? quoteAuthorImage.alt ?? undefined : undefined,
+  bodyParagraph3: bodyParagraph3 ?? undefined,
+  mainImageSrc: typeof mainImage === "object" && mainImage !== null ? mainImage.url ?? undefined : undefined,
+  mainImageAlt: mainImageAlt ?? undefined,
+  mainImageCaption: mainImageCaption ?? undefined,
+  subheading2: subheading2 ?? undefined,
+  subheading2Body: subheading2Body ?? undefined,
+  bodyParagraph4: bodyParagraph4 ?? undefined,
+};
+---
+
+<Component {...remappedProps} />

@@ -3,16 +3,20 @@ import type { BlockTypeOf } from "@/blocks/blockTypes";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
+
 const blockProps: BlockTypeOf<"ctaSplitWithImage"> = block;
-const { badge, heading, description, ctaLabel, ctaHref, image, imageAlt } = blockProps;
+
+const { eyebrow, heading, description, ctaLabel, ctaHref, image } = blockProps;
+
 const remappedProps = {
-  badge: badge ?? undefined,
+  eyebrow: eyebrow ?? undefined,
   heading: heading ?? undefined,
   description: description ?? undefined,
   ctaLabel: ctaLabel ?? undefined,
   ctaHref: ctaHref ?? undefined,
   imageSrc: typeof image === "object" && image !== null ? image.url ?? undefined : undefined,
-  imageAlt: imageAlt ?? undefined,
+  imageAlt: typeof image === "object" && image !== null ? image.alt ?? undefined : undefined,
 };
 ---
+
 <Component {...remappedProps} />

@@ -1,0 +1,36 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"heroSmCtrBgImg"> = block;
+
+const { logo, navLinks, login, backgroundImage, announcement, heading, description, primaryCta, secondaryCta } = blockProps;
+
+const remappedProps = {
+  logoSrc: typeof logo === "object" && logo !== null ? logo.url ?? undefined : undefined,
+  logoSrcDark: typeof logo === "object" && logo !== null ? logo.url ?? undefined : undefined,
+  logoAlt: typeof logo === "object" && logo !== null ? logo.alt ?? undefined : undefined,
+  navLinks: navLinks?.map((link) => ({
+    label: link.label ?? undefined,
+    href: link.href ?? undefined,
+  })),
+  loginLabel: login?.label ?? undefined,
+  loginHref: login?.href ?? undefined,
+  backgroundImageSrc: typeof backgroundImage === "object" && backgroundImage !== null ? backgroundImage.url ?? undefined : undefined,
+  backgroundImageSrcLight: typeof backgroundImage === "object" && backgroundImage !== null ? backgroundImage.url ?? undefined : undefined,
+  announcementText: announcement?.text ?? undefined,
+  announcementHref: announcement?.href ?? undefined,
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  primaryCta: primaryCta && primaryCta !== null
+    ? { label: primaryCta.label ?? undefined, href: primaryCta.href ?? undefined }
+    : undefined,
+  secondaryCta: secondaryCta && secondaryCta !== null
+    ? { label: secondaryCta.label ?? undefined, href: secondaryCta.href ?? undefined }
+    : undefined,
+};
+---
+
+<Component {...remappedProps} />

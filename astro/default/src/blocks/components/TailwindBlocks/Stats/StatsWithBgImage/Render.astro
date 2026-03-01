@@ -1,0 +1,24 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"statsWithBgImage"> = block;
+
+const { lightImage, darkImage, eyebrow, heading, description, stats } = blockProps;
+
+const remappedProps = {
+  lightImageSrc: typeof lightImage === "object" && lightImage !== null ? lightImage.url ?? undefined : undefined,
+  darkImageSrc: typeof darkImage === "object" && darkImage !== null ? darkImage.url ?? undefined : undefined,
+  eyebrow: eyebrow ?? undefined,
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  stats: stats?.map((item) => ({
+    label: item.label ?? undefined,
+    value: item.value ?? undefined,
+  })),
+};
+---
+
+<Component {...remappedProps} />

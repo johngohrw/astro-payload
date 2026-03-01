@@ -2,8 +2,35 @@ import type { Block } from "payload";
 
 export const heroSimpleCenteredSchema: Block = {
   slug: "heroSimpleCentered",
-  labels: { singular: "Hero Simple Centered", plural: "Heroes Simple Centered" },
+  labels: {
+    singular: "Hero Simple Centered",
+    plural: "Heroes Simple Centered",
+  },
   fields: [
+    {
+      name: "logo",
+      type: "upload",
+      label: "Logo",
+      relationTo: "media",
+    },
+    {
+      name: "navLinks",
+      type: "array",
+      label: "Nav Links",
+      fields: [
+        { name: "label", type: "text", required: true, defaultValue: "Link" },
+        { name: "href", type: "text", required: true, defaultValue: "#" },
+      ],
+    },
+    {
+      name: "login",
+      type: "group",
+      label: "Login Link",
+      fields: [
+        { name: "label", type: "text", defaultValue: "Log in" },
+        { name: "href", type: "text", defaultValue: "#" },
+      ],
+    },
     {
       name: "announcement",
       type: "group",
@@ -13,7 +40,12 @@ export const heroSimpleCenteredSchema: Block = {
         { name: "href", type: "text", label: "Announcement Link", defaultValue: "#" },
       ],
     },
-    { name: "heading", type: "text", label: "Heading", defaultValue: "Data to enrich your online business" },
+    {
+      name: "heading",
+      type: "text",
+      label: "Heading",
+      defaultValue: "Data to enrich your online business",
+    },
     {
       name: "description",
       type: "textarea",

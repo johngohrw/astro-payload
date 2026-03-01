@@ -1,0 +1,30 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"bentoTwoRowGrid"> = block;
+
+const { sectionEyebrow, sectionHeading, cards } = blockProps;
+
+const remappedProps = {
+  sectionEyebrow: sectionEyebrow ?? undefined,
+  sectionHeading: sectionHeading ?? undefined,
+  cards: cards?.map((card) => ({
+    eyebrow: card.eyebrow ?? undefined,
+    title: card.title ?? undefined,
+    description: card.description ?? undefined,
+    lightImageSrc:
+      typeof card.lightImage === "object" && card.lightImage !== null
+        ? card.lightImage.url ?? undefined
+        : undefined,
+    darkImageSrc:
+      typeof card.darkImage === "object" && card.darkImage !== null
+        ? card.darkImage.url ?? undefined
+        : undefined,
+  })),
+};
+---
+
+<Component {...remappedProps} />

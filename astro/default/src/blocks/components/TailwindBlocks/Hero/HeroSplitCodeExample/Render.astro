@@ -1,0 +1,31 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"heroSplitCodeExample"> = block;
+
+const { logo, badge, heading, description, primaryCta, secondaryCta, codeTab1, codeTab2 } = blockProps;
+
+const remappedProps = {
+  logoSrc: typeof logo === "object" && logo !== null ? logo.url ?? undefined : undefined,
+  logoSrcDark: typeof logo === "object" && logo !== null ? logo.url ?? undefined : undefined,
+  logoAlt: typeof logo === "object" && logo !== null ? logo.alt ?? undefined : undefined,
+  badgeLabel: badge?.label ?? undefined,
+  badgeText: badge?.text ?? undefined,
+  badgeHref: badge?.href ?? undefined,
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  primaryCta: primaryCta && primaryCta !== null
+    ? { label: primaryCta.label ?? undefined, href: primaryCta.href ?? undefined }
+    : undefined,
+  secondaryCta: secondaryCta && secondaryCta !== null
+    ? { label: secondaryCta.label ?? undefined, href: secondaryCta.href ?? undefined }
+    : undefined,
+  codeTab1: codeTab1 ?? undefined,
+  codeTab2: codeTab2 ?? undefined,
+};
+---
+
+<Component {...remappedProps} />

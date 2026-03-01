@@ -1,0 +1,26 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"logocloudGrid"> = block;
+
+const { logos } = blockProps;
+
+const remappedProps = {
+  logos: logos?.map((item) => ({
+    lightSrc:
+      typeof item.lightSrc === "object" && item.lightSrc !== null
+        ? item.lightSrc.url ?? undefined
+        : undefined,
+    darkSrc:
+      typeof item.darkSrc === "object" && item.darkSrc !== null
+        ? item.darkSrc.url ?? undefined
+        : undefined,
+    alt: item.alt ?? "",
+  })),
+};
+---
+
+<Component {...remappedProps} />

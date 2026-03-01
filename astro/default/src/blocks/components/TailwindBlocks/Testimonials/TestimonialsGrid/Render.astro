@@ -1,0 +1,45 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"testimonialsGrid"> = block;
+
+const { eyebrow, heading, featuredTestimonial, testimonials } = blockProps;
+
+// Flatten CMS testimonials array into the 2-column, 2-group nested structure expected by Component
+const flat = testimonials?.map((item) => ({
+  quote: item.quote ?? "",
+  authorImageSrc: typeof item.authorImage === "object" && item.authorImage !== null ? item.authorImage.url ?? undefined : undefined,
+  authorName: item.authorName ?? "",
+  authorHandle: item.authorHandle ?? "",
+})) ?? [];
+
+const mid = Math.ceil(flat.length / 2);
+const col1 = flat.slice(0, mid);
+const col2 = flat.slice(mid);
+const col1mid = Math.ceil(col1.length / 2);
+const col2mid = Math.ceil(col2.length / 2);
+
+const remappedProps = {
+  eyebrow: eyebrow ?? undefined,
+  heading: heading ?? undefined,
+  featuredTestimonial: featuredTestimonial
+    ? {
+        quote: featuredTestimonial.quote ?? "",
+        authorImageSrc: typeof featuredTestimonial.authorImage === "object" && featuredTestimonial.authorImage !== null ? featuredTestimonial.authorImage.url ?? undefined : undefined,
+        authorName: featuredTestimonial.authorName ?? "",
+        authorHandle: featuredTestimonial.authorHandle ?? "",
+        logoSrc: typeof featuredTestimonial.logo === "object" && featuredTestimonial.logo !== null ? featuredTestimonial.logo.url ?? undefined : undefined,
+        logoAlt: typeof featuredTestimonial.logo === "object" && featuredTestimonial.logo !== null ? featuredTestimonial.logo.alt ?? undefined : undefined,
+      }
+    : undefined,
+  testimonials: [
+    [col1.slice(0, col1mid), col1.slice(col1mid)],
+    [col2.slice(0, col2mid), col2.slice(col2mid)],
+  ],
+};
+---
+
+<Component {...remappedProps} />

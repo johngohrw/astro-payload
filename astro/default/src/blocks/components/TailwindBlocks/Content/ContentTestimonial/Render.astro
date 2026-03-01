@@ -1,0 +1,32 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"contentTestimonial"> = block;
+
+const { eyebrow, heading, intro, quoteText, quoteAuthorImage, quoteAuthorName, quoteAuthorHandle, bodyParagraph1, featureItems, bodyParagraph2, subheading, subheadingBody } = blockProps;
+
+const remappedProps = {
+  eyebrow: eyebrow ?? undefined,
+  heading: heading ?? undefined,
+  intro: intro ?? undefined,
+  quoteText: quoteText ?? undefined,
+  quoteAuthorImageSrc: typeof quoteAuthorImage === "object" && quoteAuthorImage !== null ? quoteAuthorImage.url ?? undefined : undefined,
+  quoteAuthorImageAlt: typeof quoteAuthorImage === "object" && quoteAuthorImage !== null ? quoteAuthorImage.alt ?? undefined : undefined,
+  quoteAuthorName: quoteAuthorName ?? undefined,
+  quoteAuthorHandle: quoteAuthorHandle ?? undefined,
+  bodyParagraph1: bodyParagraph1 ?? undefined,
+  featureItems: featureItems?.map((item) => ({
+    iconSvg: item.iconSvg ?? undefined,
+    title: item.title ?? undefined,
+    description: item.description ?? undefined,
+  })),
+  bodyParagraph2: bodyParagraph2 ?? undefined,
+  subheading: subheading ?? undefined,
+  subheadingBody: subheadingBody ?? undefined,
+};
+---
+
+<Component {...remappedProps} />

@@ -1,0 +1,29 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"contentSplitImg"> = block;
+
+const { image, eyebrow, heading, intro, bodyParagraph1, featureItems, bodyParagraph2, subheading, subheadingBody } = blockProps;
+
+const remappedProps = {
+  imageSrc: typeof image === "object" && image !== null ? image.url ?? undefined : undefined,
+  imageAlt: typeof image === "object" && image !== null ? image.alt ?? undefined : undefined,
+  eyebrow: eyebrow ?? undefined,
+  heading: heading ?? undefined,
+  intro: intro ?? undefined,
+  bodyParagraph1: bodyParagraph1 ?? undefined,
+  featureItems: featureItems?.map((item) => ({
+    iconSvg: item.iconSvg ?? undefined,
+    title: item.title ?? undefined,
+    description: item.description ?? undefined,
+  })),
+  bodyParagraph2: bodyParagraph2 ?? undefined,
+  subheading: subheading ?? undefined,
+  subheadingBody: subheadingBody ?? undefined,
+};
+---
+
+<Component {...remappedProps} />

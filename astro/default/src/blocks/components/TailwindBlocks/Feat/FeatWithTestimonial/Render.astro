@@ -1,0 +1,22 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+const { block } = Astro.props;
+const blockProps: BlockTypeOf<"featWithTestimonial"> = block;
+const { eyebrow, heading, description, ctaLabel, ctaHref, testimonial, screenshot } = blockProps;
+const avatar = testimonial?.authorAvatar;
+const remappedProps = {
+  eyebrow: eyebrow ?? undefined,
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  ctaLabel: ctaLabel ?? undefined,
+  ctaHref: ctaHref ?? undefined,
+  testimonialQuote: testimonial?.quote ?? undefined,
+  testimonialAuthorName: testimonial?.authorName ?? undefined,
+  testimonialAuthorTitle: testimonial?.authorTitle ?? undefined,
+  testimonialAuthorAvatarSrc: typeof avatar === "object" && avatar !== null ? avatar.url ?? undefined : undefined,
+  screenshotSrc: typeof screenshot === "object" && screenshot !== null ? screenshot.url ?? undefined : undefined,
+  screenshotAlt: typeof screenshot === "object" && screenshot !== null ? screenshot.alt ?? undefined : undefined,
+};
+---
+<Component {...remappedProps} />

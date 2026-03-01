@@ -1,0 +1,46 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"contactWithTestimonial"> = block;
+
+const {
+  heading,
+  description,
+  submitLabel,
+  privacyPolicyHref,
+  formAction,
+  logoLight,
+  logoDark,
+  testimonialQuote,
+  testimonialAuthorName,
+  testimonialAuthorRole,
+  testimonialAuthorImage,
+} = blockProps;
+
+const remappedProps = {
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  submitLabel: submitLabel ?? undefined,
+  privacyPolicyHref: privacyPolicyHref ?? undefined,
+  formAction: formAction ?? undefined,
+  logoSrcLight: typeof logoLight === "object" && logoLight !== null ? logoLight.url ?? undefined : undefined,
+  logoSrcDark: typeof logoDark === "object" && logoDark !== null ? logoDark.url ?? undefined : undefined,
+  logoAlt: typeof logoLight === "object" && logoLight !== null ? logoLight.alt ?? undefined : undefined,
+  testimonialQuote: testimonialQuote ?? undefined,
+  testimonialAuthorName: testimonialAuthorName ?? undefined,
+  testimonialAuthorRole: testimonialAuthorRole ?? undefined,
+  testimonialAuthorImageSrc:
+    typeof testimonialAuthorImage === "object" && testimonialAuthorImage !== null
+      ? testimonialAuthorImage.url ?? undefined
+      : undefined,
+  testimonialAuthorImageAlt:
+    typeof testimonialAuthorImage === "object" && testimonialAuthorImage !== null
+      ? testimonialAuthorImage.alt ?? undefined
+      : undefined,
+};
+---
+
+<Component {...remappedProps} />

@@ -1,0 +1,66 @@
+---
+export interface BenefitItem {
+  iconSvg: string;
+  label: string;
+}
+
+export interface Props {
+  heading?: string;
+  description?: string;
+  benefits?: BenefitItem[];
+  ctaLabel?: string;
+  ctaHref?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+}
+
+const CHECK_ICON = `<svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="h-7 w-5 flex-none text-indigo-500 dark:text-gray-200"><path d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" fill-rule="evenodd" /></svg>`;
+
+const {
+  heading = "Join our team",
+  description = "Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in accusamus quisquam.",
+  benefits = [
+    { iconSvg: CHECK_ICON, label: "Competitive salaries" },
+    { iconSvg: CHECK_ICON, label: "Flexible work hours" },
+    { iconSvg: CHECK_ICON, label: "30 days of paid vacation" },
+    { iconSvg: CHECK_ICON, label: "Annual team retreats" },
+    { iconSvg: CHECK_ICON, label: "Benefits for you and your family" },
+    { iconSvg: CHECK_ICON, label: "A great work environment" },
+  ],
+  ctaLabel = "See our job postings",
+  ctaHref = "#",
+  imageSrc = "https://picsum.photos/300",
+  imageAlt = "",
+} = Astro.props;
+---
+
+<div class="overflow-hidden bg-white py-24 sm:py-32 dark:bg-gray-900">
+  <div class="relative isolate">
+    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="mx-auto flex max-w-2xl flex-col gap-16 bg-white/75 px-6 py-16 shadow-lg ring-1 ring-gray-900/5 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20 dark:bg-white/3 dark:shadow-none dark:ring-white/10">
+        <img src={imageSrc} alt={imageAlt} class="h-96 w-full flex-none rounded-2xl object-cover shadow-none lg:aspect-square lg:h-auto lg:max-w-sm dark:shadow-xl" />
+        <div class="w-full flex-auto">
+          <h2 class="text-4xl font-semibold tracking-tight text-pretty text-gray-950 sm:text-5xl dark:text-white">{heading}</h2>
+          <p class="mt-6 text-lg/8 text-pretty text-gray-600 dark:text-gray-400">{description}</p>
+          <ul role="list" class="mt-10 grid grid-cols-1 gap-x-8 gap-y-3 text-base/7 text-gray-950 sm:grid-cols-2 dark:text-gray-200">
+            {benefits.map((item) => (
+              <li class="flex gap-x-3">
+                <Fragment set:html={item.iconSvg} />
+                {item.label}
+              </li>
+            ))}
+          </ul>
+          <div class="mt-10 flex">
+            <a href={ctaHref} class="text-sm/6 font-semibold text-indigo-600 hover:text-indigo-300 dark:text-indigo-400 dark:hover:text-indigo-300">
+              {ctaLabel}
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div aria-hidden="true" class="absolute inset-x-0 -top-16 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl">
+      <div style="clip-path: polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)" class="aspect-1318/752 w-329.5 flex-none bg-linear-to-r from-[#9fd6fc] to-[#8680fd] opacity-50 dark:from-[#80caff] dark:to-[#4f46e5] dark:opacity-20"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"testimonialsSubtleGrid"> = block;
+
+const { eyebrow, heading, testimonials } = blockProps;
+
+const remappedProps = {
+  eyebrow: eyebrow ?? undefined,
+  heading: heading ?? undefined,
+  testimonials: testimonials?.map((item) => ({
+    quote: item.quote ?? "",
+    authorImageSrc: typeof item.authorImage === "object" && item.authorImage !== null ? item.authorImage.url ?? undefined : undefined,
+    authorName: item.authorName ?? "",
+    authorHandle: item.authorHandle ?? "",
+  })),
+};
+---
+
+<Component {...remappedProps} />

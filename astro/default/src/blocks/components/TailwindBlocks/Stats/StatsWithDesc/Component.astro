@@ -6,15 +6,15 @@ export interface StatItem {
 
 export interface Props {
   heading?: string;
-  leadText?: string;
-  bodyText?: string;
+  bodyPrimary?: string;
+  bodySecondary?: string;
   stats?: StatItem[];
 }
 
 const {
   heading = "Our mission",
-  leadText = "Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae feugiat egestas ac. Diam nulla orci at in viverra scelerisque eget. Eleifend egestas fringilla sapien.",
-  bodyText = "Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id.",
+  bodyPrimary = "Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae feugiat egestas ac. Diam nulla orci at in viverra scelerisque eget. Eleifend egestas fringilla sapien.",
+  bodySecondary = "Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id.",
   stats = [
     { label: "Transactions every 24 hours", value: "44 million" },
     { label: "Assets under holding", value: "$119 trillion" },
@@ -29,8 +29,8 @@ const {
       <h2 class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">{heading}</h2>
       <div class="mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
         <div class="lg:w-full lg:max-w-2xl lg:flex-auto">
-          <p class="text-xl/8 text-gray-600 dark:text-gray-300">{leadText}</p>
-          <p class="mt-10 max-w-xl text-base/7 text-gray-700 dark:text-gray-400">{bodyText}</p>
+          <p class="text-xl/8 text-gray-600 dark:text-gray-300">{bodyPrimary}</p>
+          <p class="mt-10 max-w-xl text-base/7 text-gray-700 dark:text-gray-400">{bodySecondary}</p>
         </div>
         <div class="lg:flex lg:flex-auto lg:justify-center">
           <dl class="w-64 space-y-8 xl:w-80">

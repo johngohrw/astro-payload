@@ -1,0 +1,23 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"testimonialsSideBySide"> = block;
+
+const { testimonials } = blockProps;
+
+const remappedProps = {
+  testimonials: testimonials?.map((item) => ({
+    logoSrc: typeof item.logo === "object" && item.logo !== null ? item.logo.url ?? undefined : undefined,
+    logoAlt: typeof item.logo === "object" && item.logo !== null ? item.logo.alt ?? undefined : undefined,
+    quote: item.quote ?? "",
+    authorImageSrc: typeof item.authorImage === "object" && item.authorImage !== null ? item.authorImage.url ?? undefined : undefined,
+    authorName: item.authorName ?? "",
+    authorTitle: item.authorTitle ?? "",
+  })),
+};
+---
+
+<Component {...remappedProps} />

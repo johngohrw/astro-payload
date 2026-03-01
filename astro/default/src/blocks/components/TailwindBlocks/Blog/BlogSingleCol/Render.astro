@@ -1,0 +1,41 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"blogSingleCol"> = block;
+
+const { heading, description, posts } = blockProps;
+
+const remappedProps = {
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  posts: posts?.map((post) => ({
+    date: post.date ?? undefined,
+    dateTime: post.dateTime ?? undefined,
+    categoryLabel: post.categoryLabel ?? undefined,
+    categoryHref: post.categoryHref ?? undefined,
+    title: post.title ?? undefined,
+    titleHref: post.titleHref ?? undefined,
+    excerpt: post.excerpt ?? undefined,
+    author: post.author && post.author !== null
+      ? {
+          name: post.author.name ?? undefined,
+          href: post.author.href ?? undefined,
+          imageSrc:
+            typeof post.author.image === "object" && post.author.image !== null
+              ? post.author.image.url ?? undefined
+              : undefined,
+          imageAlt:
+            typeof post.author.image === "object" && post.author.image !== null
+              ? post.author.image.alt ?? undefined
+              : undefined,
+          role: post.author.role ?? undefined,
+        }
+      : undefined,
+  })),
+};
+---
+
+<Component {...remappedProps} />

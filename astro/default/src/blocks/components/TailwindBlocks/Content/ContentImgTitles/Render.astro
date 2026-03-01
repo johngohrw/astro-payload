@@ -1,0 +1,34 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"contentImgTitles"> = block;
+
+const { eyebrow, heading, intro, missionHeading, missionParagraph1, missionParagraph2, image1, image2, image3, image4, statsEyebrow, stats } = blockProps;
+
+const remappedProps = {
+  eyebrow: eyebrow ?? undefined,
+  heading: heading ?? undefined,
+  intro: intro ?? undefined,
+  missionHeading: missionHeading ?? undefined,
+  missionParagraph1: missionParagraph1 ?? undefined,
+  missionParagraph2: missionParagraph2 ?? undefined,
+  image1Src: typeof image1 === "object" && image1 !== null ? image1.url ?? undefined : undefined,
+  image1Alt: typeof image1 === "object" && image1 !== null ? image1.alt ?? undefined : undefined,
+  image2Src: typeof image2 === "object" && image2 !== null ? image2.url ?? undefined : undefined,
+  image2Alt: typeof image2 === "object" && image2 !== null ? image2.alt ?? undefined : undefined,
+  image3Src: typeof image3 === "object" && image3 !== null ? image3.url ?? undefined : undefined,
+  image3Alt: typeof image3 === "object" && image3 !== null ? image3.alt ?? undefined : undefined,
+  image4Src: typeof image4 === "object" && image4 !== null ? image4.url ?? undefined : undefined,
+  image4Alt: typeof image4 === "object" && image4 !== null ? image4.alt ?? undefined : undefined,
+  statsEyebrow: statsEyebrow ?? undefined,
+  stats: stats?.map((item) => ({
+    label: item.label ?? undefined,
+    value: item.value ?? undefined,
+  })),
+};
+---
+
+<Component {...remappedProps} />

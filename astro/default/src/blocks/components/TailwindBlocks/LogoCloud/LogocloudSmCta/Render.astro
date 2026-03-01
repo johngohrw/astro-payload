@@ -1,0 +1,29 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"logocloudSmCta"> = block;
+
+const { logos, ctaText, ctaLinkLabel, ctaLinkHref } = blockProps;
+
+const remappedProps = {
+  logos: logos?.map((item) => ({
+    lightSrc:
+      typeof item.lightSrc === "object" && item.lightSrc !== null
+        ? item.lightSrc.url ?? undefined
+        : undefined,
+    darkSrc:
+      typeof item.darkSrc === "object" && item.darkSrc !== null
+        ? item.darkSrc.url ?? undefined
+        : undefined,
+    alt: item.alt ?? "",
+  })),
+  ctaText: ctaText ?? undefined,
+  ctaLinkLabel: ctaLinkLabel ?? undefined,
+  ctaLinkHref: ctaLinkHref ?? undefined,
+};
+---
+
+<Component {...remappedProps} />

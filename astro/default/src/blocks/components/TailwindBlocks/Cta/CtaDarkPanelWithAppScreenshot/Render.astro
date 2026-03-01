@@ -1,0 +1,25 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"ctaDarkPanelWithAppScreenshot"> = block;
+
+const { heading, description, primaryCta, secondaryCta, screenshot } = blockProps;
+
+const remappedProps = {
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  primaryCta: primaryCta && primaryCta !== null
+    ? { label: primaryCta.label ?? "", href: primaryCta.href ?? "#" }
+    : undefined,
+  secondaryCta: secondaryCta && secondaryCta !== null
+    ? { label: secondaryCta.label ?? "", href: secondaryCta.href ?? "#" }
+    : undefined,
+  screenshotSrc: typeof screenshot === "object" && screenshot !== null ? screenshot.url ?? undefined : undefined,
+  screenshotAlt: typeof screenshot === "object" && screenshot !== null ? screenshot.alt ?? undefined : undefined,
+};
+---
+
+<Component {...remappedProps} />

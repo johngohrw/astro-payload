@@ -1,0 +1,51 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"bentoThreeColGrid"> = block;
+
+const { sectionEyebrow, sectionHeading, leftCard, topMidCard, bottomMidCard, rightCard } = blockProps;
+
+const remappedProps = {
+  sectionEyebrow: sectionEyebrow ?? undefined,
+  sectionHeading: sectionHeading ?? undefined,
+
+  leftTitle: leftCard?.title ?? undefined,
+  leftDescription: leftCard?.description ?? undefined,
+  leftImageSrc:
+    leftCard && typeof leftCard.image === "object" && leftCard.image !== null
+      ? leftCard.image.url ?? undefined
+      : undefined,
+
+  topMidTitle: topMidCard?.title ?? undefined,
+  topMidDescription: topMidCard?.description ?? undefined,
+  topMidLightImageSrc:
+    topMidCard && typeof topMidCard.lightImage === "object" && topMidCard.lightImage !== null
+      ? topMidCard.lightImage.url ?? undefined
+      : undefined,
+  topMidDarkImageSrc:
+    topMidCard && typeof topMidCard.darkImage === "object" && topMidCard.darkImage !== null
+      ? topMidCard.darkImage.url ?? undefined
+      : undefined,
+
+  bottomMidTitle: bottomMidCard?.title ?? undefined,
+  bottomMidDescription: bottomMidCard?.description ?? undefined,
+  bottomMidLightImageSrc:
+    bottomMidCard && typeof bottomMidCard.lightImage === "object" && bottomMidCard.lightImage !== null
+      ? bottomMidCard.lightImage.url ?? undefined
+      : undefined,
+  bottomMidDarkImageSrc:
+    bottomMidCard && typeof bottomMidCard.darkImage === "object" && bottomMidCard.darkImage !== null
+      ? bottomMidCard.darkImage.url ?? undefined
+      : undefined,
+
+  rightTitle: rightCard?.title ?? undefined,
+  rightDescription: rightCard?.description ?? undefined,
+  rightCodeTab1: rightCard?.codeTab1 ?? undefined,
+  rightCodeTab2: rightCard?.codeTab2 ?? undefined,
+};
+---
+
+<Component {...remappedProps} />

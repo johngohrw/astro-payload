@@ -1,0 +1,29 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"teamImgShortPara"> = block;
+
+const { heading, description, members } = blockProps;
+
+const remappedProps = {
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  members: members?.map((member) => ({
+    name: member.name ?? undefined,
+    role: member.role ?? undefined,
+    bio: member.bio ?? undefined,
+    imageSrc: typeof member.image === "object" && member.image !== null ? member.image.url ?? undefined : undefined,
+    imageAlt: typeof member.image === "object" && member.image !== null ? (member.image as any).alt ?? undefined : undefined,
+    socialLinks: member.socialLinks?.map((link) => ({
+      label: link.label ?? undefined,
+      href: link.href ?? undefined,
+      iconSvg: link.iconSvg ?? undefined,
+    })),
+  })),
+};
+---
+
+<Component {...remappedProps} />

@@ -1,0 +1,13 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+const { block } = Astro.props;
+const blockProps: BlockTypeOf<"featSimpleThreeColLgIcons"> = block;
+const { heading, description, features } = blockProps;
+const remappedProps = {
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  features: features?.map((f) => ({ title: f.title ?? "", description: f.description ?? "", iconSvg: f.iconSvg ?? "", linkLabel: f.linkLabel ?? undefined, linkHref: f.linkHref ?? undefined })),
+};
+---
+<Component {...remappedProps} />

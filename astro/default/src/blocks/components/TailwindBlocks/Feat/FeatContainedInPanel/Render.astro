@@ -1,0 +1,15 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+const { block } = Astro.props;
+const blockProps: BlockTypeOf<"featContainedInPanel"> = block;
+const { heading, description, features, screenshot } = blockProps;
+const remappedProps = {
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  features: features?.map((f) => ({ title: f.title ?? "", description: f.description ?? "", iconSvg: f.iconSvg ?? "" })),
+  screenshotSrc: typeof screenshot === "object" && screenshot !== null ? screenshot.url ?? undefined : undefined,
+  screenshotAlt: typeof screenshot === "object" && screenshot !== null ? screenshot.alt ?? undefined : undefined,
+};
+---
+<Component {...remappedProps} />

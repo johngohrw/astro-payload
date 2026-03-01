@@ -1,0 +1,29 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"contentStickyScreenshot"> = block;
+
+const { eyebrow, heading, intro, screenshot, bodyParagraph1, featureItems, bodyParagraph2, subheading, subheadingBody } = blockProps;
+
+const remappedProps = {
+  eyebrow: eyebrow ?? undefined,
+  heading: heading ?? undefined,
+  intro: intro ?? undefined,
+  screenshotSrc: typeof screenshot === "object" && screenshot !== null ? screenshot.url ?? undefined : undefined,
+  screenshotAlt: typeof screenshot === "object" && screenshot !== null ? screenshot.alt ?? undefined : undefined,
+  bodyParagraph1: bodyParagraph1 ?? undefined,
+  featureItems: featureItems?.map((item) => ({
+    iconSvg: item.iconSvg ?? undefined,
+    title: item.title ?? undefined,
+    description: item.description ?? undefined,
+  })),
+  bodyParagraph2: bodyParagraph2 ?? undefined,
+  subheading: subheading ?? undefined,
+  subheadingBody: subheadingBody ?? undefined,
+};
+---
+
+<Component {...remappedProps} />

@@ -11,10 +11,12 @@ const allBlocksButEmpty = allBlocksArray.map((o) => {
   {
     allBlocksButEmpty?.map((emptyBlock) => (
       <div>
-        <div class="p-3 bg-black text-white font-semibold">
+        <div class="p-3 text-black font-semibold transparent-checker">
           {emptyBlock.blockType}
         </div>
-        <RenderSingleBlock block={emptyBlock as any} />
+        <div class="relative">
+          <RenderSingleBlock block={emptyBlock as any} />
+        </div>
       </div>
     ))
   }
@@ -22,5 +24,14 @@ const allBlocksButEmpty = allBlocksArray.map((o) => {
 <style>
   .content-wrapper {
     padding: 1rem;
+  }
+  .transparent-checker {
+    background: conic-gradient(
+      rgba(0, 0, 0, 0.04) 0 90deg,
+      rgba(255, 255, 255, 0.04) 0 180deg,
+      rgba(0, 0, 0, 0.04) 0 270deg,
+      rgba(255, 255, 255, 0.04) 0
+    );
+    background-size: 20px 20px;
   }
 </style>

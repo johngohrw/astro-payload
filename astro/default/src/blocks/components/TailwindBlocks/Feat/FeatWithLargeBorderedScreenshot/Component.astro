@@ -1,0 +1,34 @@
+---
+export interface Props {
+  heading?: string;
+  screenshotSrc?: string;
+  screenshotAlt?: string;
+}
+
+const {
+  heading = "Everything you need to deploy your app",
+  screenshotSrc = "https://picsum.photos/300",
+  screenshotAlt = "",
+} = Astro.props;
+---
+
+<div class="overflow-hidden bg-white py-24 sm:py-32 dark:bg-gray-900">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <p
+      class="max-w-2xl text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-6xl sm:text-balance dark:text-white"
+    >
+      {heading}
+    </p>
+    <div class="relative mt-16">
+      <div
+        class="absolute -inset-2 rounded-[calc(var(--radius-xl)+calc(var(--spacing)*2))] shadow-xs ring-1 ring-black/5 dark:bg-white/2.5 dark:ring-white/10"
+      >
+      </div>
+      <img
+        src={screenshotSrc}
+        alt={screenshotAlt}
+        class="h-full w-full rounded-xl shadow-2xl ring-1 ring-black/10 dark:ring-white/10"
+      />
+    </div>
+  </div>
+</div>

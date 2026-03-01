@@ -1,0 +1,124 @@
+---
+export interface PostAuthor {
+  name: string;
+  href: string;
+  imageSrc: string;
+  imageAlt?: string;
+  role: string;
+}
+
+export interface BlogPost {
+  date: string;
+  dateTime: string;
+  categoryLabel: string;
+  categoryHref: string;
+  title: string;
+  titleHref: string;
+  excerpt: string;
+  author: PostAuthor;
+}
+
+export interface Props {
+  heading?: string;
+  description?: string;
+  posts?: BlogPost[];
+}
+
+const {
+  heading = "From the blog",
+  description = "Learn how to grow your business with our expert advice.",
+  posts = [
+    {
+      date: "Mar 16, 2020",
+      dateTime: "2020-03-16",
+      categoryLabel: "Marketing",
+      categoryHref: "#",
+      title: "Boost your conversion rate",
+      titleHref: "#",
+      excerpt:
+        "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
+      author: {
+        name: "Michael Foster",
+        href: "#",
+        imageSrc: "https://picsum.photos/300",
+        imageAlt: "",
+        role: "Co-Founder / CTO",
+      },
+    },
+    {
+      date: "Mar 10, 2020",
+      dateTime: "2020-03-10",
+      categoryLabel: "Sales",
+      categoryHref: "#",
+      title: "How to use search engine optimization to drive sales",
+      titleHref: "#",
+      excerpt:
+        "Optio cum necessitatibus dolor voluptatum provident commodi et. Qui aperiam fugiat nemo cumque.",
+      author: {
+        name: "Lindsay Walton",
+        href: "#",
+        imageSrc: "https://picsum.photos/300",
+        imageAlt: "",
+        role: "Front-end Developer",
+      },
+    },
+    {
+      date: "Feb 12, 2020",
+      dateTime: "2020-02-12",
+      categoryLabel: "Business",
+      categoryHref: "#",
+      title: "Improve your customer experience",
+      titleHref: "#",
+      excerpt:
+        "Cupiditate maiores ullam eveniet adipisci in doloribus nulla minus. Voluptas iusto libero adipisci rem et corporis. Nostrud sint anim sunt aliqua. Nulla eu labore irure incididunt velit cillum quis magna dolore.",
+      author: {
+        name: "Tom Cook",
+        href: "#",
+        imageSrc: "https://picsum.photos/300",
+        imageAlt: "",
+        role: "Director of Product",
+      },
+    },
+  ],
+} = Astro.props;
+---
+
+<div class="bg-white py-24 sm:py-32 dark:bg-gray-900">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">{heading}</h2>
+      <p class="mt-2 text-lg/8 text-gray-600 dark:text-gray-300">{description}</p>
+    </div>
+    <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3 dark:border-gray-700">
+      {posts.map((post) => (
+        <article class="flex max-w-xl flex-col items-start justify-between">
+          <div class="flex items-center gap-x-4 text-xs">
+            <time datetime={post.dateTime} class="text-gray-500 dark:text-gray-400">{post.date}</time>
+            <a href={post.categoryHref} class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100 dark:bg-gray-800/60 dark:text-gray-300 dark:hover:bg-gray-800">{post.categoryLabel}</a>
+          </div>
+          <div class="group relative grow">
+            <h3 class="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300">
+              <a href={post.titleHref}>
+                <span class="absolute inset-0"></span>
+                {post.title}
+              </a>
+            </h3>
+            <p class="mt-5 line-clamp-3 text-sm/6 text-gray-600 dark:text-gray-400">{post.excerpt}</p>
+          </div>
+          <div class="relative mt-8 flex items-center gap-x-4 justify-self-end">
+            <img src={post.author.imageSrc} alt={post.author.imageAlt ?? ""} class="size-10 rounded-full bg-gray-50 dark:bg-gray-800" />
+            <div class="text-sm/6">
+              <p class="font-semibold text-gray-900 dark:text-white">
+                <a href={post.author.href}>
+                  <span class="absolute inset-0"></span>
+                  {post.author.name}
+                </a>
+              </p>
+              <p class="text-gray-600 dark:text-gray-400">{post.author.role}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</div>

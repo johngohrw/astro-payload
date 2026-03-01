@@ -1,0 +1,29 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"contactSideBySideGrid"> = block;
+
+const { contactHeading, contactDescription, contactCards, locationsHeading, locationsDescription, locationCards } = blockProps;
+
+const remappedProps = {
+  contactHeading: contactHeading ?? undefined,
+  contactDescription: contactDescription ?? undefined,
+  contactCards: contactCards?.map((card) => ({
+    title: card.title ?? undefined,
+    email: card.email ?? undefined,
+    phone: card.phone ?? undefined,
+  })),
+  locationsHeading: locationsHeading ?? undefined,
+  locationsDescription: locationsDescription ?? undefined,
+  locationCards: locationCards?.map((loc) => ({
+    city: loc.city ?? undefined,
+    addressLine1: loc.addressLine1 ?? undefined,
+    addressLine2: loc.addressLine2 ?? undefined,
+  })),
+};
+---
+
+<Component {...remappedProps} />

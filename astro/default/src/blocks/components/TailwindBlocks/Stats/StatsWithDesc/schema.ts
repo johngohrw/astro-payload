@@ -2,20 +2,30 @@ import type { Block } from "payload";
 
 export const statsWithDescSchema: Block = {
   slug: "statsWithDesc",
-  labels: { singular: "Stats With Desc", plural: "Stats With Descs" },
+  labels: {
+    singular: "Stats With Desc",
+    plural: "Stats With Descs",
+  },
   fields: [
-    { name: "heading", type: "text", label: "Heading", defaultValue: "Our mission" },
     {
-      name: "leadText",
-      type: "textarea",
-      label: "Lead Text",
-      defaultValue: "Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae feugiat egestas ac. Diam nulla orci at in viverra scelerisque eget. Eleifend egestas fringilla sapien.",
+      name: "heading",
+      type: "text",
+      label: "Heading",
+      defaultValue: "Our mission",
     },
     {
-      name: "bodyText",
+      name: "bodyPrimary",
       type: "textarea",
-      label: "Body Text",
-      defaultValue: "Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id.",
+      label: "Body Primary",
+      defaultValue:
+        "Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae feugiat egestas ac. Diam nulla orci at in viverra scelerisque eget. Eleifend egestas fringilla sapien.",
+    },
+    {
+      name: "bodySecondary",
+      type: "textarea",
+      label: "Body Secondary",
+      defaultValue:
+        "Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit.",
     },
     {
       name: "stats",

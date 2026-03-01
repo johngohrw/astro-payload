@@ -1,0 +1,25 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"contentTwoColScreenshot"> = block;
+
+const { eyebrow, heading, col1Paragraph1, col1Paragraph2, col2Paragraph1, col2Paragraph2, cta, screenshot, screenshotDark } = blockProps;
+
+const remappedProps = {
+  eyebrow: eyebrow ?? undefined,
+  heading: heading ?? undefined,
+  col1Paragraph1: col1Paragraph1 ?? undefined,
+  col1Paragraph2: col1Paragraph2 ?? undefined,
+  col2Paragraph1: col2Paragraph1 ?? undefined,
+  col2Paragraph2: col2Paragraph2 ?? undefined,
+  ctaLabel: cta && cta !== null ? cta.label ?? undefined : undefined,
+  ctaHref: cta && cta !== null ? cta.href ?? undefined : undefined,
+  screenshotSrc: typeof screenshot === "object" && screenshot !== null ? screenshot.url ?? undefined : undefined,
+  screenshotDarkSrc: typeof screenshotDark === "object" && screenshotDark !== null ? screenshotDark.url ?? undefined : undefined,
+};
+---
+
+<Component {...remappedProps} />

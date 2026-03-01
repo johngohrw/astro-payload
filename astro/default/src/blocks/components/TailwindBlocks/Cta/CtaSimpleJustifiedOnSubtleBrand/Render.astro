@@ -1,0 +1,23 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"ctaSimpleJustifiedOnSubtleBrand"> = block;
+
+const { headingLine1, headingLine2, primaryCta, secondaryCta } = blockProps;
+
+const remappedProps = {
+  headingLine1: headingLine1 ?? undefined,
+  headingLine2: headingLine2 ?? undefined,
+  primaryCta: primaryCta && primaryCta !== null
+    ? { label: primaryCta.label ?? "", href: primaryCta.href ?? "#" }
+    : undefined,
+  secondaryCta: secondaryCta && secondaryCta !== null
+    ? { label: secondaryCta.label ?? "", href: secondaryCta.href ?? "#" }
+    : undefined,
+};
+---
+
+<Component {...remappedProps} />

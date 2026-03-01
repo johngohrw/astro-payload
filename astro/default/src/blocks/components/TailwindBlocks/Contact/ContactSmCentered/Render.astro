@@ -1,0 +1,24 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"contactSmCentered"> = block;
+
+const { heading, description, items } = blockProps;
+
+const remappedProps = {
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  items: items?.map((item) => ({
+    iconSvg: item.iconSvg ?? undefined,
+    title: item.title ?? undefined,
+    description: item.description ?? undefined,
+    linkLabel: item.linkLabel ?? undefined,
+    linkHref: item.linkHref ?? undefined,
+  })),
+};
+---
+
+<Component {...remappedProps} />

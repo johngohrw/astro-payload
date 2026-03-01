@@ -1,0 +1,33 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"headerWithStats"> = block;
+
+const { heading, description, backgroundImage, links, stats } = blockProps;
+
+const remappedProps = {
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  backgroundImageSrc:
+    typeof backgroundImage === "object" && backgroundImage !== null
+      ? backgroundImage.url ?? undefined
+      : undefined,
+  backgroundImageAlt:
+    typeof backgroundImage === "object" && backgroundImage !== null
+      ? backgroundImage.alt ?? undefined
+      : undefined,
+  links: links?.map((item) => ({
+    label: item.label ?? undefined,
+    href: item.href ?? undefined,
+  })),
+  stats: stats?.map((item) => ({
+    value: item.value ?? undefined,
+    label: item.label ?? undefined,
+  })),
+};
+---
+
+<Component {...remappedProps} />

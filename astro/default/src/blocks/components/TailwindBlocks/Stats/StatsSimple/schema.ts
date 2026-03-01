@@ -2,7 +2,10 @@ import type { Block } from "payload";
 
 export const statsSimpleSchema: Block = {
   slug: "statsSimple",
-  labels: { singular: "Stats Simple", plural: "Stats Simples" },
+  labels: {
+    singular: "Stats Simple",
+    plural: "Stats Simples",
+  },
   fields: [
     {
       name: "stats",

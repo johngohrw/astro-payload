@@ -5,7 +5,7 @@ prefix = "hero";
 console.log("downloads are starting, focus document window NOW!");
 setTimeout(async () => {
   const titles = document.querySelectorAll("section>div>div>h2>a");
-  const nodes = document.querySelectorAll("section>div>div>button");
+  const nodes = document.querySelectorAbll("section>div>div>button");
   for (const i in nodes) {
     n = nodes[i];
     t = titles[i].innerText;

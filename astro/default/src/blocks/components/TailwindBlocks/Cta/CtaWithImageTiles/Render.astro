@@ -1,0 +1,28 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"ctaWithImageTiles"> = block;
+
+const { heading, descriptionPrimary, descriptionSecondary, ctaLabel, ctaHref, imageLarge, imageTopLeft, imageMiddle, imageBottomRight } = blockProps;
+
+const remappedProps = {
+  heading: heading ?? undefined,
+  descriptionPrimary: descriptionPrimary ?? undefined,
+  descriptionSecondary: descriptionSecondary ?? undefined,
+  ctaLabel: ctaLabel ?? undefined,
+  ctaHref: ctaHref ?? undefined,
+  imageLargeSrc: typeof imageLarge === "object" && imageLarge !== null ? imageLarge.url ?? undefined : undefined,
+  imageLargeAlt: typeof imageLarge === "object" && imageLarge !== null ? imageLarge.alt ?? undefined : undefined,
+  imageTopLeftSrc: typeof imageTopLeft === "object" && imageTopLeft !== null ? imageTopLeft.url ?? undefined : undefined,
+  imageTopLeftAlt: typeof imageTopLeft === "object" && imageTopLeft !== null ? imageTopLeft.alt ?? undefined : undefined,
+  imageMiddleSrc: typeof imageMiddle === "object" && imageMiddle !== null ? imageMiddle.url ?? undefined : undefined,
+  imageMiddleAlt: typeof imageMiddle === "object" && imageMiddle !== null ? imageMiddle.alt ?? undefined : undefined,
+  imageBottomRightSrc: typeof imageBottomRight === "object" && imageBottomRight !== null ? imageBottomRight.url ?? undefined : undefined,
+  imageBottomRightAlt: typeof imageBottomRight === "object" && imageBottomRight !== null ? imageBottomRight.alt ?? undefined : undefined,
+};
+---
+
+<Component {...remappedProps} />

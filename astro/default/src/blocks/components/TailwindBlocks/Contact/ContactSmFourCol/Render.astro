@@ -1,0 +1,22 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"contactSmFourCol"> = block;
+
+const { heading, description, offices } = blockProps;
+
+const remappedProps = {
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  offices: offices?.map((office) => ({
+    city: office.city ?? undefined,
+    addressLine1: office.addressLine1 ?? undefined,
+    addressLine2: office.addressLine2 ?? undefined,
+  })),
+};
+---
+
+<Component {...remappedProps} />

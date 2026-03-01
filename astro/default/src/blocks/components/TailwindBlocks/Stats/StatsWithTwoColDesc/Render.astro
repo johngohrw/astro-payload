@@ -1,0 +1,25 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"statsWithTwoColDesc"> = block;
+
+const { eyebrow, heading, colOneParaOne, colOneParaTwo, colTwoParaOne, colTwoParaTwo, stats } = blockProps;
+
+const remappedProps = {
+  eyebrow: eyebrow ?? undefined,
+  heading: heading ?? undefined,
+  colOneParaOne: colOneParaOne ?? undefined,
+  colOneParaTwo: colOneParaTwo ?? undefined,
+  colTwoParaOne: colTwoParaOne ?? undefined,
+  colTwoParaTwo: colTwoParaTwo ?? undefined,
+  stats: stats?.map((item) => ({
+    label: item.label ?? undefined,
+    value: item.value ?? undefined,
+  })),
+};
+---
+
+<Component {...remappedProps} />

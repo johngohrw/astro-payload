@@ -1,0 +1,14 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+const { block } = Astro.props;
+const blockProps: BlockTypeOf<"featWithCodeExamplePanel"> = block;
+const { eyebrow, heading, description, features } = blockProps;
+const remappedProps = {
+  eyebrow: eyebrow ?? undefined,
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+  features: features?.map((f) => ({ title: f.title ?? "", description: f.description ?? "", iconSvg: f.iconSvg ?? "" })),
+};
+---
+<Component {...remappedProps} />

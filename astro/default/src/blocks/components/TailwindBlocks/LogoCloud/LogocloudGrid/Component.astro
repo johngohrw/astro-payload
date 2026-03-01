@@ -1,0 +1,39 @@
+---
+export interface LogoItem {
+  lightSrc?: string;
+  darkSrc?: string;
+  alt: string;
+}
+
+export interface Props {
+  logos?: LogoItem[];
+}
+
+const {
+  logos = [
+    { lightSrc: "https://picsum.photos/158/48", darkSrc: "https://picsum.photos/158/48", alt: "Transistor" },
+    { lightSrc: "https://picsum.photos/158/48", darkSrc: "https://picsum.photos/158/48", alt: "Reform" },
+    { lightSrc: "https://picsum.photos/158/48", darkSrc: "https://picsum.photos/158/48", alt: "Tuple" },
+    { lightSrc: "https://picsum.photos/158/48", darkSrc: "https://picsum.photos/158/48", alt: "Laravel" },
+    { lightSrc: "https://picsum.photos/158/48", darkSrc: "https://picsum.photos/158/48", alt: "SavvyCal" },
+    { lightSrc: "https://picsum.photos/158/48", darkSrc: "https://picsum.photos/158/48", alt: "Statamic" },
+  ],
+} = Astro.props;
+---
+
+<div class="bg-white py-24 sm:py-32 dark:bg-gray-900">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="-mx-6 grid grid-cols-2 gap-0.5 overflow-hidden sm:mx-0 sm:rounded-2xl md:grid-cols-3">
+      {logos.map((logo, i) => (
+        <div class={`bg-gray-400/5 p-6 sm:p-10 dark:bg-white/5${i === 0 ? " p-8" : ""}`}>
+          {logo.lightSrc && (
+            <img width="158" height="48" src={logo.lightSrc} alt={logo.alt} class="max-h-12 w-full object-contain dark:hidden" />
+          )}
+          {logo.darkSrc && (
+            <img width="158" height="48" src={logo.darkSrc} alt={logo.alt} class="max-h-12 w-full object-contain not-dark:hidden" />
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

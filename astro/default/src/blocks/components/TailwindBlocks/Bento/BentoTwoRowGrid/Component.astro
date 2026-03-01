@@ -1,0 +1,187 @@
+---
+export interface BentoCard {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  lightImageSrc?: string;
+  darkImageSrc?: string;
+}
+
+export interface Props {
+  sectionEyebrow?: string;
+  sectionHeading?: string;
+  cards?: BentoCard[];
+}
+
+const {
+  sectionEyebrow = "Deploy faster",
+  sectionHeading = "Everything you need to deploy your app",
+  cards = [
+    {
+      eyebrow: "Releases",
+      title: "Push to deploy",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In gravida justo et nulla efficitur, maximus egestas sem pellentesque.",
+      lightImageSrc: "https://picsum.photos/800/320",
+      darkImageSrc: "https://picsum.photos/800/320",
+    },
+    {
+      eyebrow: "Integrations",
+      title: "Connect your favorite tools",
+      description:
+        "Curabitur auctor, ex quis auctor venenatis, eros arcu rhoncus massa.",
+      lightImageSrc: "https://picsum.photos/400/320",
+      darkImageSrc: "https://picsum.photos/400/320",
+    },
+    {
+      eyebrow: "Security",
+      title: "Advanced access control",
+      description:
+        "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia.",
+      lightImageSrc: "https://picsum.photos/400/320",
+      darkImageSrc: "https://picsum.photos/400/320",
+    },
+    {
+      eyebrow: "Performance",
+      title: "Lightning-fast builds",
+      description:
+        "Sed congue eros non finibus molestie. Vestibulum euismod augue vel commodo vulputate. Maecenas at augue sed elit dictum vulputate.",
+      lightImageSrc: "https://picsum.photos/800/320",
+      darkImageSrc: "https://picsum.photos/800/320",
+    },
+  ],
+} = Astro.props;
+---
+
+<div class="bg-gray-50 py-24 sm:py-32 dark:bg-gray-900">
+  <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+    <h2 class="text-base/7 font-semibold text-indigo-600 dark:text-indigo-400">
+      {sectionEyebrow}
+    </h2>
+    <p
+      class="mt-2 max-w-lg text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white"
+    >
+      {sectionHeading}
+    </p>
+    <div
+      class="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2"
+    >
+      {
+        cards[0] && (
+          <div class="flex p-px lg:col-span-4">
+            <div class="w-full overflow-hidden rounded-lg bg-white shadow-sm outline outline-black/5 max-lg:rounded-t-4xl lg:rounded-tl-4xl dark:bg-gray-800 dark:shadow-none dark:outline-white/15">
+              <img
+                src={cards[0].lightImageSrc}
+                alt=""
+                class="h-80 object-cover object-left dark:hidden"
+              />
+              <img
+                src={cards[0].darkImageSrc}
+                alt=""
+                class="h-80 object-cover object-left not-dark:hidden"
+              />
+              <div class="p-10">
+                <h3 class="text-sm/4 font-semibold text-gray-500 dark:text-gray-400">
+                  {cards[0].eyebrow}
+                </h3>
+                <p class="mt-2 text-lg font-medium tracking-tight text-gray-900 dark:text-white">
+                  {cards[0].title}
+                </p>
+                <p class="mt-2 max-w-lg text-sm/6 text-gray-600 dark:text-gray-400">
+                  {cards[0].description}
+                </p>
+              </div>
+            </div>
+          </div>
+        )
+      }
+      {
+        cards[1] && (
+          <div class="flex p-px lg:col-span-2">
+            <div class="w-full overflow-hidden rounded-lg bg-white shadow-sm outline outline-black/5 lg:rounded-tr-4xl dark:bg-gray-800 dark:shadow-none dark:outline-white/15">
+              <img
+                src={cards[1].lightImageSrc}
+                alt=""
+                class="h-80 object-cover dark:hidden w-full"
+              />
+              <img
+                src={cards[1].darkImageSrc}
+                alt=""
+                class="h-80 object-cover not-dark:hidden w-full"
+              />
+              <div class="p-10">
+                <h3 class="text-sm/4 font-semibold text-gray-500 dark:text-gray-400">
+                  {cards[1].eyebrow}
+                </h3>
+                <p class="mt-2 text-lg font-medium tracking-tight text-gray-900 dark:text-white">
+                  {cards[1].title}
+                </p>
+                <p class="mt-2 max-w-lg text-sm/6 text-gray-600 dark:text-gray-400">
+                  {cards[1].description}
+                </p>
+              </div>
+            </div>
+          </div>
+        )
+      }
+      {
+        cards[2] && (
+          <div class="flex p-px lg:col-span-2">
+            <div class="w-full overflow-hidden rounded-lg bg-white shadow-sm outline outline-black/5 lg:rounded-bl-4xl dark:bg-gray-800 dark:shadow-none dark:outline-white/15">
+              <img
+                src={cards[2].lightImageSrc}
+                alt=""
+                class="h-80 object-cover dark:hidden w-full"
+              />
+              <img
+                src={cards[2].darkImageSrc}
+                alt=""
+                class="h-80 object-cover not-dark:hidden w-full"
+              />
+              <div class="p-10">
+                <h3 class="text-sm/4 font-semibold text-gray-500 dark:text-gray-400">
+                  {cards[2].eyebrow}
+                </h3>
+                <p class="mt-2 text-lg font-medium tracking-tight text-gray-900 dark:text-white">
+                  {cards[2].title}
+                </p>
+                <p class="mt-2 max-w-lg text-sm/6 text-gray-600 dark:text-gray-400">
+                  {cards[2].description}
+                </p>
+              </div>
+            </div>
+          </div>
+        )
+      }
+      {
+        cards[3] && (
+          <div class="flex p-px lg:col-span-4">
+            <div class="w-full overflow-hidden rounded-lg bg-white shadow-sm outline outline-black/5 max-lg:rounded-b-4xl lg:rounded-br-4xl dark:bg-gray-800 dark:shadow-none dark:outline-white/15">
+              <img
+                src={cards[3].lightImageSrc}
+                alt=""
+                class="h-80 object-cover object-left dark:hidden"
+              />
+              <img
+                src={cards[3].darkImageSrc}
+                alt=""
+                class="h-80 object-cover object-left not-dark:hidden"
+              />
+              <div class="p-10">
+                <h3 class="text-sm/4 font-semibold text-gray-500 dark:text-gray-400">
+                  {cards[3].eyebrow}
+                </h3>
+                <p class="mt-2 text-lg font-medium tracking-tight text-gray-900 dark:text-white">
+                  {cards[3].title}
+                </p>
+                <p class="mt-2 max-w-lg text-sm/6 text-gray-600 dark:text-gray-400">
+                  {cards[3].description}
+                </p>
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</div>

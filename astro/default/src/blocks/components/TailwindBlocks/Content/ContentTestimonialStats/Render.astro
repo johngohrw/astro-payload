@@ -1,0 +1,33 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"contentTestimonialStats"> = block;
+
+const { testimonialImage, testimonialLogo, testimonialQuote, testimonialAuthorName, testimonialAuthorRole, eyebrow, heading, bodyParagraph1, bodyParagraph2, bodyParagraph3, stats, cta } = blockProps;
+
+const remappedProps = {
+  testimonialImageSrc: typeof testimonialImage === "object" && testimonialImage !== null ? testimonialImage.url ?? undefined : undefined,
+  testimonialImageAlt: typeof testimonialImage === "object" && testimonialImage !== null ? testimonialImage.alt ?? undefined : undefined,
+  testimonialLogoSrc: typeof testimonialLogo === "object" && testimonialLogo !== null ? testimonialLogo.url ?? undefined : undefined,
+  testimonialLogoAlt: typeof testimonialLogo === "object" && testimonialLogo !== null ? testimonialLogo.alt ?? undefined : undefined,
+  testimonialQuote: testimonialQuote ?? undefined,
+  testimonialAuthorName: testimonialAuthorName ?? undefined,
+  testimonialAuthorRole: testimonialAuthorRole ?? undefined,
+  eyebrow: eyebrow ?? undefined,
+  heading: heading ?? undefined,
+  bodyParagraph1: bodyParagraph1 ?? undefined,
+  bodyParagraph2: bodyParagraph2 ?? undefined,
+  bodyParagraph3: bodyParagraph3 ?? undefined,
+  stats: stats?.map((item) => ({
+    label: item.label ?? undefined,
+    value: item.value ?? undefined,
+  })),
+  ctaLabel: cta && cta !== null ? cta.label ?? undefined : undefined,
+  ctaHref: cta && cta !== null ? cta.href ?? undefined : undefined,
+};
+---
+
+<Component {...remappedProps} />

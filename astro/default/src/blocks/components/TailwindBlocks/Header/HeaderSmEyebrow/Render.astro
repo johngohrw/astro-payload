@@ -1,0 +1,18 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"headerSmEyebrow"> = block;
+
+const { eyebrow, heading, description } = blockProps;
+
+const remappedProps = {
+  eyebrow: eyebrow ?? undefined,
+  heading: heading ?? undefined,
+  description: description ?? undefined,
+};
+---
+
+<Component {...remappedProps} />

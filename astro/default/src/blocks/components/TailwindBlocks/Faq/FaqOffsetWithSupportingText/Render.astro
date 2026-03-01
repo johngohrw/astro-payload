@@ -1,0 +1,23 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"faqOffsetWithSupportingText"> = block;
+
+const { heading, supportText, supportLinkLabel, supportLinkHref, faqs } = blockProps;
+
+const remappedProps = {
+  heading: heading ?? undefined,
+  supportText: supportText ?? undefined,
+  supportLinkLabel: supportLinkLabel ?? undefined,
+  supportLinkHref: supportLinkHref ?? undefined,
+  faqs: faqs?.map((item) => ({
+    question: item.question ?? "",
+    answer: item.answer ?? "",
+  })),
+};
+---
+
+<Component {...remappedProps} />

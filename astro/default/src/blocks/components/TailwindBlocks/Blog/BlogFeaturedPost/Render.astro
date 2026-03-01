@@ -1,0 +1,51 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"blogFeaturedPost"> = block;
+
+const { featuredPost, posts } = blockProps;
+
+const remappedProps = {
+  featuredPost: featuredPost
+    ? {
+        date: featuredPost.date ?? undefined,
+        dateTime: featuredPost.dateTime ?? undefined,
+        title: featuredPost.title ?? undefined,
+        excerpt: featuredPost.excerpt ?? undefined,
+        readMoreHref: featuredPost.readMoreHref ?? undefined,
+        authorName: featuredPost.authorName ?? undefined,
+        authorHref: featuredPost.authorHref ?? undefined,
+        authorImageSrc:
+          typeof featuredPost.authorImage === "object" && featuredPost.authorImage !== null
+            ? featuredPost.authorImage.url ?? undefined
+            : undefined,
+        authorImageAlt:
+          typeof featuredPost.authorImage === "object" && featuredPost.authorImage !== null
+            ? featuredPost.authorImage.alt ?? undefined
+            : undefined,
+      }
+    : undefined,
+  posts: posts?.map((post) => ({
+    date: post.date ?? undefined,
+    dateTime: post.dateTime ?? undefined,
+    title: post.title ?? undefined,
+    titleHref: post.titleHref ?? undefined,
+    excerpt: post.excerpt ?? undefined,
+    authorName: post.authorName ?? undefined,
+    authorHref: post.authorHref ?? undefined,
+    authorImageSrc:
+      typeof post.authorImage === "object" && post.authorImage !== null
+        ? post.authorImage.url ?? undefined
+        : undefined,
+    authorImageAlt:
+      typeof post.authorImage === "object" && post.authorImage !== null
+        ? post.authorImage.alt ?? undefined
+        : undefined,
+  })),
+};
+---
+
+<Component {...remappedProps} />

@@ -1,0 +1,22 @@
+---
+import type { BlockTypeOf } from "@/blocks/blockTypes";
+import Component from "./Component.astro";
+
+const { block } = Astro.props;
+
+const blockProps: BlockTypeOf<"testimonialsBgImg"> = block;
+
+const { backgroundImage, backgroundAlt, logo, logoAlt, quote, authorName, authorTitle } = blockProps;
+
+const remappedProps = {
+  backgroundSrc: typeof backgroundImage === "object" && backgroundImage !== null ? backgroundImage.url ?? undefined : undefined,
+  backgroundAlt: backgroundAlt ?? undefined,
+  logoSrc: typeof logo === "object" && logo !== null ? logo.url ?? undefined : undefined,
+  logoAlt: logoAlt ?? undefined,
+  quote: quote ?? undefined,
+  authorName: authorName ?? undefined,
+  authorTitle: authorTitle ?? undefined,
+};
+---
+
+<Component {...remappedProps} />
