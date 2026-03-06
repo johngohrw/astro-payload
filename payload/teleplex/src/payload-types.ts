@@ -200,10 +200,518 @@ export interface Page {
   contentBlocks?:
     | (
         | {
-            announcement?: {
-              text?: string | null;
-              href?: string | null;
+            sectionEyebrow?: string | null;
+            sectionHeading?: string | null;
+            leftCard: {
+              title: string;
+              description?: string | null;
+              image?: (number | null) | Media;
             };
+            topMidCard: {
+              title: string;
+              description?: string | null;
+              lightImage?: (number | null) | Media;
+              darkImage?: (number | null) | Media;
+            };
+            bottomMidCard: {
+              title: string;
+              description?: string | null;
+              lightImage?: (number | null) | Media;
+              darkImage?: (number | null) | Media;
+            };
+            rightCard: {
+              title: string;
+              description?: string | null;
+              codeTab1?: string | null;
+              codeTab2?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'bentoThreeColGrid';
+          }
+        | {
+            sectionEyebrow?: string | null;
+            sectionHeading?: string | null;
+            cards?:
+              | {
+                  eyebrow: string;
+                  title: string;
+                  description: string;
+                  lightImage: number | Media;
+                  darkImage?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'bentoTwoRowGrid';
+          }
+        | {
+            sectionEyebrow?: string | null;
+            sectionHeading?: string | null;
+            topCards?:
+              | {
+                  eyebrow: string;
+                  title: string;
+                  description: string;
+                  lightImage: number | Media;
+                  darkImage?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            bottomCards?:
+              | {
+                  eyebrow: string;
+                  title: string;
+                  description: string;
+                  lightImage: number | Media;
+                  darkImage?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'bentoTwoRowThreeColGrid';
+          }
+        | {
+            featuredPost?: {
+              date?: string | null;
+              dateTime?: string | null;
+              title?: string | null;
+              excerpt?: string | null;
+              readMoreHref?: string | null;
+              authorName?: string | null;
+              authorHref?: string | null;
+              authorImage?: (number | null) | Media;
+            };
+            posts?:
+              | {
+                  date: string;
+                  dateTime: string;
+                  title: string;
+                  titleHref: string;
+                  excerpt: string;
+                  authorName: string;
+                  authorHref: string;
+                  authorImage?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'blogFeaturedPost';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            image?: (number | null) | Media;
+            openings?:
+              | {
+                  title: string;
+                  titleHref: string;
+                  description: string;
+                  salary: string;
+                  location: string;
+                  id?: string | null;
+                }[]
+              | null;
+            viewAllHref?: string | null;
+            viewAllLabel?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'blogPhotoList';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            posts?:
+              | {
+                  date: string;
+                  dateTime: string;
+                  categoryLabel: string;
+                  categoryHref: string;
+                  title: string;
+                  titleHref: string;
+                  excerpt: string;
+                  author: {
+                    name: string;
+                    href: string;
+                    image?: (number | null) | Media;
+                    role: string;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'blogSingleCol';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            posts?:
+              | {
+                  coverImage?: (number | null) | Media;
+                  date: string;
+                  dateTime: string;
+                  categoryLabel: string;
+                  categoryHref: string;
+                  title: string;
+                  titleHref: string;
+                  excerpt: string;
+                  author: {
+                    name: string;
+                    href: string;
+                    image?: (number | null) | Media;
+                    role: string;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'blogSingleColImgs';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            posts?:
+              | {
+                  date: string;
+                  dateTime: string;
+                  categoryLabel: string;
+                  categoryHref: string;
+                  title: string;
+                  titleHref: string;
+                  excerpt: string;
+                  author: {
+                    name: string;
+                    href: string;
+                    image?: (number | null) | Media;
+                    role: string;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'blogThreeCol';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            posts?:
+              | {
+                  backgroundImage?: (number | null) | Media;
+                  date: string;
+                  dateTime: string;
+                  title: string;
+                  titleHref: string;
+                  author: {
+                    name: string;
+                    image?: (number | null) | Media;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'blogThreeColBgImgs';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            posts?:
+              | {
+                  coverImage?: (number | null) | Media;
+                  date: string;
+                  dateTime: string;
+                  categoryLabel: string;
+                  categoryHref: string;
+                  title: string;
+                  titleHref: string;
+                  excerpt: string;
+                  author: {
+                    name: string;
+                    href: string;
+                    image?: (number | null) | Media;
+                    role: string;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'blogThreeColImgs';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            privacyPolicyHref?: string | null;
+            submitLabel?: string | null;
+            formAction?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactCentered';
+          }
+        | {
+            contactHeading?: string | null;
+            contactDescription?: string | null;
+            contactCards?:
+              | {
+                  title: string;
+                  email: string;
+                  phone: string;
+                  id?: string | null;
+                }[]
+              | null;
+            locationsHeading?: string | null;
+            locationsDescription?: string | null;
+            locationCards?:
+              | {
+                  city: string;
+                  addressLine1: string;
+                  addressLine2: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactSideBySideGrid';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            items?:
+              | {
+                  iconSvg: string;
+                  title: string;
+                  description: string;
+                  linkLabel: string;
+                  linkHref: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactSmCentered';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            offices?:
+              | {
+                  city: string;
+                  addressLine1: string;
+                  addressLine2: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactSmFourCol';
+          }
+        | {
+            image?: (number | null) | Media;
+            heading?: string | null;
+            description?: string | null;
+            submitLabel?: string | null;
+            formAction?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactSplitImg';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            address?: string | null;
+            phone?: string | null;
+            email?: string | null;
+            submitLabel?: string | null;
+            formAction?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactSplitPattern';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            submitLabel?: string | null;
+            privacyPolicyHref?: string | null;
+            formAction?: string | null;
+            logoLight?: (number | null) | Media;
+            logoDark?: (number | null) | Media;
+            testimonialQuote?: string | null;
+            testimonialAuthorName?: string | null;
+            testimonialAuthorRole?: string | null;
+            testimonialAuthorImage?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactWithTestimonial';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            intro?: string | null;
+            bodyParagraph1?: string | null;
+            checklistItems?:
+              | {
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            bodyParagraph2?: string | null;
+            subheading1?: string | null;
+            subheading1Body?: string | null;
+            quoteText?: string | null;
+            quoteAuthorName?: string | null;
+            quoteAuthorRole?: string | null;
+            quoteAuthorImage?: (number | null) | Media;
+            bodyParagraph3?: string | null;
+            mainImage?: (number | null) | Media;
+            mainImageAlt?: string | null;
+            mainImageCaption?: string | null;
+            subheading2?: string | null;
+            subheading2Body?: string | null;
+            bodyParagraph4?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentCentered';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            intro?: string | null;
+            missionHeading?: string | null;
+            missionParagraph1?: string | null;
+            missionParagraph2?: string | null;
+            image1?: (number | null) | Media;
+            image2?: (number | null) | Media;
+            image3?: (number | null) | Media;
+            image4?: (number | null) | Media;
+            statsEyebrow?: string | null;
+            stats?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentImgTitles';
+          }
+        | {
+            image?: (number | null) | Media;
+            eyebrow?: string | null;
+            heading?: string | null;
+            intro?: string | null;
+            bodyParagraph1?: string | null;
+            featureItems?:
+              | {
+                  iconSvg: string;
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            bodyParagraph2?: string | null;
+            subheading?: string | null;
+            subheadingBody?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentSplitImg';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            intro?: string | null;
+            screenshot?: (number | null) | Media;
+            bodyParagraph1?: string | null;
+            featureItems?:
+              | {
+                  iconSvg: string;
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            bodyParagraph2?: string | null;
+            subheading?: string | null;
+            subheadingBody?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentStickyScreenshot';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            intro?: string | null;
+            quoteText?: string | null;
+            quoteAuthorImage?: (number | null) | Media;
+            quoteAuthorName?: string | null;
+            quoteAuthorHandle?: string | null;
+            bodyParagraph1?: string | null;
+            featureItems?:
+              | {
+                  iconSvg: string;
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            bodyParagraph2?: string | null;
+            subheading?: string | null;
+            subheadingBody?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentTestimonial';
+          }
+        | {
+            testimonialImage?: (number | null) | Media;
+            testimonialLogo?: (number | null) | Media;
+            testimonialQuote?: string | null;
+            testimonialAuthorName?: string | null;
+            testimonialAuthorRole?: string | null;
+            eyebrow?: string | null;
+            heading?: string | null;
+            bodyParagraph1?: string | null;
+            bodyParagraph2?: string | null;
+            bodyParagraph3?: string | null;
+            stats?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
+            cta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentTestimonialStats';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            col1Paragraph1?: string | null;
+            col1Paragraph2?: string | null;
+            col2Paragraph1?: string | null;
+            col2Paragraph2?: string | null;
+            cta: {
+              label: string;
+              href: string;
+            };
+            screenshot?: (number | null) | Media;
+            screenshotDark?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contentTwoColScreenshot';
+          }
+        | {
             heading?: string | null;
             description?: string | null;
             primaryCta: {
@@ -216,62 +724,583 @@ export interface Page {
             };
             id?: string | null;
             blockName?: string | null;
-            blockType: 'heroSimpleCentered';
+            blockType: 'ctaCenteredOnDarkPanel';
           }
         | {
-            companyName?: string | null;
-            logoLight?: (number | null) | Media;
-            logoDark?: (number | null) | Media;
-            badge?: {
-              text?: string | null;
-              link?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            primaryCta: {
+              label: string;
+              href: string;
             };
-            heading?: string | null;
-            description?: string | null;
-            primaryCtaLabel?: string | null;
-            primaryCtaHref?: string | null;
-            secondaryCtaLabel?: string | null;
-            secondaryCtaHref?: string | null;
-            heroImage?: (number | null) | Media;
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            screenshot?: (number | null) | Media;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'heroSplitWithImage';
+            blockType: 'ctaDarkPanelWithAppScreenshot';
           }
         | {
             heading?: string | null;
             description?: string | null;
-            primaryCtaLabel?: string | null;
-            primaryCtaHref?: string | null;
-            secondaryCtaLabel?: string | null;
-            secondaryCtaHref?: string | null;
-            heroImage?: (number | null) | Media;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
             id?: string | null;
             blockName?: string | null;
-            blockType: 'heroSplitWithImageAngled';
+            blockType: 'ctaSimpleCentered';
           }
         | {
-            title?: string | null;
-            subtitle?: string | null;
-            buttonLabel?: string | null;
-            buttonHref?: string | null;
-            subActionLabel?: string | null;
-            subActionHref?: string | null;
-            images?:
+            heading?: string | null;
+            description?: string | null;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ctaSimpleCenteredOnBrand';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ctaSimpleCenteredWithGradient';
+          }
+        | {
+            headingLine1?: string | null;
+            headingLine2?: string | null;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ctaSimpleJustified';
+          }
+        | {
+            headingLine1?: string | null;
+            headingLine2?: string | null;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ctaSimpleJustifiedOnSubtleBrand';
+          }
+        | {
+            heading?: string | null;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ctaSimpleStacked';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            ctaLabel?: string | null;
+            ctaHref?: string | null;
+            image?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ctaSplitWithImage';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            benefits?:
               | {
-                  image?: (number | null) | Media;
+                  iconSvg: string;
+                  label: string;
+                  id?: string | null;
+                }[]
+              | null;
+            ctaLabel?: string | null;
+            ctaHref?: string | null;
+            image?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ctaTwoColumnsWithPhoto';
+          }
+        | {
+            heading?: string | null;
+            descriptionPrimary?: string | null;
+            descriptionSecondary?: string | null;
+            ctaLabel?: string | null;
+            ctaHref?: string | null;
+            imageLarge?: (number | null) | Media;
+            imageTopLeft?: (number | null) | Media;
+            imageMiddle?: (number | null) | Media;
+            imageBottomRight?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ctaWithImageTiles';
+          }
+        | {
+            heading?: string | null;
+            faqs?:
+              | {
+                  question: string;
+                  answer: string;
+                  defaultOpen?: boolean | null;
                   id?: string | null;
                 }[]
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'heroWithOffsetImg';
+            blockType: 'faqCenteredAccordion';
           }
         | {
-            logo?: {
-              image?: (number | null) | Media;
-              darkImage?: (number | null) | Media;
-              companyName?: string | null;
+            heading?: string | null;
+            supportText?: string | null;
+            supportLinkLabel?: string | null;
+            supportLinkHref?: string | null;
+            faqs?:
+              | {
+                  question: string;
+                  answer: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faqOffsetWithSupportingText';
+          }
+        | {
+            heading?: string | null;
+            faqs?:
+              | {
+                  question: string;
+                  answer: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faqSideBySide';
+          }
+        | {
+            heading?: string | null;
+            supportText?: string | null;
+            supportLinkLabel?: string | null;
+            supportLinkHref?: string | null;
+            faqs?:
+              | {
+                  question: string;
+                  answer: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faqThreeColumns';
+          }
+        | {
+            heading?: string | null;
+            supportText?: string | null;
+            supportLinkLabel?: string | null;
+            supportLinkHref?: string | null;
+            faqs?:
+              | {
+                  question: string;
+                  answer: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faqThreeColCtrIntro';
+          }
+        | {
+            heading?: string | null;
+            supportText?: string | null;
+            supportLinkLabel?: string | null;
+            supportLinkHref?: string | null;
+            faqs?:
+              | {
+                  question: string;
+                  answer: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faqTwoColumns';
+          }
+        | {
+            heading?: string | null;
+            supportText?: string | null;
+            supportLinkLabel?: string | null;
+            supportLinkHref?: string | null;
+            faqs?:
+              | {
+                  question: string;
+                  answer: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faqTwoColCtrIntro';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            features?:
+              | {
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featSimple';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            features?:
+              | {
+                  title: string;
+                  description: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featSimple3x2Grid';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            features?:
+              | {
+                  title: string;
+                  description: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featCentered2x2Grid';
+          }
+        | {
+            heading?: string | null;
+            features?:
+              | {
+                  title: string;
+                  description: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featOffset2x2Grid';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            features?:
+              | {
+                  title: string;
+                  description: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featOffsetWithFeatureList';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            features?:
+              | {
+                  title: string;
+                  description: string;
+                  iconSvg: string;
+                  linkLabel?: string | null;
+                  linkHref?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featSimpleThreeColSmIcons';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            features?:
+              | {
+                  title: string;
+                  description: string;
+                  iconSvg: string;
+                  linkLabel?: string | null;
+                  linkHref?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featSimpleThreeColLgIcons';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            features?:
+              | {
+                  title: string;
+                  description: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            screenshot?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featContainedInPanel';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            features?:
+              | {
+                  title: string;
+                  description: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featWithCodeExamplePanel';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            features?:
+              | {
+                  title: string;
+                  description: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            screenshot?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featWithProductScreenshot';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            features?:
+              | {
+                  title: string;
+                  description: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            screenshot?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featWithProductScreenshotOnLeft';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            features?:
+              | {
+                  title: string;
+                  description: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            screenshot?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featWithProductScreenshotPanel';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            features?:
+              | {
+                  title: string;
+                  description: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            screenshot?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featWithLargeScreenshot';
+          }
+        | {
+            heading?: string | null;
+            screenshot?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featWithLargeBorderedScreenshot';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            ctaLabel?: string | null;
+            ctaHref?: string | null;
+            testimonial?: {
+              quote?: string | null;
+              authorName?: string | null;
+              authorTitle?: string | null;
+              authorAvatar?: (number | null) | Media;
             };
+            screenshot?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featWithTestimonial';
+          }
+        | {
+            logo?: (number | null) | Media;
+            navLinks?:
+              | {
+                  label: string;
+                  href: string;
+                  id?: string | null;
+                }[]
+              | null;
+            announcement?: {
+              text?: string | null;
+              href?: string | null;
+            };
+            heading?: string | null;
+            description?: string | null;
+            image?: (number | null) | Media;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroAngledImgRight';
+          }
+        | {
+            logo?: (number | null) | Media;
+            navLinks?:
+              | {
+                  label: string;
+                  href: string;
+                  id?: string | null;
+                }[]
+              | null;
+            login?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            heading?: string | null;
+            description?: string | null;
+            screenshot?: (number | null) | Media;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroAppScreenshot';
+          }
+        | {
+            logo?: (number | null) | Media;
+            navLinks?:
+              | {
+                  label: string;
+                  href: string;
+                  id?: string | null;
+                }[]
+              | null;
+            login?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            heading?: string | null;
+            description?: string | null;
+            screenshot?: (number | null) | Media;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroBorderedAppShot';
+          }
+        | {
+            logo?: (number | null) | Media;
             navLinks?:
               | {
                   label: string;
@@ -293,19 +1322,7 @@ export interface Page {
               label: string;
               href: string;
             };
-            galleryCol1Images?:
-              | {
-                  image: number | Media;
-                  id?: string | null;
-                }[]
-              | null;
-            galleryCol2Images?:
-              | {
-                  image: number | Media;
-                  id?: string | null;
-                }[]
-              | null;
-            galleryCol3Images?:
+            tileImages?:
               | {
                   image: number | Media;
                   id?: string | null;
@@ -313,45 +1330,455 @@ export interface Page {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'heroWithOffsetImgV2';
+            blockType: 'heroImgTiles';
           }
         | {
-            heading?: string | null;
-            description?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'headingSimpleLeft';
-          }
-        | {
-            lightBgImage?: (number | null) | Media;
-            darkBgImage?: (number | null) | Media;
-            title?: string | null;
-            description?: string | null;
-            links?:
+            logo?: (number | null) | Media;
+            navLinks?:
               | {
                   label: string;
                   href: string;
                   id?: string | null;
                 }[]
               | null;
-            stats?:
+            login?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            heading?: string | null;
+            description?: string | null;
+            image?: (number | null) | Media;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroOffsetImg';
+          }
+        | {
+            logo?: (number | null) | Media;
+            navLinks?:
               | {
                   label: string;
-                  value: string;
+                  href: string;
+                  id?: string | null;
+                }[]
+              | null;
+            login?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            badge?: {
+              highlight?: string | null;
+              text?: string | null;
+              href?: string | null;
+            };
+            heading?: string | null;
+            description?: string | null;
+            mobileScreenshot?: (number | null) | Media;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroPhoneMockup';
+          }
+        | {
+            logo?: (number | null) | Media;
+            navLinks?:
+              | {
+                  label: string;
+                  href: string;
+                  id?: string | null;
+                }[]
+              | null;
+            login?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            announcement?: {
+              text?: string | null;
+              href?: string | null;
+            };
+            heading?: string | null;
+            description?: string | null;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroSimpleCentered';
+          }
+        | {
+            logo?: (number | null) | Media;
+            navLinks?:
+              | {
+                  label: string;
+                  href: string;
+                  id?: string | null;
+                }[]
+              | null;
+            login?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            backgroundImage?: (number | null) | Media;
+            announcement?: {
+              text?: string | null;
+              href?: string | null;
+            };
+            heading?: string | null;
+            description?: string | null;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroSmCtrBgImg';
+          }
+        | {
+            logo?: (number | null) | Media;
+            badge?: {
+              label?: string | null;
+              text?: string | null;
+              href?: string | null;
+            };
+            heading?: string | null;
+            description?: string | null;
+            screenshot?: (number | null) | Media;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroSplitBorderedShot';
+          }
+        | {
+            logo?: (number | null) | Media;
+            badge?: {
+              label?: string | null;
+              text?: string | null;
+              href?: string | null;
+            };
+            heading?: string | null;
+            description?: string | null;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            codeTab1?: string | null;
+            codeTab2?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroSplitCodeExample';
+          }
+        | {
+            logo?: (number | null) | Media;
+            announcement?: {
+              text?: string | null;
+              href?: string | null;
+            };
+            heading?: string | null;
+            description?: string | null;
+            image?: (number | null) | Media;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroSplitImg';
+          }
+        | {
+            logo?: (number | null) | Media;
+            badge?: {
+              label?: string | null;
+              text?: string | null;
+              href?: string | null;
+            };
+            heading?: string | null;
+            description?: string | null;
+            screenshot?: (number | null) | Media;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroSplitScreenshot';
+          }
+        | {
+            ctaEyebrow?: string | null;
+            ctaHeading?: string | null;
+            ctaDescription?: string | null;
+            ctaButtonLabel?: string | null;
+            ctaButtonHref?: string | null;
+            logoSrc?: (number | null) | Media;
+            logoDarkSrc?: (number | null) | Media;
+            logoAlt?: string | null;
+            columns?:
+              | {
+                  heading: string;
+                  links?:
+                    | {
+                        label: string;
+                        href: string;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            socialLinks?:
+              | {
+                  label: string;
+                  href: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            copyrightText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'footer4ColCta';
+          }
+        | {
+            logoSrc?: (number | null) | Media;
+            logoDarkSrc?: (number | null) | Media;
+            logoAlt?: string | null;
+            missionText?: string | null;
+            socialLinks?:
+              | {
+                  label: string;
+                  href: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            columns?:
+              | {
+                  heading: string;
+                  links?:
+                    | {
+                        label: string;
+                        href: string;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            copyrightText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'footer4ColMission';
+          }
+        | {
+            columns?:
+              | {
+                  heading: string;
+                  links?:
+                    | {
+                        label: string;
+                        href: string;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            newsletterHeading?: string | null;
+            newsletterDescription?: string | null;
+            newsletterButtonLabel?: string | null;
+            socialLinks?:
+              | {
+                  label: string;
+                  href: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            copyrightText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'footer4ColNewsletter';
+          }
+        | {
+            logoSrc?: (number | null) | Media;
+            logoDarkSrc?: (number | null) | Media;
+            logoAlt?: string | null;
+            columns?:
+              | {
+                  heading: string;
+                  links?:
+                    | {
+                        label: string;
+                        href: string;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            newsletterHeading?: string | null;
+            newsletterDescription?: string | null;
+            newsletterButtonLabel?: string | null;
+            socialLinks?:
+              | {
+                  label: string;
+                  href: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            copyrightText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'footer4ColNewsletterBelow';
+          }
+        | {
+            logoSrc?: (number | null) | Media;
+            logoDarkSrc?: (number | null) | Media;
+            logoAlt?: string | null;
+            columns?:
+              | {
+                  heading: string;
+                  links?:
+                    | {
+                        label: string;
+                        href: string;
+                        id?: string | null;
+                      }[]
+                    | null;
                   id?: string | null;
                 }[]
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'headingWithStats';
+            blockType: 'footer4ColSimple';
           }
         | {
-            lightImage?: (number | null) | Media;
-            lightImageAlt?: string | null;
-            darkImage?: (number | null) | Media;
-            darkImageAlt?: string | null;
+            navLinks?:
+              | {
+                  label: string;
+                  href: string;
+                  id?: string | null;
+                }[]
+              | null;
+            socialLinks?:
+              | {
+                  label: string;
+                  href: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            copyrightText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'footerSmCentered';
+          }
+        | {
+            socialLinks?:
+              | {
+                  label: string;
+                  href: string;
+                  iconSvg: string;
+                  id?: string | null;
+                }[]
+              | null;
+            copyrightText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'footerSmSocial';
+          }
+        | {
             heading?: string | null;
             description?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'headerCentered';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            backgroundImage?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'headerCtrBgImg';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'headerCtrEyebrow';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'headerSimple';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            backgroundImage?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'headerSmBgImg';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'headerSmEyebrow';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            backgroundImage?: (number | null) | Media;
             cards?:
               | {
                   iconSvg?: string | null;
@@ -362,7 +1789,192 @@ export interface Page {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'headingWithCards';
+            blockType: 'headerWithCards';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            backgroundImage?: (number | null) | Media;
+            links?:
+              | {
+                  label: string;
+                  href: string;
+                  id?: string | null;
+                }[]
+              | null;
+            stats?:
+              | {
+                  value: string;
+                  label: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'headerWithStats';
+          }
+        | {
+            logos?:
+              | {
+                  lightSrc?: (number | null) | Media;
+                  darkSrc?: (number | null) | Media;
+                  alt: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'logocloudGrid';
+          }
+        | {
+            logos?:
+              | {
+                  lightSrc?: (number | null) | Media;
+                  darkSrc?: (number | null) | Media;
+                  alt: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'logocloudSimple';
+          }
+        | {
+            logos?:
+              | {
+                  lightSrc?: (number | null) | Media;
+                  darkSrc?: (number | null) | Media;
+                  alt: string;
+                  id?: string | null;
+                }[]
+              | null;
+            ctaText?: string | null;
+            ctaLinkLabel?: string | null;
+            ctaLinkHref?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'logocloudSmCta';
+          }
+        | {
+            heading?: string | null;
+            logos?:
+              | {
+                  lightSrc?: (number | null) | Media;
+                  darkSrc?: (number | null) | Media;
+                  alt: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'logocloudSmHeading';
+          }
+        | {
+            heading?: string | null;
+            logos?:
+              | {
+                  lightSrc?: (number | null) | Media;
+                  darkSrc?: (number | null) | Media;
+                  alt: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'logocloudSmLeftAligned';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            primaryCta: {
+              label: string;
+              href: string;
+            };
+            secondaryCta: {
+              label: string;
+              href: string;
+            };
+            logos?:
+              | {
+                  lightSrc?: (number | null) | Media;
+                  darkSrc?: (number | null) | Media;
+                  alt: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'logocloudSplitLogosRight';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            emailPlaceholder?: string | null;
+            submitLabel?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'newsletterCenteredCard';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            emailPlaceholder?: string | null;
+            subscribeLabel?: string | null;
+            details?:
+              | {
+                  iconSvg: string;
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'newsletterSbsDetails';
+          }
+        | {
+            heading?: string | null;
+            emailPlaceholder?: string | null;
+            submitLabel?: string | null;
+            privacyText?: string | null;
+            privacyLabel?: string | null;
+            privacyHref?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'newsletterSbsOnCard';
+          }
+        | {
+            heading?: string | null;
+            emailPlaceholder?: string | null;
+            subscribeLabel?: string | null;
+            privacyText?: string | null;
+            privacyLabel?: string | null;
+            privacyHref?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'newsletterSmSbs';
+          }
+        | {
+            heading?: string | null;
+            emailPlaceholder?: string | null;
+            subscribeLabel?: string | null;
+            privacyText?: string | null;
+            privacyLabel?: string | null;
+            privacyHref?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'newsletterSmSbsOnBrand';
+          }
+        | {
+            heading?: string | null;
+            emailPlaceholder?: string | null;
+            subscribeLabel?: string | null;
+            privacyText?: string | null;
+            privacyLabel?: string | null;
+            privacyHref?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'newsletterSmStacked';
           }
         | {
             stats?:
@@ -391,27 +2003,7 @@ export interface Page {
             blockType: 'statsSimpleGrid';
           }
         | {
-            lightImage?: (number | null) | Media;
-            lightImageAlt?: string | null;
-            darkImage?: (number | null) | Media;
-            darkImageAlt?: string | null;
-            eyebrow?: string | null;
-            heading?: string | null;
-            description?: string | null;
-            stats?:
-              | {
-                  label: string;
-                  value: string;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'statsWithBg';
-          }
-        | {
             image?: (number | null) | Media;
-            imageAlt?: string | null;
             eyebrow?: string | null;
             heading?: string | null;
             description?: string | null;
@@ -424,22 +2016,43 @@ export interface Page {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'statsSplitWithImg';
+            blockType: 'statsSplitWithImage';
           }
         | {
-            eyebrow?: string | null;
             heading?: string | null;
-            descriptionColumns?:
+            description?: string | null;
+            stats?:
               | {
-                  paragraphs?:
-                    | {
-                        text: string;
-                        id?: string | null;
-                      }[]
-                    | null;
+                  value: string;
+                  label: string;
+                  description: string;
                   id?: string | null;
                 }[]
               | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statsStepped';
+          }
+        | {
+            items?:
+              | {
+                  datetime: string;
+                  dateLabel: string;
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statsTimeline';
+          }
+        | {
+            lightImage?: (number | null) | Media;
+            darkImage?: (number | null) | Media;
+            eyebrow?: string | null;
+            heading?: string | null;
+            description?: string | null;
             stats?:
               | {
                   label: string;
@@ -449,12 +2062,12 @@ export interface Page {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'statsTwoColDesc';
+            blockType: 'statsWithBgImage';
           }
         | {
             heading?: string | null;
-            leadText?: string | null;
-            bodyText?: string | null;
+            bodyPrimary?: string | null;
+            bodySecondary?: string | null;
             stats?:
               | {
                   label: string;
@@ -467,93 +2080,37 @@ export interface Page {
             blockType: 'statsWithDesc';
           }
         | {
+            eyebrow?: string | null;
             heading?: string | null;
-            description?: string | null;
-            primaryCtaLabel?: string | null;
-            primaryCtaHref?: string | null;
-            secondaryCtaLabel?: string | null;
-            secondaryCtaHref?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'ctaCenteredPanel';
-          }
-        | {
-            heading?: string | null;
-            description?: string | null;
-            primaryCtaLabel?: string | null;
-            primaryCtaHref?: string | null;
-            secondaryCtaLabel?: string | null;
-            secondaryCtaHref?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'ctaCenteredPlain';
-          }
-        | {
-            heading?: string | null;
-            subheading?: string | null;
-            description?: string | null;
-            ctaLabel?: string | null;
-            ctaHref?: string | null;
-            images?:
+            colOneParaOne?: string | null;
+            colOneParaTwo?: string | null;
+            colTwoParaOne?: string | null;
+            colTwoParaTwo?: string | null;
+            stats?:
               | {
-                  image?: (number | null) | Media;
-                  alt?: string | null;
+                  label: string;
+                  value: string;
                   id?: string | null;
                 }[]
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'ctaImageTiles';
+            blockType: 'statsWithTwoColDesc';
           }
         | {
             heading?: string | null;
             description?: string | null;
-            primaryCtaLabel?: string | null;
-            primaryCtaHref?: string | null;
-            secondaryCtaLabel?: string | null;
-            secondaryCtaHref?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'ctaSimpleCenteredGradient';
-          }
-        | {
-            badge?: string | null;
-            heading?: string | null;
-            description?: string | null;
-            ctaLabel?: string | null;
-            ctaHref?: string | null;
-            image?: (number | null) | Media;
-            imageAlt?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'ctaSplitWithImage';
-          }
-        | {
-            heading?: string | null;
-            description?: string | null;
-            items?:
-              | {
-                  title: string;
-                  description: string;
-                  linkLabel: string;
-                  linkHref: string;
-                  iconSvg?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'contactSimpleCentered';
-          }
-        | {
-            title?: string | null;
-            subtitle?: string | null;
-            offices?:
+            members?:
               | {
                   name: string;
-                  lines?:
+                  role: string;
+                  bio?: string | null;
+                  image?: (number | null) | Media;
+                  socialLinks?:
                     | {
-                        line: string;
+                        label: string;
+                        href: string;
+                        iconSvg?: string | null;
                         id?: string | null;
                       }[]
                     | null;
@@ -562,98 +2119,272 @@ export interface Page {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'contactSimpleFourCol';
+            blockType: 'teamFullWidthVertImgs';
           }
         | {
             heading?: string | null;
             description?: string | null;
-            addressLabel?: string | null;
-            addressHtml?: string | null;
-            phoneLabel?: string | null;
-            phoneText?: string | null;
-            phoneHref?: string | null;
-            emailLabel?: string | null;
-            emailText?: string | null;
-            emailHref?: string | null;
-            formAction?: string | null;
-            submitLabel?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'contactSplitWithForm';
-          }
-        | {
-            heading?: string | null;
-            description?: string | null;
-            emailPlaceholder?: string | null;
-            subscribeLabel?: string | null;
-            features?:
+            members?:
               | {
-                  iconSvg?: string | null;
-                  title: string;
-                  description: string;
+                  name: string;
+                  role: string;
+                  image?: (number | null) | Media;
+                  socialLinks?:
+                    | {
+                        label: string;
+                        href: string;
+                        iconSvg?: string | null;
+                        id?: string | null;
+                      }[]
+                    | null;
                   id?: string | null;
                 }[]
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'newsletterWithDetails';
+            blockType: 'teamGridLargeRound';
           }
         | {
-            heading?: string | null;
-            emailPlaceholder?: string | null;
-            subscribeLabel?: string | null;
-            privacyText?: string | null;
-            privacyLinkLabel?: string | null;
-            privacyLinkHref?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'newsletterSimple';
-          }
-        | {
-            heading?: string | null;
-            emailPlaceholder?: string | null;
-            subscribeLabel?: string | null;
-            privacyText?: string | null;
-            privacyLinkLabel?: string | null;
-            privacyLinkHref?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'newsletterSimpleStacked';
-          }
-        | {
-            errorCode?: string | null;
             heading?: string | null;
             description?: string | null;
-            primaryCtaLabel?: string | null;
-            primaryCtaHref?: string | null;
-            secondaryCtaLabel?: string | null;
-            secondaryCtaHref?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'notFoundSimple';
-          }
-        | {
-            companyName?: string | null;
-            logoLight?: (number | null) | Media;
-            logoDark?: (number | null) | Media;
-            logoHref?: string | null;
-            errorCode?: string | null;
-            heading?: string | null;
-            description?: string | null;
-            backLabel?: string | null;
-            backHref?: string | null;
-            footerLinks?:
+            members?:
               | {
-                  label: string;
-                  href: string;
+                  name: string;
+                  role: string;
+                  image?: (number | null) | Media;
                   id?: string | null;
                 }[]
               | null;
-            backgroundImageLight?: (number | null) | Media;
-            backgroundImageDark?: (number | null) | Media;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'notFoundImageSplit';
+            blockType: 'teamGridRoundImgs';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            members?:
+              | {
+                  name: string;
+                  role: string;
+                  bio?: string | null;
+                  image?: (number | null) | Media;
+                  socialLinks?:
+                    | {
+                        label: string;
+                        href: string;
+                        iconSvg?: string | null;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'teamImgShortPara';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            members?:
+              | {
+                  name: string;
+                  role: string;
+                  image?: (number | null) | Media;
+                  socialLinks?:
+                    | {
+                        label: string;
+                        href: string;
+                        iconSvg?: string | null;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'teamLargeGridCards';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            members?:
+              | {
+                  name: string;
+                  role: string;
+                  image?: (number | null) | Media;
+                  socialLinks?:
+                    | {
+                        label: string;
+                        href: string;
+                        iconSvg?: string | null;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'teamLargeImgs';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            members?:
+              | {
+                  name: string;
+                  role: string;
+                  location?: string | null;
+                  image?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'teamMediumImgs';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            members?:
+              | {
+                  name: string;
+                  role: string;
+                  image?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'teamSmallImgs';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            members?:
+              | {
+                  name: string;
+                  role: string;
+                  bio?: string | null;
+                  image?: (number | null) | Media;
+                  socialLinks?:
+                    | {
+                        label: string;
+                        href: string;
+                        iconSvg?: string | null;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'teamVertImgs';
+          }
+        | {
+            backgroundImage?: (number | null) | Media;
+            logo?: (number | null) | Media;
+            quote?: string | null;
+            authorName?: string | null;
+            authorTitle?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsBgImage';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            featuredTestimonial: {
+              quote: string;
+              authorImage?: (number | null) | Media;
+              authorName: string;
+              authorHandle: string;
+              logo?: (number | null) | Media;
+            };
+            testimonials?:
+              | {
+                  quote: string;
+                  authorImage?: (number | null) | Media;
+                  authorName: string;
+                  authorHandle: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsGrid';
+          }
+        | {
+            quote?: string | null;
+            authorImage?: (number | null) | Media;
+            authorName?: string | null;
+            authorTitle?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsLargeAvatar';
+          }
+        | {
+            personImage?: (number | null) | Media;
+            quote?: string | null;
+            authorName?: string | null;
+            authorTitle?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsOverlapImg';
+          }
+        | {
+            testimonials?:
+              | {
+                  logo?: (number | null) | Media;
+                  quote: string;
+                  authorImage?: (number | null) | Media;
+                  authorName: string;
+                  authorTitle: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsSideBySide';
+          }
+        | {
+            logo?: (number | null) | Media;
+            quote?: string | null;
+            authorImage?: (number | null) | Media;
+            authorName?: string | null;
+            authorTitle?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsSimpleCentered';
+          }
+        | {
+            starCount?: number | null;
+            quote?: string | null;
+            authorImage?: (number | null) | Media;
+            authorName?: string | null;
+            authorTitle?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsStarRating';
+          }
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            testimonials?:
+              | {
+                  quote: string;
+                  authorImage?: (number | null) | Media;
+                  authorName: string;
+                  authorHandle: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialsSubtleGrid';
           }
       )[]
     | null;
@@ -824,15 +2555,569 @@ export interface PagesSelect<T extends boolean = true> {
   contentBlocks?:
     | T
     | {
-        heroSimpleCentered?:
+        bentoThreeColGrid?:
           | T
           | {
-              announcement?:
+              sectionEyebrow?: T;
+              sectionHeading?: T;
+              leftCard?:
                 | T
                 | {
-                    text?: T;
+                    title?: T;
+                    description?: T;
+                    image?: T;
+                  };
+              topMidCard?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    lightImage?: T;
+                    darkImage?: T;
+                  };
+              bottomMidCard?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    lightImage?: T;
+                    darkImage?: T;
+                  };
+              rightCard?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    codeTab1?: T;
+                    codeTab2?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        bentoTwoRowGrid?:
+          | T
+          | {
+              sectionEyebrow?: T;
+              sectionHeading?: T;
+              cards?:
+                | T
+                | {
+                    eyebrow?: T;
+                    title?: T;
+                    description?: T;
+                    lightImage?: T;
+                    darkImage?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        bentoTwoRowThreeColGrid?:
+          | T
+          | {
+              sectionEyebrow?: T;
+              sectionHeading?: T;
+              topCards?:
+                | T
+                | {
+                    eyebrow?: T;
+                    title?: T;
+                    description?: T;
+                    lightImage?: T;
+                    darkImage?: T;
+                    id?: T;
+                  };
+              bottomCards?:
+                | T
+                | {
+                    eyebrow?: T;
+                    title?: T;
+                    description?: T;
+                    lightImage?: T;
+                    darkImage?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        blogFeaturedPost?:
+          | T
+          | {
+              featuredPost?:
+                | T
+                | {
+                    date?: T;
+                    dateTime?: T;
+                    title?: T;
+                    excerpt?: T;
+                    readMoreHref?: T;
+                    authorName?: T;
+                    authorHref?: T;
+                    authorImage?: T;
+                  };
+              posts?:
+                | T
+                | {
+                    date?: T;
+                    dateTime?: T;
+                    title?: T;
+                    titleHref?: T;
+                    excerpt?: T;
+                    authorName?: T;
+                    authorHref?: T;
+                    authorImage?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        blogPhotoList?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              image?: T;
+              openings?:
+                | T
+                | {
+                    title?: T;
+                    titleHref?: T;
+                    description?: T;
+                    salary?: T;
+                    location?: T;
+                    id?: T;
+                  };
+              viewAllHref?: T;
+              viewAllLabel?: T;
+              id?: T;
+              blockName?: T;
+            };
+        blogSingleCol?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              posts?:
+                | T
+                | {
+                    date?: T;
+                    dateTime?: T;
+                    categoryLabel?: T;
+                    categoryHref?: T;
+                    title?: T;
+                    titleHref?: T;
+                    excerpt?: T;
+                    author?:
+                      | T
+                      | {
+                          name?: T;
+                          href?: T;
+                          image?: T;
+                          role?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        blogSingleColImgs?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              posts?:
+                | T
+                | {
+                    coverImage?: T;
+                    date?: T;
+                    dateTime?: T;
+                    categoryLabel?: T;
+                    categoryHref?: T;
+                    title?: T;
+                    titleHref?: T;
+                    excerpt?: T;
+                    author?:
+                      | T
+                      | {
+                          name?: T;
+                          href?: T;
+                          image?: T;
+                          role?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        blogThreeCol?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              posts?:
+                | T
+                | {
+                    date?: T;
+                    dateTime?: T;
+                    categoryLabel?: T;
+                    categoryHref?: T;
+                    title?: T;
+                    titleHref?: T;
+                    excerpt?: T;
+                    author?:
+                      | T
+                      | {
+                          name?: T;
+                          href?: T;
+                          image?: T;
+                          role?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        blogThreeColBgImgs?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              posts?:
+                | T
+                | {
+                    backgroundImage?: T;
+                    date?: T;
+                    dateTime?: T;
+                    title?: T;
+                    titleHref?: T;
+                    author?:
+                      | T
+                      | {
+                          name?: T;
+                          image?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        blogThreeColImgs?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              posts?:
+                | T
+                | {
+                    coverImage?: T;
+                    date?: T;
+                    dateTime?: T;
+                    categoryLabel?: T;
+                    categoryHref?: T;
+                    title?: T;
+                    titleHref?: T;
+                    excerpt?: T;
+                    author?:
+                      | T
+                      | {
+                          name?: T;
+                          href?: T;
+                          image?: T;
+                          role?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactCentered?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              privacyPolicyHref?: T;
+              submitLabel?: T;
+              formAction?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contactSideBySideGrid?:
+          | T
+          | {
+              contactHeading?: T;
+              contactDescription?: T;
+              contactCards?:
+                | T
+                | {
+                    title?: T;
+                    email?: T;
+                    phone?: T;
+                    id?: T;
+                  };
+              locationsHeading?: T;
+              locationsDescription?: T;
+              locationCards?:
+                | T
+                | {
+                    city?: T;
+                    addressLine1?: T;
+                    addressLine2?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactSmCentered?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    iconSvg?: T;
+                    title?: T;
+                    description?: T;
+                    linkLabel?: T;
+                    linkHref?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactSmFourCol?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              offices?:
+                | T
+                | {
+                    city?: T;
+                    addressLine1?: T;
+                    addressLine2?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactSplitImg?:
+          | T
+          | {
+              image?: T;
+              heading?: T;
+              description?: T;
+              submitLabel?: T;
+              formAction?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contactSplitPattern?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              address?: T;
+              phone?: T;
+              email?: T;
+              submitLabel?: T;
+              formAction?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contactWithTestimonial?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              submitLabel?: T;
+              privacyPolicyHref?: T;
+              formAction?: T;
+              logoLight?: T;
+              logoDark?: T;
+              testimonialQuote?: T;
+              testimonialAuthorName?: T;
+              testimonialAuthorRole?: T;
+              testimonialAuthorImage?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contentCentered?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              intro?: T;
+              bodyParagraph1?: T;
+              checklistItems?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              bodyParagraph2?: T;
+              subheading1?: T;
+              subheading1Body?: T;
+              quoteText?: T;
+              quoteAuthorName?: T;
+              quoteAuthorRole?: T;
+              quoteAuthorImage?: T;
+              bodyParagraph3?: T;
+              mainImage?: T;
+              mainImageAlt?: T;
+              mainImageCaption?: T;
+              subheading2?: T;
+              subheading2Body?: T;
+              bodyParagraph4?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contentImgTitles?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              intro?: T;
+              missionHeading?: T;
+              missionParagraph1?: T;
+              missionParagraph2?: T;
+              image1?: T;
+              image2?: T;
+              image3?: T;
+              image4?: T;
+              statsEyebrow?: T;
+              stats?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contentSplitImg?:
+          | T
+          | {
+              image?: T;
+              eyebrow?: T;
+              heading?: T;
+              intro?: T;
+              bodyParagraph1?: T;
+              featureItems?:
+                | T
+                | {
+                    iconSvg?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              bodyParagraph2?: T;
+              subheading?: T;
+              subheadingBody?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contentStickyScreenshot?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              intro?: T;
+              screenshot?: T;
+              bodyParagraph1?: T;
+              featureItems?:
+                | T
+                | {
+                    iconSvg?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              bodyParagraph2?: T;
+              subheading?: T;
+              subheadingBody?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contentTestimonial?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              intro?: T;
+              quoteText?: T;
+              quoteAuthorImage?: T;
+              quoteAuthorName?: T;
+              quoteAuthorHandle?: T;
+              bodyParagraph1?: T;
+              featureItems?:
+                | T
+                | {
+                    iconSvg?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              bodyParagraph2?: T;
+              subheading?: T;
+              subheadingBody?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contentTestimonialStats?:
+          | T
+          | {
+              testimonialImage?: T;
+              testimonialLogo?: T;
+              testimonialQuote?: T;
+              testimonialAuthorName?: T;
+              testimonialAuthorRole?: T;
+              eyebrow?: T;
+              heading?: T;
+              bodyParagraph1?: T;
+              bodyParagraph2?: T;
+              bodyParagraph3?: T;
+              stats?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              cta?:
+                | T
+                | {
+                    label?: T;
                     href?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        contentTwoColScreenshot?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              col1Paragraph1?: T;
+              col1Paragraph2?: T;
+              col2Paragraph1?: T;
+              col2Paragraph2?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              screenshot?: T;
+              screenshotDark?: T;
+              id?: T;
+              blockName?: T;
+            };
+        ctaCenteredOnDarkPanel?:
+          | T
+          | {
               heading?: T;
               description?: T;
               primaryCta?:
@@ -850,69 +3135,666 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        heroSplitWithImage?:
+        ctaDarkPanelWithAppScreenshot?:
           | T
           | {
-              companyName?: T;
-              logoLight?: T;
-              logoDark?: T;
-              badge?:
+              heading?: T;
+              description?: T;
+              primaryCta?:
                 | T
                 | {
-                    text?: T;
-                    link?: T;
+                    label?: T;
+                    href?: T;
                   };
-              heading?: T;
-              description?: T;
-              primaryCtaLabel?: T;
-              primaryCtaHref?: T;
-              secondaryCtaLabel?: T;
-              secondaryCtaHref?: T;
-              heroImage?: T;
-              id?: T;
-              blockName?: T;
-            };
-        heroSplitWithImageAngled?:
-          | T
-          | {
-              heading?: T;
-              description?: T;
-              primaryCtaLabel?: T;
-              primaryCtaHref?: T;
-              secondaryCtaLabel?: T;
-              secondaryCtaHref?: T;
-              heroImage?: T;
-              id?: T;
-              blockName?: T;
-            };
-        heroWithOffsetImg?:
-          | T
-          | {
-              title?: T;
-              subtitle?: T;
-              buttonLabel?: T;
-              buttonHref?: T;
-              subActionLabel?: T;
-              subActionHref?: T;
-              images?:
+              secondaryCta?:
                 | T
                 | {
-                    image?: T;
+                    label?: T;
+                    href?: T;
+                  };
+              screenshot?: T;
+              id?: T;
+              blockName?: T;
+            };
+        ctaSimpleCentered?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaSimpleCenteredOnBrand?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaSimpleCenteredWithGradient?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaSimpleJustified?:
+          | T
+          | {
+              headingLine1?: T;
+              headingLine2?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaSimpleJustifiedOnSubtleBrand?:
+          | T
+          | {
+              headingLine1?: T;
+              headingLine2?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaSimpleStacked?:
+          | T
+          | {
+              heading?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaSplitWithImage?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        ctaTwoColumnsWithPhoto?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              benefits?:
+                | T
+                | {
+                    iconSvg?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              ctaLabel?: T;
+              ctaHref?: T;
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        ctaWithImageTiles?:
+          | T
+          | {
+              heading?: T;
+              descriptionPrimary?: T;
+              descriptionSecondary?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              imageLarge?: T;
+              imageTopLeft?: T;
+              imageMiddle?: T;
+              imageBottomRight?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faqCenteredAccordion?:
+          | T
+          | {
+              heading?: T;
+              faqs?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    defaultOpen?: T;
                     id?: T;
                   };
               id?: T;
               blockName?: T;
             };
-        heroWithOffsetImgV2?:
+        faqOffsetWithSupportingText?:
           | T
           | {
-              logo?:
+              heading?: T;
+              supportText?: T;
+              supportLinkLabel?: T;
+              supportLinkHref?: T;
+              faqs?:
                 | T
                 | {
-                    image?: T;
-                    darkImage?: T;
-                    companyName?: T;
+                    question?: T;
+                    answer?: T;
+                    id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        faqSideBySide?:
+          | T
+          | {
+              heading?: T;
+              faqs?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        faqThreeColumns?:
+          | T
+          | {
+              heading?: T;
+              supportText?: T;
+              supportLinkLabel?: T;
+              supportLinkHref?: T;
+              faqs?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        faqThreeColCtrIntro?:
+          | T
+          | {
+              heading?: T;
+              supportText?: T;
+              supportLinkLabel?: T;
+              supportLinkHref?: T;
+              faqs?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        faqTwoColumns?:
+          | T
+          | {
+              heading?: T;
+              supportText?: T;
+              supportLinkLabel?: T;
+              supportLinkHref?: T;
+              faqs?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        faqTwoColCtrIntro?:
+          | T
+          | {
+              heading?: T;
+              supportText?: T;
+              supportLinkLabel?: T;
+              supportLinkHref?: T;
+              faqs?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featSimple?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featSimple3x2Grid?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featCentered2x2Grid?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featOffset2x2Grid?:
+          | T
+          | {
+              heading?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featOffsetWithFeatureList?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featSimpleThreeColSmIcons?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    iconSvg?: T;
+                    linkLabel?: T;
+                    linkHref?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featSimpleThreeColLgIcons?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    iconSvg?: T;
+                    linkLabel?: T;
+                    linkHref?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featContainedInPanel?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              screenshot?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featWithCodeExamplePanel?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featWithProductScreenshot?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              screenshot?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featWithProductScreenshotOnLeft?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              screenshot?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featWithProductScreenshotPanel?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              screenshot?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featWithLargeScreenshot?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              screenshot?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featWithLargeBorderedScreenshot?:
+          | T
+          | {
+              heading?: T;
+              screenshot?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featWithTestimonial?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
+              ctaLabel?: T;
+              ctaHref?: T;
+              testimonial?:
+                | T
+                | {
+                    quote?: T;
+                    authorName?: T;
+                    authorTitle?: T;
+                    authorAvatar?: T;
+                  };
+              screenshot?: T;
+              id?: T;
+              blockName?: T;
+            };
+        heroAngledImgRight?:
+          | T
+          | {
+              logo?: T;
+              navLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    id?: T;
+                  };
+              announcement?:
+                | T
+                | {
+                    text?: T;
+                    href?: T;
+                  };
+              heading?: T;
+              description?: T;
+              image?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroAppScreenshot?:
+          | T
+          | {
+              logo?: T;
+              navLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    id?: T;
+                  };
+              login?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              heading?: T;
+              description?: T;
+              screenshot?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroBorderedAppShot?:
+          | T
+          | {
+              logo?: T;
+              navLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    id?: T;
+                  };
+              login?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              heading?: T;
+              description?: T;
+              screenshot?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroImgTiles?:
+          | T
+          | {
+              logo?: T;
               navLinks?:
                 | T
                 | {
@@ -940,19 +3822,7 @@ export interface PagesSelect<T extends boolean = true> {
                     label?: T;
                     href?: T;
                   };
-              galleryCol1Images?:
-                | T
-                | {
-                    image?: T;
-                    id?: T;
-                  };
-              galleryCol2Images?:
-                | T
-                | {
-                    image?: T;
-                    id?: T;
-                  };
-              galleryCol3Images?:
+              tileImages?:
                 | T
                 | {
                     image?: T;
@@ -961,7 +3831,473 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        headingSimpleLeft?:
+        heroOffsetImg?:
+          | T
+          | {
+              logo?: T;
+              navLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    id?: T;
+                  };
+              login?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              heading?: T;
+              description?: T;
+              image?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroPhoneMockup?:
+          | T
+          | {
+              logo?: T;
+              navLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    id?: T;
+                  };
+              login?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              badge?:
+                | T
+                | {
+                    highlight?: T;
+                    text?: T;
+                    href?: T;
+                  };
+              heading?: T;
+              description?: T;
+              mobileScreenshot?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroSimpleCentered?:
+          | T
+          | {
+              logo?: T;
+              navLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    id?: T;
+                  };
+              login?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              announcement?:
+                | T
+                | {
+                    text?: T;
+                    href?: T;
+                  };
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroSmCtrBgImg?:
+          | T
+          | {
+              logo?: T;
+              navLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    id?: T;
+                  };
+              login?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              backgroundImage?: T;
+              announcement?:
+                | T
+                | {
+                    text?: T;
+                    href?: T;
+                  };
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroSplitBorderedShot?:
+          | T
+          | {
+              logo?: T;
+              badge?:
+                | T
+                | {
+                    label?: T;
+                    text?: T;
+                    href?: T;
+                  };
+              heading?: T;
+              description?: T;
+              screenshot?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroSplitCodeExample?:
+          | T
+          | {
+              logo?: T;
+              badge?:
+                | T
+                | {
+                    label?: T;
+                    text?: T;
+                    href?: T;
+                  };
+              heading?: T;
+              description?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              codeTab1?: T;
+              codeTab2?: T;
+              id?: T;
+              blockName?: T;
+            };
+        heroSplitImg?:
+          | T
+          | {
+              logo?: T;
+              announcement?:
+                | T
+                | {
+                    text?: T;
+                    href?: T;
+                  };
+              heading?: T;
+              description?: T;
+              image?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroSplitScreenshot?:
+          | T
+          | {
+              logo?: T;
+              badge?:
+                | T
+                | {
+                    label?: T;
+                    text?: T;
+                    href?: T;
+                  };
+              heading?: T;
+              description?: T;
+              screenshot?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        footer4ColCta?:
+          | T
+          | {
+              ctaEyebrow?: T;
+              ctaHeading?: T;
+              ctaDescription?: T;
+              ctaButtonLabel?: T;
+              ctaButtonHref?: T;
+              logoSrc?: T;
+              logoDarkSrc?: T;
+              logoAlt?: T;
+              columns?:
+                | T
+                | {
+                    heading?: T;
+                    links?:
+                      | T
+                      | {
+                          label?: T;
+                          href?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              socialLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              copyrightText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        footer4ColMission?:
+          | T
+          | {
+              logoSrc?: T;
+              logoDarkSrc?: T;
+              logoAlt?: T;
+              missionText?: T;
+              socialLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              columns?:
+                | T
+                | {
+                    heading?: T;
+                    links?:
+                      | T
+                      | {
+                          label?: T;
+                          href?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              copyrightText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        footer4ColNewsletter?:
+          | T
+          | {
+              columns?:
+                | T
+                | {
+                    heading?: T;
+                    links?:
+                      | T
+                      | {
+                          label?: T;
+                          href?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              newsletterHeading?: T;
+              newsletterDescription?: T;
+              newsletterButtonLabel?: T;
+              socialLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              copyrightText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        footer4ColNewsletterBelow?:
+          | T
+          | {
+              logoSrc?: T;
+              logoDarkSrc?: T;
+              logoAlt?: T;
+              columns?:
+                | T
+                | {
+                    heading?: T;
+                    links?:
+                      | T
+                      | {
+                          label?: T;
+                          href?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              newsletterHeading?: T;
+              newsletterDescription?: T;
+              newsletterButtonLabel?: T;
+              socialLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              copyrightText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        footer4ColSimple?:
+          | T
+          | {
+              logoSrc?: T;
+              logoDarkSrc?: T;
+              logoAlt?: T;
+              columns?:
+                | T
+                | {
+                    heading?: T;
+                    links?:
+                      | T
+                      | {
+                          label?: T;
+                          href?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        footerSmCentered?:
+          | T
+          | {
+              navLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    id?: T;
+                  };
+              socialLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              copyrightText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        footerSmSocial?:
+          | T
+          | {
+              socialLinks?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    iconSvg?: T;
+                    id?: T;
+                  };
+              copyrightText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        headerCentered?:
           | T
           | {
               heading?: T;
@@ -969,13 +4305,73 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        headingWithStats?:
+        headerCtrBgImg?:
           | T
           | {
-              lightBgImage?: T;
-              darkBgImage?: T;
-              title?: T;
+              heading?: T;
               description?: T;
+              backgroundImage?: T;
+              id?: T;
+              blockName?: T;
+            };
+        headerCtrEyebrow?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
+              id?: T;
+              blockName?: T;
+            };
+        headerSimple?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              id?: T;
+              blockName?: T;
+            };
+        headerSmBgImg?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              backgroundImage?: T;
+              id?: T;
+              blockName?: T;
+            };
+        headerSmEyebrow?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
+              id?: T;
+              blockName?: T;
+            };
+        headerWithCards?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              backgroundImage?: T;
+              cards?:
+                | T
+                | {
+                    iconSvg?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        headerWithStats?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              backgroundImage?: T;
               links?:
                 | T
                 | {
@@ -986,23 +4382,134 @@ export interface PagesSelect<T extends boolean = true> {
               stats?:
                 | T
                 | {
-                    label?: T;
                     value?: T;
+                    label?: T;
                     id?: T;
                   };
               id?: T;
               blockName?: T;
             };
-        headingWithCards?:
+        logocloudGrid?:
           | T
           | {
-              lightImage?: T;
-              lightImageAlt?: T;
-              darkImage?: T;
-              darkImageAlt?: T;
+              logos?:
+                | T
+                | {
+                    lightSrc?: T;
+                    darkSrc?: T;
+                    alt?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        logocloudSimple?:
+          | T
+          | {
+              logos?:
+                | T
+                | {
+                    lightSrc?: T;
+                    darkSrc?: T;
+                    alt?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        logocloudSmCta?:
+          | T
+          | {
+              logos?:
+                | T
+                | {
+                    lightSrc?: T;
+                    darkSrc?: T;
+                    alt?: T;
+                    id?: T;
+                  };
+              ctaText?: T;
+              ctaLinkLabel?: T;
+              ctaLinkHref?: T;
+              id?: T;
+              blockName?: T;
+            };
+        logocloudSmHeading?:
+          | T
+          | {
+              heading?: T;
+              logos?:
+                | T
+                | {
+                    lightSrc?: T;
+                    darkSrc?: T;
+                    alt?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        logocloudSmLeftAligned?:
+          | T
+          | {
+              heading?: T;
+              logos?:
+                | T
+                | {
+                    lightSrc?: T;
+                    darkSrc?: T;
+                    alt?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        logocloudSplitLogosRight?:
+          | T
+          | {
               heading?: T;
               description?: T;
-              cards?:
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              logos?:
+                | T
+                | {
+                    lightSrc?: T;
+                    darkSrc?: T;
+                    alt?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        newsletterCenteredCard?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              emailPlaceholder?: T;
+              submitLabel?: T;
+              id?: T;
+              blockName?: T;
+            };
+        newsletterSbsDetails?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              emailPlaceholder?: T;
+              subscribeLabel?: T;
+              details?:
                 | T
                 | {
                     iconSvg?: T;
@@ -1010,6 +4517,54 @@ export interface PagesSelect<T extends boolean = true> {
                     description?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        newsletterSbsOnCard?:
+          | T
+          | {
+              heading?: T;
+              emailPlaceholder?: T;
+              submitLabel?: T;
+              privacyText?: T;
+              privacyLabel?: T;
+              privacyHref?: T;
+              id?: T;
+              blockName?: T;
+            };
+        newsletterSmSbs?:
+          | T
+          | {
+              heading?: T;
+              emailPlaceholder?: T;
+              subscribeLabel?: T;
+              privacyText?: T;
+              privacyLabel?: T;
+              privacyHref?: T;
+              id?: T;
+              blockName?: T;
+            };
+        newsletterSmSbsOnBrand?:
+          | T
+          | {
+              heading?: T;
+              emailPlaceholder?: T;
+              subscribeLabel?: T;
+              privacyText?: T;
+              privacyLabel?: T;
+              privacyHref?: T;
+              id?: T;
+              blockName?: T;
+            };
+        newsletterSmStacked?:
+          | T
+          | {
+              heading?: T;
+              emailPlaceholder?: T;
+              subscribeLabel?: T;
+              privacyText?: T;
+              privacyLabel?: T;
+              privacyHref?: T;
               id?: T;
               blockName?: T;
             };
@@ -1041,31 +4596,10 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        statsWithBg?:
-          | T
-          | {
-              lightImage?: T;
-              lightImageAlt?: T;
-              darkImage?: T;
-              darkImageAlt?: T;
-              eyebrow?: T;
-              heading?: T;
-              description?: T;
-              stats?:
-                | T
-                | {
-                    label?: T;
-                    value?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        statsSplitWithImg?:
+        statsSplitWithImage?:
           | T
           | {
               image?: T;
-              imageAlt?: T;
               eyebrow?: T;
               heading?: T;
               description?: T;
@@ -1079,22 +4613,45 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        statsTwoColDesc?:
+        statsStepped?:
           | T
           | {
-              eyebrow?: T;
               heading?: T;
-              descriptionColumns?:
+              description?: T;
+              stats?:
                 | T
                 | {
-                    paragraphs?:
-                      | T
-                      | {
-                          text?: T;
-                          id?: T;
-                        };
+                    value?: T;
+                    label?: T;
+                    description?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        statsTimeline?:
+          | T
+          | {
+              items?:
+                | T
+                | {
+                    datetime?: T;
+                    dateLabel?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        statsWithBgImage?:
+          | T
+          | {
+              lightImage?: T;
+              darkImage?: T;
+              eyebrow?: T;
+              heading?: T;
+              description?: T;
               stats?:
                 | T
                 | {
@@ -1109,8 +4666,8 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               heading?: T;
-              leadText?: T;
-              bodyText?: T;
+              bodyPrimary?: T;
+              bodySecondary?: T;
               stats?:
                 | T
                 | {
@@ -1121,104 +4678,43 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        ctaCenteredPanel?:
+        statsWithTwoColDesc?:
           | T
           | {
+              eyebrow?: T;
               heading?: T;
-              description?: T;
-              primaryCtaLabel?: T;
-              primaryCtaHref?: T;
-              secondaryCtaLabel?: T;
-              secondaryCtaHref?: T;
-              id?: T;
-              blockName?: T;
-            };
-        ctaCenteredPlain?:
-          | T
-          | {
-              heading?: T;
-              description?: T;
-              primaryCtaLabel?: T;
-              primaryCtaHref?: T;
-              secondaryCtaLabel?: T;
-              secondaryCtaHref?: T;
-              id?: T;
-              blockName?: T;
-            };
-        ctaImageTiles?:
-          | T
-          | {
-              heading?: T;
-              subheading?: T;
-              description?: T;
-              ctaLabel?: T;
-              ctaHref?: T;
-              images?:
+              colOneParaOne?: T;
+              colOneParaTwo?: T;
+              colTwoParaOne?: T;
+              colTwoParaTwo?: T;
+              stats?:
                 | T
                 | {
-                    image?: T;
-                    alt?: T;
+                    label?: T;
+                    value?: T;
                     id?: T;
                   };
               id?: T;
               blockName?: T;
             };
-        ctaSimpleCenteredGradient?:
+        teamFullWidthVertImgs?:
           | T
           | {
               heading?: T;
               description?: T;
-              primaryCtaLabel?: T;
-              primaryCtaHref?: T;
-              secondaryCtaLabel?: T;
-              secondaryCtaHref?: T;
-              id?: T;
-              blockName?: T;
-            };
-        ctaSplitWithImage?:
-          | T
-          | {
-              badge?: T;
-              heading?: T;
-              description?: T;
-              ctaLabel?: T;
-              ctaHref?: T;
-              image?: T;
-              imageAlt?: T;
-              id?: T;
-              blockName?: T;
-            };
-        contactSimpleCentered?:
-          | T
-          | {
-              heading?: T;
-              description?: T;
-              items?:
-                | T
-                | {
-                    title?: T;
-                    description?: T;
-                    linkLabel?: T;
-                    linkHref?: T;
-                    iconSvg?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        contactSimpleFourCol?:
-          | T
-          | {
-              title?: T;
-              subtitle?: T;
-              offices?:
+              members?:
                 | T
                 | {
                     name?: T;
-                    lines?:
+                    role?: T;
+                    bio?: T;
+                    image?: T;
+                    socialLinks?:
                       | T
                       | {
-                          line?: T;
+                          label?: T;
+                          href?: T;
+                          iconSvg?: T;
                           id?: T;
                         };
                     id?: T;
@@ -1226,100 +4722,286 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        contactSplitWithForm?:
+        teamGridLargeRound?:
           | T
           | {
               heading?: T;
               description?: T;
-              addressLabel?: T;
-              addressHtml?: T;
-              phoneLabel?: T;
-              phoneText?: T;
-              phoneHref?: T;
-              emailLabel?: T;
-              emailText?: T;
-              emailHref?: T;
-              formAction?: T;
-              submitLabel?: T;
-              id?: T;
-              blockName?: T;
-            };
-        newsletterWithDetails?:
-          | T
-          | {
-              heading?: T;
-              description?: T;
-              emailPlaceholder?: T;
-              subscribeLabel?: T;
-              features?:
+              members?:
                 | T
                 | {
-                    iconSvg?: T;
-                    title?: T;
-                    description?: T;
+                    name?: T;
+                    role?: T;
+                    image?: T;
+                    socialLinks?:
+                      | T
+                      | {
+                          label?: T;
+                          href?: T;
+                          iconSvg?: T;
+                          id?: T;
+                        };
                     id?: T;
                   };
               id?: T;
               blockName?: T;
             };
-        newsletterSimple?:
+        teamGridRoundImgs?:
           | T
           | {
-              heading?: T;
-              emailPlaceholder?: T;
-              subscribeLabel?: T;
-              privacyText?: T;
-              privacyLinkLabel?: T;
-              privacyLinkHref?: T;
-              id?: T;
-              blockName?: T;
-            };
-        newsletterSimpleStacked?:
-          | T
-          | {
-              heading?: T;
-              emailPlaceholder?: T;
-              subscribeLabel?: T;
-              privacyText?: T;
-              privacyLinkLabel?: T;
-              privacyLinkHref?: T;
-              id?: T;
-              blockName?: T;
-            };
-        notFoundSimple?:
-          | T
-          | {
-              errorCode?: T;
               heading?: T;
               description?: T;
-              primaryCtaLabel?: T;
-              primaryCtaHref?: T;
-              secondaryCtaLabel?: T;
-              secondaryCtaHref?: T;
-              id?: T;
-              blockName?: T;
-            };
-        notFoundImageSplit?:
-          | T
-          | {
-              companyName?: T;
-              logoLight?: T;
-              logoDark?: T;
-              logoHref?: T;
-              errorCode?: T;
-              heading?: T;
-              description?: T;
-              backLabel?: T;
-              backHref?: T;
-              footerLinks?:
+              members?:
                 | T
                 | {
-                    label?: T;
-                    href?: T;
+                    name?: T;
+                    role?: T;
+                    image?: T;
                     id?: T;
                   };
-              backgroundImageLight?: T;
-              backgroundImageDark?: T;
+              id?: T;
+              blockName?: T;
+            };
+        teamImgShortPara?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              members?:
+                | T
+                | {
+                    name?: T;
+                    role?: T;
+                    bio?: T;
+                    image?: T;
+                    socialLinks?:
+                      | T
+                      | {
+                          label?: T;
+                          href?: T;
+                          iconSvg?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        teamLargeGridCards?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              members?:
+                | T
+                | {
+                    name?: T;
+                    role?: T;
+                    image?: T;
+                    socialLinks?:
+                      | T
+                      | {
+                          label?: T;
+                          href?: T;
+                          iconSvg?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        teamLargeImgs?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              members?:
+                | T
+                | {
+                    name?: T;
+                    role?: T;
+                    image?: T;
+                    socialLinks?:
+                      | T
+                      | {
+                          label?: T;
+                          href?: T;
+                          iconSvg?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        teamMediumImgs?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              members?:
+                | T
+                | {
+                    name?: T;
+                    role?: T;
+                    location?: T;
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        teamSmallImgs?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              members?:
+                | T
+                | {
+                    name?: T;
+                    role?: T;
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        teamVertImgs?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              members?:
+                | T
+                | {
+                    name?: T;
+                    role?: T;
+                    bio?: T;
+                    image?: T;
+                    socialLinks?:
+                      | T
+                      | {
+                          label?: T;
+                          href?: T;
+                          iconSvg?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsBgImage?:
+          | T
+          | {
+              backgroundImage?: T;
+              logo?: T;
+              quote?: T;
+              authorName?: T;
+              authorTitle?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsGrid?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              featuredTestimonial?:
+                | T
+                | {
+                    quote?: T;
+                    authorImage?: T;
+                    authorName?: T;
+                    authorHandle?: T;
+                    logo?: T;
+                  };
+              testimonials?:
+                | T
+                | {
+                    quote?: T;
+                    authorImage?: T;
+                    authorName?: T;
+                    authorHandle?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsLargeAvatar?:
+          | T
+          | {
+              quote?: T;
+              authorImage?: T;
+              authorName?: T;
+              authorTitle?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsOverlapImg?:
+          | T
+          | {
+              personImage?: T;
+              quote?: T;
+              authorName?: T;
+              authorTitle?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsSideBySide?:
+          | T
+          | {
+              testimonials?:
+                | T
+                | {
+                    logo?: T;
+                    quote?: T;
+                    authorImage?: T;
+                    authorName?: T;
+                    authorTitle?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsSimpleCentered?:
+          | T
+          | {
+              logo?: T;
+              quote?: T;
+              authorImage?: T;
+              authorName?: T;
+              authorTitle?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsStarRating?:
+          | T
+          | {
+              starCount?: T;
+              quote?: T;
+              authorImage?: T;
+              authorName?: T;
+              authorTitle?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonialsSubtleGrid?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              testimonials?:
+                | T
+                | {
+                    quote?: T;
+                    authorImage?: T;
+                    authorName?: T;
+                    authorHandle?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };
