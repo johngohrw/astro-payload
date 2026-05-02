@@ -1,5 +1,6 @@
 ---
 import type { BlockTypeOf } from "@/blocks/blockTypes";
+import { getImageUrl, getImageAlt } from "@astro-default/utils/media";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
@@ -12,9 +13,9 @@ const remappedProps = {
   heading: heading ?? undefined,
   description: description ?? undefined,
   imageSrc:
-    typeof image === "object" && image !== null ? image.url ?? undefined : undefined,
+    getImageUrl(image),
   imageAlt:
-    typeof image === "object" && image !== null ? image.alt ?? undefined : undefined,
+    getImageAlt(image),
   openings: openings?.map((opening) => ({
     title: opening.title ?? undefined,
     titleHref: opening.titleHref ?? undefined,

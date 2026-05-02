@@ -1,5 +1,6 @@
 ---
 import type { BlockTypeOf } from "@/blocks/blockTypes";
+import { getImageUrl, getImageAlt } from "@astro-default/utils/media";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
@@ -9,8 +10,8 @@ const blockProps: BlockTypeOf<"contactSplitImg"> = block;
 const { image, heading, description, submitLabel, formAction } = blockProps;
 
 const remappedProps = {
-  imageSrc: typeof image === "object" && image !== null ? image.url ?? undefined : undefined,
-  imageAlt: typeof image === "object" && image !== null ? image.alt ?? undefined : undefined,
+  imageSrc: getImageUrl(image),
+  imageAlt: getImageAlt(image),
   heading: heading ?? undefined,
   description: description ?? undefined,
   submitLabel: submitLabel ?? undefined,

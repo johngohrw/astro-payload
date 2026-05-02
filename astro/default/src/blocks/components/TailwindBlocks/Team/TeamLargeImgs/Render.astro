@@ -1,5 +1,6 @@
 ---
 import type { BlockTypeOf } from "@/blocks/blockTypes";
+import { getImageUrl, getImageAlt } from "@astro-default/utils/media";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
@@ -14,8 +15,8 @@ const remappedProps = {
   members: members?.map((member) => ({
     name: member.name ?? undefined,
     role: member.role ?? undefined,
-    imageSrc: typeof member.image === "object" && member.image !== null ? member.image.url ?? undefined : undefined,
-    imageAlt: typeof member.image === "object" && member.image !== null ? (member.image as any).alt ?? undefined : undefined,
+    imageSrc: getImageUrl(member.image),
+    imageAlt: getImageAlt(member.image),
     socialLinks: member.socialLinks?.map((link) => ({
       label: link.label ?? undefined,
       href: link.href ?? undefined,

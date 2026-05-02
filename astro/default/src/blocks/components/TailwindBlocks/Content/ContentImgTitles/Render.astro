@@ -1,5 +1,6 @@
 ---
 import type { BlockTypeOf } from "@/blocks/blockTypes";
+import { getImageUrl, getImageAlt } from "@astro-default/utils/media";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
@@ -15,14 +16,14 @@ const remappedProps = {
   missionHeading: missionHeading ?? undefined,
   missionParagraph1: missionParagraph1 ?? undefined,
   missionParagraph2: missionParagraph2 ?? undefined,
-  image1Src: typeof image1 === "object" && image1 !== null ? image1.url ?? undefined : undefined,
-  image1Alt: typeof image1 === "object" && image1 !== null ? image1.alt ?? undefined : undefined,
-  image2Src: typeof image2 === "object" && image2 !== null ? image2.url ?? undefined : undefined,
-  image2Alt: typeof image2 === "object" && image2 !== null ? image2.alt ?? undefined : undefined,
-  image3Src: typeof image3 === "object" && image3 !== null ? image3.url ?? undefined : undefined,
-  image3Alt: typeof image3 === "object" && image3 !== null ? image3.alt ?? undefined : undefined,
-  image4Src: typeof image4 === "object" && image4 !== null ? image4.url ?? undefined : undefined,
-  image4Alt: typeof image4 === "object" && image4 !== null ? image4.alt ?? undefined : undefined,
+  image1Src: getImageUrl(image1),
+  image1Alt: getImageAlt(image1),
+  image2Src: getImageUrl(image2),
+  image2Alt: getImageAlt(image2),
+  image3Src: getImageUrl(image3),
+  image3Alt: getImageAlt(image3),
+  image4Src: getImageUrl(image4),
+  image4Alt: getImageAlt(image4),
   statsEyebrow: statsEyebrow ?? undefined,
   stats: stats?.map((item) => ({
     label: item.label ?? undefined,

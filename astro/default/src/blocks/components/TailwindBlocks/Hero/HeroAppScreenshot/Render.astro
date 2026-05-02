@@ -1,5 +1,6 @@
 ---
 import type { BlockTypeOf } from "@/blocks/blockTypes";
+import { getImageUrl, getImageAlt } from "@astro-default/utils/media";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
@@ -9,9 +10,9 @@ const blockProps: BlockTypeOf<"heroAppScreenshot"> = block;
 const { logo, navLinks, login, heading, description, screenshot, primaryCta, secondaryCta } = blockProps;
 
 const remappedProps = {
-  logoSrc: typeof logo === "object" && logo !== null ? logo.url ?? undefined : undefined,
-  logoSrcDark: typeof logo === "object" && logo !== null ? logo.url ?? undefined : undefined,
-  logoAlt: typeof logo === "object" && logo !== null ? logo.alt ?? undefined : undefined,
+  logoSrc: getImageUrl(logo),
+  logoSrcDark: getImageUrl(logo),
+  logoAlt: getImageAlt(logo),
   navLinks: navLinks?.map((link) => ({
     label: link.label ?? undefined,
     href: link.href ?? undefined,
@@ -20,9 +21,9 @@ const remappedProps = {
   loginHref: login?.href ?? undefined,
   heading: heading ?? undefined,
   description: description ?? undefined,
-  screenshotSrc: typeof screenshot === "object" && screenshot !== null ? screenshot.url ?? undefined : undefined,
-  screenshotSrcDark: typeof screenshot === "object" && screenshot !== null ? screenshot.url ?? undefined : undefined,
-  screenshotAlt: typeof screenshot === "object" && screenshot !== null ? screenshot.alt ?? undefined : undefined,
+  screenshotSrc: getImageUrl(screenshot),
+  screenshotSrcDark: getImageUrl(screenshot),
+  screenshotAlt: getImageAlt(screenshot),
   primaryCta: primaryCta && primaryCta !== null
     ? { label: primaryCta.label ?? undefined, href: primaryCta.href ?? undefined }
     : undefined,

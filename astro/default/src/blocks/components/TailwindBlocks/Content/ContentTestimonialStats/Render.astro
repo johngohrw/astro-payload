@@ -1,5 +1,6 @@
 ---
 import type { BlockTypeOf } from "@/blocks/blockTypes";
+import { getImageUrl, getImageAlt } from "@astro-default/utils/media";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
@@ -9,10 +10,10 @@ const blockProps: BlockTypeOf<"contentTestimonialStats"> = block;
 const { testimonialImage, testimonialLogo, testimonialQuote, testimonialAuthorName, testimonialAuthorRole, eyebrow, heading, bodyParagraph1, bodyParagraph2, bodyParagraph3, stats, cta } = blockProps;
 
 const remappedProps = {
-  testimonialImageSrc: typeof testimonialImage === "object" && testimonialImage !== null ? testimonialImage.url ?? undefined : undefined,
-  testimonialImageAlt: typeof testimonialImage === "object" && testimonialImage !== null ? testimonialImage.alt ?? undefined : undefined,
-  testimonialLogoSrc: typeof testimonialLogo === "object" && testimonialLogo !== null ? testimonialLogo.url ?? undefined : undefined,
-  testimonialLogoAlt: typeof testimonialLogo === "object" && testimonialLogo !== null ? testimonialLogo.alt ?? undefined : undefined,
+  testimonialImageSrc: getImageUrl(testimonialImage),
+  testimonialImageAlt: getImageAlt(testimonialImage),
+  testimonialLogoSrc: getImageUrl(testimonialLogo),
+  testimonialLogoAlt: getImageAlt(testimonialLogo),
   testimonialQuote: testimonialQuote ?? undefined,
   testimonialAuthorName: testimonialAuthorName ?? undefined,
   testimonialAuthorRole: testimonialAuthorRole ?? undefined,

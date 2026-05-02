@@ -1,5 +1,6 @@
 ---
 import type { BlockTypeOf } from "@/blocks/blockTypes";
+import { getImageUrl, getImageAlt } from "@astro-default/utils/media";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
@@ -9,10 +10,10 @@ const blockProps: BlockTypeOf<"testimonialsSimpleCentered"> = block;
 const { logo, quote, authorImage, authorName, authorTitle } = blockProps;
 
 const remappedProps = {
-  logoSrc: typeof logo === "object" && logo !== null ? logo.url ?? undefined : undefined,
-  logoAlt: typeof logo === "object" && logo !== null ? logo.alt ?? undefined : undefined,
+  logoSrc: getImageUrl(logo),
+  logoAlt: getImageAlt(logo),
   quote: quote ?? undefined,
-  authorImageSrc: typeof authorImage === "object" && authorImage !== null ? authorImage.url ?? undefined : undefined,
+  authorImageSrc: getImageUrl(authorImage),
   authorName: authorName ?? undefined,
   authorTitle: authorTitle ?? undefined,
 };

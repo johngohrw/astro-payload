@@ -1,5 +1,6 @@
 ---
 import type { BlockTypeOf } from "@/blocks/blockTypes";
+import { getImageUrl, getImageAlt } from "@astro-default/utils/media";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
@@ -9,7 +10,7 @@ const blockProps: BlockTypeOf<"testimonialsOverlapImg"> = block;
 const { personImage, quote, authorName, authorTitle } = blockProps;
 
 const remappedProps = {
-  personImageSrc: typeof personImage === "object" && personImage !== null ? personImage.url ?? undefined : undefined,
+  personImageSrc: getImageUrl(personImage),
   quote: quote ?? undefined,
   authorName: authorName ?? undefined,
   authorTitle: authorTitle ?? undefined,

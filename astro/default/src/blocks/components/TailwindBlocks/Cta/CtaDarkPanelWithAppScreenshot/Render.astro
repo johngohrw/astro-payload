@@ -1,5 +1,6 @@
 ---
 import type { BlockTypeOf } from "@/blocks/blockTypes";
+import { getImageUrl, getImageAlt } from "@astro-default/utils/media";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
@@ -17,8 +18,8 @@ const remappedProps = {
   secondaryCta: secondaryCta && secondaryCta !== null
     ? { label: secondaryCta.label ?? "", href: secondaryCta.href ?? "#" }
     : undefined,
-  screenshotSrc: typeof screenshot === "object" && screenshot !== null ? screenshot.url ?? undefined : undefined,
-  screenshotAlt: typeof screenshot === "object" && screenshot !== null ? screenshot.alt ?? undefined : undefined,
+  screenshotSrc: getImageUrl(screenshot),
+  screenshotAlt: getImageAlt(screenshot),
 };
 ---
 

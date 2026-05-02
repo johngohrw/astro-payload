@@ -1,5 +1,6 @@
 ---
 import type { BlockTypeOf } from "@/blocks/blockTypes";
+import { getImageUrl, getImageAlt } from "@astro-default/utils/media";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
@@ -9,9 +10,9 @@ const blockProps: BlockTypeOf<"heroImgTiles"> = block;
 const { logo, navLinks, login, heading, description, primaryCta, secondaryCta, tileImages } = blockProps;
 
 const remappedProps = {
-  logoSrc: typeof logo === "object" && logo !== null ? logo.url ?? undefined : undefined,
-  logoSrcDark: typeof logo === "object" && logo !== null ? logo.url ?? undefined : undefined,
-  logoAlt: typeof logo === "object" && logo !== null ? logo.alt ?? undefined : undefined,
+  logoSrc: getImageUrl(logo),
+  logoSrcDark: getImageUrl(logo),
+  logoAlt: getImageAlt(logo),
   navLinks: navLinks?.map((link) => ({
     label: link.label ?? undefined,
     href: link.href ?? undefined,
@@ -27,8 +28,8 @@ const remappedProps = {
     ? { label: secondaryCta.label ?? undefined, href: secondaryCta.href ?? undefined }
     : undefined,
   tileImages: tileImages?.map((item) => ({
-    src: typeof item.image === "object" && item.image !== null ? item.image.url ?? undefined : undefined,
-    alt: typeof item.image === "object" && item.image !== null ? item.image.alt ?? undefined : undefined,
+    src: getImageUrl(item.image),
+    alt: getImageAlt(item.image),
   })),
 };
 ---

@@ -1,5 +1,6 @@
 ---
 import type { BlockTypeOf } from "@/blocks/blockTypes";
+import { getImageUrl, getImageAlt } from "@astro-default/utils/media";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
@@ -26,20 +27,16 @@ const remappedProps = {
   submitLabel: submitLabel ?? undefined,
   privacyPolicyHref: privacyPolicyHref ?? undefined,
   formAction: formAction ?? undefined,
-  logoSrcLight: typeof logoLight === "object" && logoLight !== null ? logoLight.url ?? undefined : undefined,
-  logoSrcDark: typeof logoDark === "object" && logoDark !== null ? logoDark.url ?? undefined : undefined,
-  logoAlt: typeof logoLight === "object" && logoLight !== null ? logoLight.alt ?? undefined : undefined,
+  logoSrcLight: getImageUrl(logoLight),
+  logoSrcDark: getImageUrl(logoDark),
+  logoAlt: getImageAlt(logoLight),
   testimonialQuote: testimonialQuote ?? undefined,
   testimonialAuthorName: testimonialAuthorName ?? undefined,
   testimonialAuthorRole: testimonialAuthorRole ?? undefined,
   testimonialAuthorImageSrc:
-    typeof testimonialAuthorImage === "object" && testimonialAuthorImage !== null
-      ? testimonialAuthorImage.url ?? undefined
-      : undefined,
+    getImageUrl(testimonialAuthorImage),
   testimonialAuthorImageAlt:
-    typeof testimonialAuthorImage === "object" && testimonialAuthorImage !== null
-      ? testimonialAuthorImage.alt ?? undefined
-      : undefined,
+    getImageAlt(testimonialAuthorImage),
 };
 ---
 

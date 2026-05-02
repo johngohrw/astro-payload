@@ -17,23 +17,15 @@ import { Icon } from "astro-icon/components";
   <div style={{ paddingTop: "var(--site-header-height)" }}></div>
   <PageFrame
     innerProps={{
-      style: {
-        paddingBottom: "6rem",
-        display: "flex",
-        flexFlow: "column nowrap",
-      },
+      class: "pb-24 flex flex-col",
     }}
   >
-    <div class="heroLettersWrapper" style={{ padding: "2rem 0 6rem" }}>
+    <div
+      class="my-[calc(var(--content-scale)*2)] flex-grow py-8 pb-24"
+    >
       <HeroLetters />
     </div>
-    <div
-      style={{
-        width: "100%",
-        maxWidth: "45rem",
-        textWrap: "balance",
-      }}
-    >
+    <div class="w-full max-w-[45rem] text-balance">
       <SectionCaptionText> a digital design studio </SectionCaptionText>
       <SectionHeaderText>
         Creating memorable brand experiences, engineered for maximum impact.
@@ -44,10 +36,10 @@ import { Icon } from "astro-icon/components";
       </SectionBodyText>
       <div class="flex flex-row flex-nowrap gap-4">
         <Button type="secondary" smoothScrollTo="#contact" client:load>
-          <span style={{ marginRight: "0.5rem" }}>Get in touch</span>
+          <span class="mr-2">Get in touch</span>
         </Button>
         <Button smoothScrollTo="#services" client:load>
-          <span style={{ marginRight: "0.5rem" }}>Learn how</span>
+          <span class="mr-2">Learn how</span>
           <Icon name="lucide:arrow-right" />
         </Button>
       </div>
@@ -56,21 +48,14 @@ import { Icon } from "astro-icon/components";
   <PageFrame
     innerProps={{
       id: "services",
-      style: { padding: "var(--site-header-height) 0 6rem" },
+      class: "pt-[var(--site-header-height)] pb-24",
     }}
   >
     <div
       class="w-full h-[36rem] xl:h-[42rem] flex items-center justify-center relative rounded-xl overflow-hidden"
     >
       <div
-        style={{
-          maxWidth: "42rem",
-          textAlign: "center",
-          textWrap: "balance",
-          zIndex: "10",
-          filter: "invert(1)",
-          padding: "2rem",
-        }}
+        class="max-w-[42rem] text-center text-balance z-10 invert p-8"
       >
         <SectionCaptionText> what we do </SectionCaptionText>
         <SectionHeaderText noMargin>
@@ -103,17 +88,14 @@ import { Icon } from "astro-icon/components";
   </PageFrame>
   <PageFrame
     innerProps={{
-      style: { display: "flex", padding: "4rem 0", alignItems: "center" },
+      class: "flex py-16 items-center",
     }}
   >
     <ServicesSection />
   </PageFrame>
   <PageFrame
     innerProps={{
-      style: {
-        paddingTop: "var(--site-header-height)",
-        paddingBottom: "12rem",
-      },
+      class: "pt-[var(--site-header-height)] pb-48",
       id: "works",
     }}
   >
@@ -124,17 +106,4 @@ import { Icon } from "astro-icon/components";
   </PageFrame>
   <div id="contact"></div>
   <ContactsSection />
-
-  <style>
-    .heroLettersWrapper {
-      margin: calc(var(--content-scale) * 2) 0;
-      flex-grow: 1;
-    }
-
-    .heroCaption {
-      width: 100%;
-      max-width: 45rem;
-      text-wrap: balance;
-    }
-  </style>
 </QuineLayout>

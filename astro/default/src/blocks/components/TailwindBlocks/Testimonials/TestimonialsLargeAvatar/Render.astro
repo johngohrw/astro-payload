@@ -1,5 +1,6 @@
 ---
 import type { BlockTypeOf } from "@/blocks/blockTypes";
+import { getImageUrl, getImageAlt } from "@astro-default/utils/media";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
@@ -10,7 +11,7 @@ const { quote, authorImage, authorName, authorTitle } = blockProps;
 
 const remappedProps = {
   quote: quote ?? undefined,
-  authorImageSrc: typeof authorImage === "object" && authorImage !== null ? authorImage.url ?? undefined : undefined,
+  authorImageSrc: getImageUrl(authorImage),
   authorName: authorName ?? undefined,
   authorTitle: authorTitle ?? undefined,
 };

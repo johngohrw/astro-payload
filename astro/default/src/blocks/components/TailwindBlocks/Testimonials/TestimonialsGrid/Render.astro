@@ -1,5 +1,6 @@
 ---
 import type { BlockTypeOf } from "@/blocks/blockTypes";
+import { getImageUrl, getImageAlt } from "@astro-default/utils/media";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
@@ -11,7 +12,7 @@ const { eyebrow, heading, featuredTestimonial, testimonials } = blockProps;
 // Flatten CMS testimonials array into the 2-column, 2-group nested structure expected by Component
 const flat = testimonials?.map((item) => ({
   quote: item.quote ?? "",
-  authorImageSrc: typeof item.authorImage === "object" && item.authorImage !== null ? item.authorImage.url ?? undefined : undefined,
+  authorImageSrc: getImageUrl(item.authorImage),
   authorName: item.authorName ?? "",
   authorHandle: item.authorHandle ?? "",
 })) ?? [];
@@ -28,11 +29,11 @@ const remappedProps = {
   featuredTestimonial: featuredTestimonial
     ? {
         quote: featuredTestimonial.quote ?? "",
-        authorImageSrc: typeof featuredTestimonial.authorImage === "object" && featuredTestimonial.authorImage !== null ? featuredTestimonial.authorImage.url ?? undefined : undefined,
+        authorImageSrc: getImageUrl(featuredTestimonial.authorImage),
         authorName: featuredTestimonial.authorName ?? "",
         authorHandle: featuredTestimonial.authorHandle ?? "",
-        logoSrc: typeof featuredTestimonial.logo === "object" && featuredTestimonial.logo !== null ? featuredTestimonial.logo.url ?? undefined : undefined,
-        logoAlt: typeof featuredTestimonial.logo === "object" && featuredTestimonial.logo !== null ? featuredTestimonial.logo.alt ?? undefined : undefined,
+        logoSrc: getImageUrl(featuredTestimonial.logo),
+        logoAlt: getImageAlt(featuredTestimonial.logo),
       }
     : undefined,
   testimonials: [

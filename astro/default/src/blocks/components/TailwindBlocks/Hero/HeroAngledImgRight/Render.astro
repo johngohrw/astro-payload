@@ -1,5 +1,6 @@
 ---
 import type { BlockTypeOf } from "@/blocks/blockTypes";
+import { getImageUrl, getImageAlt } from "@astro-default/utils/media";
 import Component from "./Component.astro";
 
 const { block } = Astro.props;
@@ -9,9 +10,9 @@ const blockProps: BlockTypeOf<"heroAngledImgRight"> = block;
 const { logo, navLinks, announcement, heading, description, image, primaryCta, secondaryCta } = blockProps;
 
 const remappedProps = {
-  logoSrc: typeof logo === "object" && logo !== null ? logo.url ?? undefined : undefined,
-  logoSrcDark: typeof logo === "object" && logo !== null ? logo.url ?? undefined : undefined,
-  logoAlt: typeof logo === "object" && logo !== null ? logo.alt ?? undefined : undefined,
+  logoSrc: getImageUrl(logo),
+  logoSrcDark: getImageUrl(logo),
+  logoAlt: getImageAlt(logo),
   navLinks: navLinks?.map((link) => ({
     label: link.label ?? undefined,
     href: link.href ?? undefined,
@@ -20,8 +21,8 @@ const remappedProps = {
   announcementHref: announcement?.href ?? undefined,
   heading: heading ?? undefined,
   description: description ?? undefined,
-  imageSrc: typeof image === "object" && image !== null ? image.url ?? undefined : undefined,
-  imageAlt: typeof image === "object" && image !== null ? image.alt ?? undefined : undefined,
+  imageSrc: getImageUrl(image),
+  imageAlt: getImageAlt(image),
   primaryCta: primaryCta && primaryCta !== null
     ? { label: primaryCta.label ?? undefined, href: primaryCta.href ?? undefined }
     : undefined,
