@@ -3,9 +3,20 @@ import RenderBlocks from "@astro-default/blocks/RenderBlocks/RenderBlocks.astro"
 import TeleplexLayout from "@astro-teleplex/layouts/TeleplexLayout.astro";
 import { payloadQuery } from "@astro-teleplex/utils/payloadQuery";
 
-export const prerender = false;
+export async function getStaticPaths() {
+  const slugs = [
+    "about",
+    "career",
+    "contact",
+    "news-events",
+    "products",
+    "solutions",
+  ];
 
-const slug = "contact";
+  return slugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
 
 const pageResponse = await payloadQuery.find({
   collection: "pages",
