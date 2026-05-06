@@ -4,8 +4,6 @@ import IconifyIcon from "@/components/IconifyIcon/IconifyIcon.astro";
 import TeleplexLayout from "@/layouts/TeleplexLayout.astro";
 import { payloadQuery } from "@/utils/payloadQuery";
 
-export const prerender = false;
-
 const pageResponse = await payloadQuery.find({
   collection: "pages",
   where: { slug: { equals: "home" } },
