@@ -6,7 +6,7 @@ export const Media: CollectionConfig = {
     read: () => true,
   },
   upload: {
-    mimeTypes: ["image/*", "video/*"],
+    mimeTypes: ["image/*"],
     imageSizes: [
       { name: "thumb", width: 400 },
       { name: "medium", width: 800 },
