@@ -1,11 +1,6 @@
-import { PayloadSDK } from "@payloadcms/sdk";
+import { createPayloadQuery } from "@astro-default/utils/createPayloadQuery";
 import type { Config } from "payload-teleplex";
 
-export const payloadQuery = new PayloadSDK<Config>({
-  baseInit: { credentials: "include" },
-  baseURL: process.env.PAYLOAD_BASE_URL!,
-  fetch: async (url, init) => {
-    const response = await fetch(url, init);
-    return response;
-  },
-});
+export const payloadQuery = createPayloadQuery<Config>(
+  process.env.PAYLOAD_BASE_URL!,
+);
