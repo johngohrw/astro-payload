@@ -1,5 +1,5 @@
 import { PayloadSDK } from "@payloadcms/sdk";
-import type { Config } from "payload-default";
+import type { Config } from "payload-teleplex";
 
 export const payloadQuery = new PayloadSDK<Config>({
   baseInit: { credentials: "include" },
