@@ -34,6 +34,7 @@
     "libsql": "^0.5.22",
     "next": "15.4.10",
     "payload": "3.69.0",
+    "payload-default": "workspace:*",
     "react": "19.2.1",
     "react-dom": "19.2.1",
     "sharp": "0.34.2"

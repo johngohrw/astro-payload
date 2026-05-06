@@ -1,7 +1,7 @@
 ---
 import RenderBlocks from "@astro-default/blocks/RenderBlocks/RenderBlocks.astro";
-import TeleplexLayout from "@astro-teleplex/layouts/TeleplexLayout.astro";
-import { payloadQuery } from "@astro-teleplex/utils/payloadQuery";
+import TeleplexLayout from "@/layouts/TeleplexLayout.astro";
+import { payloadQuery } from "@/utils/payloadQuery";
 
 export async function getStaticPaths() {
   const slugs = [

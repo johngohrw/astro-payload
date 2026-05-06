@@ -15,8 +15,7 @@
       "@payload-default/*": ["./payload/default/src/*"],
       "@payload-quine/*": ["./payload/quine/src/*"],
       "@payload-wueelong/*": ["./payload/wueelong/src/*"],
-      "@payload-teleplex/*": ["./payload/teleplex/src/*"],
-      "@@/*": ["./*"]
+      "@payload-teleplex/*": ["./payload/teleplex/src/*"]
     }
   }
 }
