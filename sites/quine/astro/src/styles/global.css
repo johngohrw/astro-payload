@@ -1,8 +1,8 @@
 @import "tailwindcss"; 
 
 /* import foreign blocks */
-@source "../../../default/src/blocks";
-@source "../../../default/src/components/";
+@source "../../../../default/astro/src/blocks";
+@source "../../../../default/astro/src/components/";
 
 @theme {
   --color-primary: oklch(0.72 0.11 178);
