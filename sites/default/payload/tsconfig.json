@@ -1,10 +1,10 @@
 {
-  "extends": "../tsconfig.base.json",
+  "extends": "../../tsconfig.payload.base.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@astro-default/*": ["../../astro/default/src/*"],
-      "@payload-default/*": ["../../payload/default/src/*"],
+      "@astro-default/*": ["../../default/astro/src/*"],
+      "@payload-default/*": ["../../default/payload/src/*"],
       "@/*": ["./src/*"]
     }
   },

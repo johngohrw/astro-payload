@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* include default directory */
-@source "../../../default/src/";
+@source "../../../../../sites/default/astro/src/";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
