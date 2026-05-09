@@ -1,4 +1,6 @@
-# Teleplex Payload CMS — Production Docker Compose
+# Teleplex Payload CMS — Docker Compose (reference only)
+#
+# For Unraid, use the docker run command below instead of compose.
 #
 # First run:
 #   docker compose up --build -d
@@ -17,6 +19,10 @@ services:
       - "3000:3000"
     env_file:
       - .env
+    environment:
+      # Optional: match file ownership to your host user (Unraid)
+      - PUID=${PUID:-99}
+      - PGID=${PGID:-100}
     volumes:
       - teleplex-data:/app/sites/teleplex/payload/data
     restart: unless-stopped
@@ -36,3 +42,20 @@ services:
 volumes:
   teleplex-data:
     driver: local
+
+# ── Unraid docker run equivalent ────────────────────────────
+# docker run -d \
+#   --name teleplex-payload \
+#   -p 3000:3000 \
+#   -e PUID=99 \
+#   -e PGID=100 \
+#   -e PAYLOAD_SECRET=your-secret \
+#   -e DATABASE_URL=file:./data/data.db \
+#   -e R2_ACCESS_KEY_ID=your-key \
+#   -e R2_SECRET_ACCESS_KEY=your-secret \
+#   -e R2_BUCKET=your-bucket \
+#   -e R2_ENDPOINT=your-account.r2.cloudflarestorage.com \
+#   -e R2_ENDPOINT_PUBLIC=your-account.r2.dev \
+#   -v /mnt/user/appdata/teleplex-payload/data:/app/sites/teleplex/payload/data \
+#   --restart unless-stopped \
+#   teleplex-payload:latest

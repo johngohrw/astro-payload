@@ -4,11 +4,20 @@
 # Fat Stack: single-stage production image
 # Copies the full monorepo, builds in-place, runs next start.
 # Larger image (~2GB) but avoids Next.js standalone tracing bugs.
+#
+# Unraid-friendly:
+#   - Set PUID / PGID env vars so SQLite files match your array user
+#   - Bind-mount a host path to /app/sites/teleplex/payload/data
+#   - No docker-compose required; works with plain docker run
 # ─────────────────────────────────────────────────────────────
 FROM node:22-alpine
 
-# Enable pnpm via corepack
-RUN corepack enable && corepack prepare pnpm@10.10.0 --activate
+# Install pnpm globally (not corepack) so it works for any user.
+# Corepack caches in /root/.cache/ and breaks non-root usage.
+RUN npm install -g pnpm@10.10.0
+
+# Install su-exec for privilege dropping (PUID/PGID support)
+RUN apk add --no-cache su-exec
 
 WORKDIR /app
 
@@ -53,7 +62,8 @@ RUN mkdir -p /app/sites/teleplex/payload/data
 COPY sites/teleplex/payload/docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-# Declare volume for database persistence
+# Declare volume for database persistence.
+# In Unraid, bind-mount this to e.g. /mnt/user/appdata/teleplex-payload/data
 VOLUME /app/sites/teleplex/payload/data
 
 # Expose the application port
@@ -64,4 +74,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
   CMD node -e "require('http').get('http://127.0.0.1:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)}).on('error', () => process.exit(1))"
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["sh", "-c", "cd sites/teleplex/payload && pnpm start"]
+CMD ["pnpm", "start"]
