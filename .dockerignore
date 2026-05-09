@@ -1,0 +1,37 @@
+# Dependencies
+**/node_modules
+
+# Build outputs
+**/.next
+**/dist
+**/out
+
+# Environment files — exclude ALL .env files anywhere in the tree
+**/.env
+**/.env.*
+!.env.example
+
+# Git
+.git
+.gitignore
+
+# OS files
+.DS_Store
+
+# Context & docs
+.context
+.skills
+.resources
+
+# Logs
+*.log
+.pnpm-debug.log*
+
+# Database (don't bake local dev DB into image)
+**/data/*.db
+**/data/*.db-journal
+**/data/*.db-shm
+**/data/*.db-wal
+
+# Testing
+coverage

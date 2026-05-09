@@ -19,6 +19,8 @@ const nextConfig = {
       'node_modules/@libsql/**',
       'node_modules/.pnpm/@libsql*/node_modules/**',
       'node_modules/.pnpm/@neon-rs*/node_modules/**',
+      'node_modules/@smithy/**',
+      'node_modules/.pnpm/@smithy*/node_modules/**',
     ],
   },
 }

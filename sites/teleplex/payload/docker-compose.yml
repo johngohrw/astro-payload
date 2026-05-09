@@ -1,0 +1,38 @@
+# Teleplex Payload CMS — Production Docker Compose
+#
+# First run:
+#   docker compose up --build -d
+#   # Then visit http://localhost:3000/admin and create your first admin user
+#
+# The SQLite database is persisted in the named volume `teleplex-data`.
+# On first boot, the entrypoint runs migrations to initialize the schema.
+
+services:
+  payload:
+    build:
+      context: ../../..
+      dockerfile: sites/teleplex/payload/Dockerfile
+    container_name: teleplex-payload
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    volumes:
+      - teleplex-data:/app/sites/teleplex/payload/data
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://127.0.0.1:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)}).on('error', () => process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      start_period: 15s
+      retries: 3
+
+volumes:
+  teleplex-data:
+    driver: local

@@ -29,6 +29,9 @@ export const baseDb = sqliteAdapter({
   client: {
     url: process.env.DATABASE_URL || "",
   },
+  // Auto-create schema tables on first connection.
+  // Safe for self-hosted SQLite; use migrations for hosted Postgres.
+  push: true,
 });
 
 export const baseEditor = lexicalEditor();
