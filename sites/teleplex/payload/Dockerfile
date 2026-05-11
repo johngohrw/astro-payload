@@ -1,77 +1,105 @@
 # syntax=docker/dockerfile:1
-
-# ─────────────────────────────────────────────────────────────
-# Fat Stack: single-stage production image
-# Copies the full monorepo, builds in-place, runs next start.
-# Larger image (~2GB) but avoids Next.js standalone tracing bugs.
+#
+# Teleplex Payload CMS — Production Dockerfile
+#
+# Two-stage build:
+#   1. Builder: installs deps, compiles Next.js app, prunes devDependencies
+#   2. Runner:  copies only what's needed to run the server
 #
 # Unraid-friendly:
-#   - Set PUID / PGID env vars so SQLite files match your array user
+#   - PUID / PGID support via su-exec (no root at runtime)
 #   - Bind-mount a host path to /app/sites/teleplex/payload/data
-#   - No docker-compose required; works with plain docker run
-# ─────────────────────────────────────────────────────────────
-FROM node:22-alpine
+#   - Works with plain docker run (no compose required)
+#
+# ── Stage 1: Builder ────────────────────────────────────────
+FROM node:22-alpine AS builder
 
-# Install pnpm globally (not corepack) so it works for any user.
-# Corepack caches in /root/.cache/ and breaks non-root usage.
+# Install pnpm
 RUN npm install -g pnpm@10.10.0
-
-# Install su-exec for privilege dropping (PUID/PGID support)
-RUN apk add --no-cache su-exec
 
 WORKDIR /app
 
-# Copy the entire monorepo
-COPY . .
+# Layer 1 — Lockfile & workspace config (cache-friendly)
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 
-# Install all workspace dependencies
+# Layer 2 — All workspace package manifests (cache-friendly)
+# We copy every package.json so pnpm can resolve the full workspace,
+# but we don't copy source code yet.
+COPY sites/default/astro/package.json    sites/default/astro/
+COPY sites/quine/astro/package.json      sites/quine/astro/
+COPY sites/teleplex/astro/package.json   sites/teleplex/astro/
+COPY sites/default/payload/package.json  sites/default/payload/
+COPY sites/quine/payload/package.json    sites/quine/payload/
+COPY sites/tsconfig.payload.base.json               sites/
+COPY sites/teleplex/payload/package.json sites/teleplex/payload/
+
+# Install dependencies (cached unless lockfile or a package.json changes)
 RUN pnpm install --frozen-lockfile
 
-# BULLETPROOF: delete any .env files and data.db artifacts that may have
-# been copied from the host before the build runs.
-RUN find /app -name ".env" -delete && \
-    find /app -name ".env.*" -not -name ".env.example" -delete && \
-    rm -rf /app/sites/teleplex/payload/data && \
-    rm -f /tmp/build-data.db*
+# Layer 3 — Source code (invalidated on any code change)
+COPY sites/ sites/
 
-# Build with a temporary DB path so no data.db is created in the image.
-# Inline env vars guarantee the .env file (now deleted) cannot override them.
+# Build the Teleplex Payload backend
+# Dummy env vars prevent the build from creating a real data.db
+ENV NODE_ENV=production
 RUN cd sites/teleplex/payload && \
-    PAYLOAD_SECRET=dummy-secret-for-build \
-    DATABASE_URL=file:/tmp/build-data.db \
+    PAYLOAD_SECRET=build-secret \
+    DATABASE_URL=file:/tmp/build.db \
     R2_ACCESS_KEY_ID=fake \
     R2_SECRET_ACCESS_KEY=fake \
-    R2_BUCKET=fake-bucket \
+    R2_BUCKET=fake \
     R2_ENDPOINT=fake.r2.cloudflarestorage.com \
     R2_ENDPOINT_PUBLIC=fake.r2.dev \
-    NODE_ENV=production \
     pnpm build
 
-# Nuke any DB artifacts the build may have created
-RUN rm -f /tmp/build-data.db* && \
-    rm -rf /app/sites/teleplex/payload/data
+# Strip devDependencies from the entire workspace
+RUN pnpm prune --prod
 
-# Runtime environment defaults
+# Clean up build artifacts we don't need at runtime
+RUN rm -rf sites/teleplex/payload/.next/cache && \
+    rm -f /tmp/build.db*
+
+# ── Stage 2: Runner ────────────────────────────────────────
+FROM node:22-alpine AS runner
+
+# Install pnpm (needed for pnpm start / pnpm payload migrate)
+# and su-exec (for privilege dropping in Unraid)
+RUN npm install -g pnpm@10.10.0 && \
+    apk add --no-cache su-exec
+
+# The node:22-alpine base image already has a 'node' user (uid=1000).
+# Just ensure it has a home directory.
+RUN mkdir -p /home/node && chown node:node /home/node
+
+WORKDIR /app
+
+# Copy the pruned workspace from the builder stage
+COPY --from=builder /app/node_modules            /app/node_modules
+COPY --from=builder /app/package.json            /app/package.json
+COPY --from=builder /app/pnpm-workspace.yaml     /app/pnpm-workspace.yaml
+COPY --from=builder /app/pnpm-lock.yaml          /app/pnpm-lock.yaml
+COPY --from=builder /app/sites/default/astro     /app/sites/default/astro
+COPY --from=builder /app/sites/quine/astro       /app/sites/quine/astro
+COPY --from=builder /app/sites/teleplex/astro    /app/sites/teleplex/astro
+COPY --from=builder /app/sites/default/payload   /app/sites/default/payload
+COPY --from=builder /app/sites/quine/payload     /app/sites/quine/payload
+COPY --from=builder /app/sites/teleplex/payload  /app/sites/teleplex/payload
+COPY --from=builder /app/sites/tsconfig.payload.base.json /app/sites/tsconfig.payload.base.json
+
+# Runtime environment
 ENV NODE_ENV=production
 ENV DATABASE_URL=file:./data/data.db
+ENV HOME=/home/node
 
-# Create data directory for SQLite
+# Ensure data directory exists
 RUN mkdir -p /app/sites/teleplex/payload/data
 
-# Copy entrypoint script
+EXPOSE 3000
+
+# Copy entrypoint
 COPY sites/teleplex/payload/docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-# Declare volume for database persistence.
-# In Unraid, bind-mount this to e.g. /mnt/user/appdata/teleplex-payload/data
-VOLUME /app/sites/teleplex/payload/data
-
-# Expose the application port
-EXPOSE 3000
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
-  CMD node -e "require('http').get('http://127.0.0.1:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)}).on('error', () => process.exit(1))"
-
+WORKDIR /app/sites/teleplex/payload
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["pnpm", "start"]

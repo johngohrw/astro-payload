@@ -1,37 +1,47 @@
-# Dependencies
-**/node_modules
-
-# Build outputs
-**/.next
-**/dist
-**/out
-
-# Environment files — exclude ALL .env files anywhere in the tree
-**/.env
-**/.env.*
-!.env.example
-
-# Git
+# ── Git ─────────────────────────────────────────────────────
 .git
 .gitignore
 
-# OS files
-.DS_Store
+# ── Node & Package Managers ─────────────────────────────────
+**/node_modules
+.pnpm-store
 
-# Context & docs
+# ── Build Outputs ───────────────────────────────────────────
+**/.next
+**/dist
+**/out
+**/build
+
+# ── Environment Files ───────────────────────────────────────
+# Exclude ALL .env files anywhere in the tree
+**/.env
+**/.env.*
+# Keep .env.example as documentation
+!.env.example
+
+# ── OS Files ────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Context, Docs & Skills ──────────────────────────────────
 .context
 .skills
 .resources
 
-# Logs
+# ── Logs ────────────────────────────────────────────────────
 *.log
 .pnpm-debug.log*
 
-# Database (don't bake local dev DB into image)
+# ── Database (never bake local dev DB into image) ───────────
 **/data/*.db
-**/data/*.db-journal
-**/data/*.db-shm
-**/data/*.db-wal
+**/data/*.db-*
 
-# Testing
+# ── Testing ─────────────────────────────────────────────────
 coverage
+.nyc_output
+
+# ── IDE ─────────────────────────────────────────────────────
+.vscode
+.idea
+*.swp
+*.swo

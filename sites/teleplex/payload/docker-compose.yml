@@ -1,13 +1,12 @@
-# Teleplex Payload CMS — Docker Compose (reference only)
+# Teleplex Payload CMS — Local Development Compose
 #
-# For Unraid, use the docker run command below instead of compose.
+# Use this to build and test the image locally before pushing to GHCR.
+# On first run, visit http://localhost:3000/admin and create an admin user.
 #
-# First run:
 #   docker compose up --build -d
-#   # Then visit http://localhost:3000/admin and create your first admin user
+#   docker compose logs -f
 #
-# The SQLite database is persisted in the named volume `teleplex-data`.
-# On first boot, the entrypoint runs migrations to initialize the schema.
+# The SQLite database is persisted in a local bind-mounted directory.
 
 services:
   payload:
@@ -20,42 +19,9 @@ services:
     env_file:
       - .env
     environment:
-      # Optional: match file ownership to your host user (Unraid)
-      - PUID=${PUID:-99}
-      - PGID=${PGID:-100}
+      # Match file ownership to your host user (optional)
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
     volumes:
-      - teleplex-data:/app/sites/teleplex/payload/data
+      - ./data:/app/sites/teleplex/payload/data
     restart: unless-stopped
-    healthcheck:
-      test:
-        [
-          "CMD",
-          "node",
-          "-e",
-          "require('http').get('http://127.0.0.1:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)}).on('error', () => process.exit(1))",
-        ]
-      interval: 30s
-      timeout: 5s
-      start_period: 15s
-      retries: 3
-
-volumes:
-  teleplex-data:
-    driver: local
-
-# ── Unraid docker run equivalent ────────────────────────────
-# docker run -d \
-#   --name teleplex-payload \
-#   -p 3000:3000 \
-#   -e PUID=99 \
-#   -e PGID=100 \
-#   -e PAYLOAD_SECRET=your-secret \
-#   -e DATABASE_URL=file:./data/data.db \
-#   -e R2_ACCESS_KEY_ID=your-key \
-#   -e R2_SECRET_ACCESS_KEY=your-secret \
-#   -e R2_BUCKET=your-bucket \
-#   -e R2_ENDPOINT=your-account.r2.cloudflarestorage.com \
-#   -e R2_ENDPOINT_PUBLIC=your-account.r2.dev \
-#   -v /mnt/user/appdata/teleplex-payload/data:/app/sites/teleplex/payload/data \
-#   --restart unless-stopped \
-#   teleplex-payload:latest
