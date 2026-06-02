@@ -12,5 +12,10 @@ export default defineConfig({
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      // Allow Cloudflare Tunnel (and any reverse proxy) to forward traffic.
+      // In dev mode this is safe. Remove for production builds.
+      allowedHosts: [".john.shiksha"],
+    },
   },
 });

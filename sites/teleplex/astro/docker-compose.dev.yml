@@ -1,0 +1,39 @@
+# Teleplex Astro — Development / Staging Compose
+#
+# ⚠️  NOT FOR PRODUCTION. This runs `astro dev` for live CMS preview.
+#
+# Usage:
+#   docker compose -f docker-compose.dev.yml up --build -d
+#
+# The site will be available at http://localhost:${PORT}
+#
+# To see live CMS changes:
+#   1. Start the Payload CMS container (sites/teleplex/payload)
+#   2. Edit content in the Payload admin
+#   3. Refresh the Astro page — changes appear immediately
+
+services:
+  astro:
+    build:
+      context: ../../..
+      dockerfile: sites/teleplex/astro/Dockerfile.dev
+    image: teleplex-astro-dev
+    container_name: teleplex-astro-dev
+    ports:
+      - "${PORT:-4321}:${PORT:-4321}"
+    env_file:
+      - .env
+    environment:
+      # URL to the Payload CMS API (required)
+      # Example: http://teleplex-payload:3000/api
+      - PAYLOAD_BASE_URL=${PAYLOAD_BASE_URL}
+      # Server port (must match Dockerfile.dev EXPOSE)
+      - PORT=${PORT:-4321}
+      # Unraid file ownership
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+    # Optional: bind-mount source code for live frontend editing
+    # Uncomment if you're actively editing Astro components:
+    # volumes:
+    #   - ./src:/app/sites/teleplex/astro/src:ro
+    restart: unless-stopped

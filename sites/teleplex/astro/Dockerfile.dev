@@ -1,0 +1,53 @@
+# syntax=docker/dockerfile:1
+#
+# Teleplex Astro — Development / Staging Server
+#
+# ⚠️  NOT FOR PRODUCTION. This runs `astro dev` for live CMS preview.
+#
+# Clients edit content in Payload CMS → refresh the page → see changes
+# immediately (Astro dev mode fetches CMS data at request time).
+#
+# For production, use `astro build` and serve static files instead.
+#
+# Unraid-friendly:
+#   - PUID / PGID support via su-exec
+#   - Configurable PORT via env var
+#
+# ── Single Stage (Dev) ──────────────────────────────────────
+FROM node:22-alpine
+
+# Install pnpm (global npm, avoids corepack root-cache issues)
+# and su-exec (for Unraid privilege dropping)
+RUN npm install -g pnpm@10.10.0 && \
+    apk add --no-cache su-exec
+
+WORKDIR /app
+
+# Layer 1 — Lockfile & workspace config (cache-friendly)
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
+
+# Layer 2 — All workspace package manifests (cache-friendly)
+# Auto-scales as you add new brands under sites/.
+COPY --parents sites/**/package.json ./
+COPY --parents sites/tsconfig.payload.base.json ./
+
+# Install dependencies (cached unless lockfile or a package.json changes)
+RUN pnpm install --frozen-lockfile
+
+# Layer 3 — Source code (invalidated on any code change)
+COPY sites/ sites/
+
+# Runtime environment
+ENV NODE_ENV=development
+ENV PORT=4321
+ENV HOST=0.0.0.0
+
+EXPOSE ${PORT}
+
+# Copy entrypoint
+COPY sites/teleplex/astro/docker-entrypoint.dev.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+WORKDIR /app/sites/teleplex/astro
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["pnpm", "dev", "--host"]

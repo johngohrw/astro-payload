@@ -4,6 +4,8 @@ import DefaultLayout from "@astro-default/layouts/DefaultLayout.astro";
 import { payloadQuery } from "@astro-default/utils/payloadQuery";
 
 export async function getStaticPaths() {
+  if (!payloadQuery.baseURL) return [];
+
   const pages = await payloadQuery.find({
     collection: "pages",
   });
