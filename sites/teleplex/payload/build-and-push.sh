@@ -3,7 +3,7 @@
 # Build and push the teleplex-payload Docker image to GHCR.
 #
 # Usage:
-#   ./scripts/build-and-push-teleplex.sh [version]
+#   ./build-and-push.sh [version]
 #
 #   version   Image tag (default: latest). Use "v1.2.3" for releases.
 #
@@ -13,21 +13,23 @@
 #
 # The image is always built for linux/amd64 (Unraid).
 # To build for your local architecture (e.g. ARM64 Mac) instead:
-#   PLATFORM=linux/arm64 ./scripts/build-and-push-teleplex.sh --local
+#   PLATFORM=linux/arm64 ./build-and-push.sh
 #
 # Unraid pull:
 #   docker pull ghcr.io/johngohrw/teleplex-payload:latest
 
 set -euo pipefail
 
+# ── Auto-locate paths ───────────────────────────────────────
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOCKERFILE="${SCRIPT_DIR}/Dockerfile"
+BUILD_CONTEXT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
+
 # ── Configuration ───────────────────────────────────────────
 REPO_OWNER="johngohrw"
 IMAGE_NAME="teleplex-payload"
 REGISTRY="ghcr.io"
 FULL_IMAGE="${REGISTRY}/${REPO_OWNER}/${IMAGE_NAME}"
-
-DOCKERFILE="sites/teleplex/payload/Dockerfile"
-BUILD_CONTEXT="."
 
 # ── Arguments ───────────────────────────────────────────────
 VERSION="${1:-latest}"
@@ -40,7 +42,7 @@ success() { echo "✅ $1"; }
 
 # ── Checks ──────────────────────────────────────────────────
 if [ ! -f "$DOCKERFILE" ]; then
-  error "Dockerfile not found at ${DOCKERFILE}. Run this script from the repo root."
+  error "Dockerfile not found at ${DOCKERFILE}"
 fi
 
 if ! command -v docker &> /dev/null; then
@@ -51,6 +53,8 @@ if ! docker buildx version &> /dev/null; then
   error "docker buildx is required."
 fi
 
+info "Dockerfile:   ${DOCKERFILE}"
+info "Build context: ${BUILD_CONTEXT}"
 info "Target image: ${FULL_IMAGE}:${VERSION}"
 info "Platform:     ${PLATFORM}"
 echo ""

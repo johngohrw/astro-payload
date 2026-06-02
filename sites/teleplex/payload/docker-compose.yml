@@ -13,6 +13,7 @@ services:
     build:
       context: ../../..
       dockerfile: sites/teleplex/payload/Dockerfile
+    image: teleplex-payload
     container_name: teleplex-payload
     ports:
       - "3000:3000"

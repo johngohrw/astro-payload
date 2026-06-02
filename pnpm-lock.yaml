@@ -6,6 +6,8 @@ settings:
 
 importers:
 
+  .: {}
+
   sites/default/astro:
     dependencies:
       '@astrojs/react':

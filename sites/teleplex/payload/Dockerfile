@@ -23,15 +23,11 @@ WORKDIR /app
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 
 # Layer 2 — All workspace package manifests (cache-friendly)
-# We copy every package.json so pnpm can resolve the full workspace,
-# but we don't copy source code yet.
-COPY sites/default/astro/package.json    sites/default/astro/
-COPY sites/quine/astro/package.json      sites/quine/astro/
-COPY sites/teleplex/astro/package.json   sites/teleplex/astro/
-COPY sites/default/payload/package.json  sites/default/payload/
-COPY sites/quine/payload/package.json    sites/quine/payload/
-COPY sites/tsconfig.payload.base.json               sites/
-COPY sites/teleplex/payload/package.json sites/teleplex/payload/
+# Using --parents preserves directory structure, so pnpm can resolve the
+# full workspace graph without hardcoding every site. Auto-scales as you
+# add new brands under sites/.
+COPY --parents sites/**/package.json ./
+COPY --parents sites/tsconfig.payload.base.json ./
 
 # Install dependencies (cached unless lockfile or a package.json changes)
 RUN pnpm install --frozen-lockfile
@@ -73,16 +69,15 @@ RUN mkdir -p /home/node && chown node:node /home/node
 
 WORKDIR /app
 
-# Copy the pruned workspace from the builder stage
+# Copy only the workspace packages teleplex/payload needs at runtime.
+# Builder stage still copies all package.jsons (required for pnpm install),
+# but runner can drop unrelated sites to save space.
 COPY --from=builder /app/node_modules            /app/node_modules
 COPY --from=builder /app/package.json            /app/package.json
 COPY --from=builder /app/pnpm-workspace.yaml     /app/pnpm-workspace.yaml
 COPY --from=builder /app/pnpm-lock.yaml          /app/pnpm-lock.yaml
 COPY --from=builder /app/sites/default/astro     /app/sites/default/astro
-COPY --from=builder /app/sites/quine/astro       /app/sites/quine/astro
-COPY --from=builder /app/sites/teleplex/astro    /app/sites/teleplex/astro
 COPY --from=builder /app/sites/default/payload   /app/sites/default/payload
-COPY --from=builder /app/sites/quine/payload     /app/sites/quine/payload
 COPY --from=builder /app/sites/teleplex/payload  /app/sites/teleplex/payload
 COPY --from=builder /app/sites/tsconfig.payload.base.json /app/sites/tsconfig.payload.base.json
 
