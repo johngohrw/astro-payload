@@ -11,11 +11,15 @@ This repository is not a standalone project. It is meant to be cloned into a `.s
 | Skill                     | Description                                                                                                                                                      |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `save-session`            | Capture the current session — files changed, decisions made, test state, open items — to a timestamped markdown file in `.context/`.                             |
-| `resume-session`          | Read the most recent `.context/` files at session start to reconstruct project state, recent changes, and next steps without relying on model context.           |
+| `resume-session`          | Read the most recent `.context/` files to reconstruct project state. **Note:** this happens automatically at session startup via `AGENTS.md` — manual invocation is rarely needed. |
 | `plan-then-build`         | Explore the codebase, present implementation options with tradeoffs, grill the user on constraints, and crystallize an explicit plan before any code is written. |
 | `generate-commit-message` | Inspect staged changes, recent commit history, and `.context/` files to draft a Conventional Commit message for user approval.                                   |
 | `arch-review`             | Walk the codebase to identify coupling, untested modules, shallow abstractions, and mixed concerns. Presents ranked candidates for refactoring.                  |
 | `spec-gen`                | Deeply explore a codebase and emit a comprehensive project spec covering stack, schemas, routes, features, design decisions, and technical debt.                 |
+| `design-init`             | One-time design context setup: interviews the user and writes `.context/PRODUCT.md` and `.context/DESIGN.md`.                                                     |
+| `design-brief`            | UX and visual planning for a frontend feature before any code is written. Produces a confirmed design brief.                                                     |
+| `design-audit`            | Scored quality check on frontend code across a11y, performance, theming, responsive, and anti-patterns. Outputs a ranked report.                                   |
+| `design-polish`           | Shipping readiness pass on UI surfaces. Checks states, micro-interactions, copy, and edge cases.                                                                 |
 
 ---
 
@@ -30,12 +34,13 @@ bash install.sh
 
 The script performs the following:
 
-1. Aborts if `AGENTS.md` already exists in the project root (to prevent overwriting existing agent instructions).
-2. Clones this repository into `.skills/` via a shallow clone.
-3. Copies `AGENTS.md` from `.skills/` into the project root.
-4. Deletes `install.sh`.
+1. Clones this repository into `.skills/` via a shallow clone.
+2. Copies `BAG-OF-SKILLS.md` from `.skills/` into the project root (overwrites any preexisting file).
+3. Ensures `AGENTS.md` exists in the project root, creating it if necessary.
+4. Prepends `AGENTS-PREPEND.md` from `.skills/` to the start of `AGENTS.md` if not already present.
+5. Deletes `install.sh`.
 
-> **Note:** `.skills/` is not added to `.gitignore`. Commit it alongside `AGENTS.md` so your team shares the same skill set.
+> **Note:** `.skills/` is not added to `.gitignore`. Commit it alongside `AGENTS.md` and `BAG-OF-SKILLS.md` so your team shares the same skill set.
 
 ---
 
@@ -57,8 +62,15 @@ Most skills in this collection interact with a `.context/` directory at the proj
 
 Because `.context/` lives inside the project, it can be committed to git or left untracked, depending on whether you want session history to travel with the repository.
 
+**Automatic resume:** `AGENTS.md` instructs the agent to automatically read recent `.context/` files at every session startup. No manual `/skill:resume-session` invocation is needed.
+
 ---
 
-## `AGENTS.md`
+## `AGENTS.md` and `BAG-OF-SKILLS.md`
 
-This repository includes an `AGENTS.md` containing introductory context about the skills collection. When `install.sh` runs, it copies this file into the project root. Agents that support context files (e.g. pi, Claude Code) automatically load `AGENTS.md` at startup when walking up from the working directory. This means a freshly started agent knows about the available skills and conventions without explicit prompting.
+This repository provides two files that work together:
+
+- **`BAG-OF-SKILLS.md`** — the full skills documentation, conventions, and reference. Copied to the project root on install.
+- **`AGENTS-PREPEND.md`** — a short directive that tells the agent to read `BAG-OF-SKILLS.md` before proceeding. Automatically prepended to the project's `AGENTS.md`.
+
+Agents that support context files (e.g. pi, Claude Code) automatically load `AGENTS.md` at startup. The prepended directive ensures the agent reads the full skills documentation from `BAG-OF-SKILLS.md` without requiring manual invocation.
