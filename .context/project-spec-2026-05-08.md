@@ -244,7 +244,7 @@ Teleplex Payload has an initial migration (`20260509_075220`) generated from a w
 - **Block-based page builder** — Compose pages in Payload CMS using 123+ pre-built Tailwind UI blocks.
 - **Type-safe cross-package data flow** — Payload types are generated and consumed by Astro via `workspace:*` links.
 - **Media pipeline** — Images uploaded to Payload are stored on Cloudflare R2; Astro fetches resized variants at build time.
-- **Multi-tenant monorepo** — Each brand (Quine, Teleplex) owns a dedicated frontend + backend pair while sharing the block library.
+- **Site library monorepo** — Each brand (Quine, Teleplex) is an independent deployment that imports shared blocks, schemas, and utilities from `sites/default/`. No two sites run together in production.
 - **Generic Payload query factory** — `createPayloadQuery<T>(baseURL)` in `sites/default/astro/src/utils/createPayloadQuery.ts` provides a single-source-of-truth SDK configuration.
 
 ### Quine Systems (Flagship Site)
@@ -274,6 +274,9 @@ Teleplex Payload has an initial migration (`20260509_075220`) generated from a w
 
 1. **Per-Brand Folder Structure**
    Moved from `astro/*` + `payload/*` to `sites/{brand}/astro` + `sites/{brand}/payload` to support per-brand Dockerization and clearer deployment boundaries. `sites/default/` remains a shared library.
+
+1a. **Independent Deployments (Not Multi-Tenant)**
+   Each `sites/{brand}/` is a standalone deployment. They share code via `sites/default/` imports, but they never run together in production. There is no root-level orchestration. This is a site library, not a multi-tenant platform.
 
 2. **Shared Block Architecture**
    The `sites/default/astro` package is the lynchpin. It exports both the Payload field schemas and the Astro renderers. Adding a new block is a single-package change.
@@ -364,7 +367,7 @@ Teleplex Payload has an initial migration (`20260509_075220`) generated from a w
 | 9 | **MobileNavButton is a stub** | Low | `sites/teleplex/astro/src/components/MobileNavButton/MobileNavButton.tsx` logs `"click!!"` and does nothing. |
 | 10 | **Button.tsx uses window.location.href** | Low | `sites/quine/astro/src/components/Button/Button.tsx` navigates via `window.location.href`, breaking accessibility and SEO. |
 | 11 | **All-blocks demo is brittle** | Low | `sites/default/astro/src/pages/all-blocks/index.astro` creates empty blocks with no field data. Relies entirely on Component defaults. |
-| 12 | **Payload default/quine/teleplex port collision** | Low | `payload-quine` and `payload-teleplex` both default to port 3000. Cannot run simultaneously without explicit port assignment. |
+| ~~12~~ | ~~**Payload default/quine/teleplex port collision**~~ | ~~Low~~ | ~~*Not an issue.* Sites are independently deployed and never run simultaneously. Each can use its preferred default port.~~ |
 | 13 | **Sass @import deprecation** | Low | Teleplex layout uses `@import "../styles/breakpoints.scss"` which is deprecated in Dart Sass 3.0.0. |
 | 14 | **Missing root tsconfig.json** | Low | After restructure, no root `tsconfig.json` exists. All packages are self-contained via child tsconfigs. |
 | 15 | **Docker only for teleplex payload** | Low | Quine and default backends have no Dockerfiles. Teleplex Astro frontend has no Dockerfile. Per-brand Dockerization is incomplete. |
